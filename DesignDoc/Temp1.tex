@@ -1,0 +1,334 @@
+
+\documentclass{article}
+\setlength{\topmargin}{-.3in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{.125in}
+\setlength{\textwidth}{6.25in}
+% \usepackage{titling}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\begin{document}
+\title{COP290 - Moodle Android App: Design Document}
+% \posttitle{\par{COP 290: Design Practices in Computer Science\par}}
+\author{ Aditi(2014CS10205), Ayush Bhardwaj(2014CS10091), Nikhil Gupta(2014CS5140462)}
+
+\maketitle
+
+\section{Overall Design}
+
+Our overall design of the Moodle app would consist of three main activities. The first one would be the splash screen, which would be displayed for a fixed amount of time. The next activity is the main login page, where there are separate fields to login as a student or as a teacher. After the user logs in successfully, the main dashboard appears. From there, the user can navigate to the activity for each course. Also, there are separate activities for displaying details of the assignments and threads.\\
+As per the requirements of the assignment,
+\begin{itemize}
+\item Different layouts~\cite{multiple_screen_sizes} have been made for tablet and mobile phone view for all the three activities.
+\item Different classes have been defined in separate files to maintain modularity in code.
+\item \textbf{Doxygen} has been implemented to create an HTML documentation of the application structure.
+\item Various resources, such as strings, images and styles, have been included in separate files.
+\item Volley has been used to send requests and receive responses.
+\end{itemize} 
+
+\section{User Interface}
+%\begin{itemize}
+\subsection{Splash Screen} The files activity\_moodle\_plus.xml and content\_moodle\_plus.xml define the layout of the splash screen. It consists of a big image that contains the logo and name of the application. An animation~\cite{animations} has been applied on the app logo to make it grow and shrink. Below is the screen shot of the splash screen in tablet view. 
+% The layout for tab view is in layout-sw590dp folder.(This is automatically picked when smallest width exceeds 590 dp)
+
+% \begin{figure}[!ht]
+% 	\centering
+%   \includegraphics[scale=0.8]{./N10-Splash.png}
+%   \caption{ Splash Screen on Nexus 10(Landscape)}
+% \end{figure}
+
+\subsection{Design Of Login Activity}
+\par\noindent This page appears just after the splash screen. It contains fields for the user to enter his login details, alongwith a LogIn button.
+\begin{itemize}
+\item The layout of main login page has been defined by activity\_login\_page.xml and content\_login\_page.xml files in the layout folder.
+
+\end{itemize} 
+
+\par\noindent The following are the screen shots of the main page on different orientations as well as screen sizes~\cite{figures_in_latex}:
+
+% \begin{figure}
+% 	\centering
+%   \includegraphics[scale=0.8]{N10-land.PNG}
+%   \caption{ Main Screen on Nexus 10(Landscape)}
+%   \label{n10main}
+% \end{figure}
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[scale=0.75]{N6.PNG}
+%     \caption{Main Screen on Nexus 6(Portrait)}
+%     \label{n9p}
+% \end{figure}
+
+\subsection{DashBoard (MainActivity)}
+It appears when the user has been logged in successfully, as a student. It contains all the main information about the student and his courses.
+It is divided into multiple tabs, as explained below:
+\begin{itemize}
+\item \textbf{Overview} : It contains the details about the student's semester, year, alongwith his user name.
+\item \textbf{Grades} : It displays the list of the student's grades, of all courses. Each item in the ListView expands on clicking, to display the details of the particular exam.
+\item \textbf{Courses} : It contains the list of the courses the student is enrolled in.The elements in the list are clickable, and a new page(CourseTab) containing the details of the particular course opens up on clicking on a ListItem.
+\item \textbf{Notifications} : It displays the list of the recent notifications for the user. A CustomListView has been used to improve the interface.
+\end{itemize}
+\par\noindent The tabs are horizontally scrollable, as they cannot fit simultaneously on all screen widths.
+\par\noindent To make the navigation among various sections of the app easier, a \textbf{Navigation drawer} has also been included in the MainActivity activity. It appears on clicking on the icon on the top left, or also by swiping to the right on the screen.
+ Below are the screenshots of the various tabs of the dashboard, with and without the navigation drawer.
+
+
+
+\subsection{Course Page (CourseTab)}
+\par\noindent This page appears on clicking on any course in the list on the dashboard. The layout of theis page is defined by the files, activity\_course\_tab.xml and content\_course\_tab.xml. It contains a TabLayout, comprising of the five fragments, listed as follows:
+\begin{itemize}
+\item \textbf{Overview} : It contains the brief information about the activities in the course in the past weeks.
+\item \textbf{Assignments} : This tab displays a list of the assignments corresponding to the particular course. Each item in the ListView expands on clicking, to show the title and deadline for the assignment. On clicking on the expanded view of the item,another activity, that displays the details of the assignment, opens up.
+\item \textbf{Grades} : It contains the list of grades of the student in the selected course. It is again an expandable list view, which on clicking, display the details of the particular examination of the course.
+\item \textbf{Threads} : This fragment contains the option of posting a new thread. Also, it displays a list(Custom ListView) of the previous threads posted regarding the course. Each item in the custom list view is clickable, and opens another activity, to display the description, and comments made on the selected thread.
+\item \textbf{Resources} : It simply displays the faculty name and a button to upload a private resource.
+\end{itemize}
+\par\noindent The following are the screen shots for the CourseTab page:
+% \begin{figure}
+% 	\centering
+%   \includegraphics[scale=0.75]{N5-Final.PNG}
+%   \caption{ Final Screen on Nexus 5(Portrait)}
+%   \label{n5final}
+% \end{figure}
+\subsection{Assign\_details Page}
+\par\noindent This page appears on clicking on the expanded list item of a particular assignment. It contains all the details, including description, deadline, late days, and past submissions of the assignment.
+It also contains a button to submit another file.
+
+\subsection{thread\_details Page}
+\par\noindent This page appears on clicking on a particular thread in the list of threads of a course in the CourseTab page. It contains the user name of the person who posted the thread, along with its description, time of creation and updation. Also, it displays the list of the comments made on the thread previously. The user also has an option of podting a new comment on the thread.
+
+
+
+
+\section{Implementation Details}
+\par\noindent The application structure is divided into two parts, one set of classes to handle the view of various fragments, and the other set forms the back-end and application flow.
+\subsection{Layout Handling}
+\par\noindent These classes are used to populate data in the fragments created in the CourseTab and the MainActivity page.
+
+\subsubsection{CustomListAdapter}
+% \begin{itemize}
+\par\noindent This class has been made to implement a custom List View. It extends the BaseAdapter class, which basically handles the population of data into the items of the ListView. The description of its fields and methods(other than the auto generated methods) is as follows:
+
+\begin{lstlisting}[language=Java, caption={Fields \& Methods of CustomListAdapter}]
+class CustomListAdapter
+{
+	List<String> Titles;     // list of strings to populate title textbox
+	List<String> Times;	     // times of creation/latest update
+	List<Integer> Serial;    // serial numbers
+	Context context;	     // main application context
+	LayoutInflater inflater; // to inflate the listview item
+
+	public:
+	View getView(int,View,ViewGroup);
+	// populates comment_item layout, inflates view
+
+};
+\end{lstlisting}
+
+\subsubsection{CustomAdapter\_Thread}
+\par\noindent This class is similar to CustomListAdapter, but populates a different ListView item layout. It has three lists to populate different text views in the layout defined in the file customlistitem.xml.
+
+\subsubsection{Course\_Overview}
+\par\noindent It does not contain any method/field other than the auto generated ones. This fragment simply displays the course name.
+
+\subsubsection{Course\_Assignments}
+\par\noindent This is a fragment in the CourseTab page. It displays the list of assignments in the form of an Expandable List view. The adapter for the list view is set to an instance of the class, ExpandableListAdapter. 
+\par\noindent It stores a list for the headings and a hashmap for the two children(Title, time of creation of assignment int this case)of each list item.
+It has the following methods to populate the list view:
+\begin{itemize}
+\item \textit{prepareListData} : Takes as input two arrays, containing data corresponding to two children of each list item. Sets the list and hash map fields.
+\item \textit{onCreateView} : Receives the \textbf{Bundle} passed on from the CourseTab page and extracts the lists of data. Also, creates an instance of ExpandableListView class and sets OnGroupClickListener to expand/collapse the children.
+\item \textit{setOnChildClickListener} : Starts an \textbf{Intent} to navigate to \textbf{Assign\_detail page} of the clicked assignment ID.
+\end{itemize}
+
+\subsubsection{Course\_Threads}
+\par\noindent It is another fragment on the CourseTab page. It has the following methods:
+\begin{itemize}
+\item \textit{onCreateView} : Receives the \textbf{Bundle} sent by the CourseTab activity, and creates an instance of the CustomAdapter\_Thread class using the lists in the bundle. Implements the setOnItemClickListener() method of ListView to use an \textbf{Intent} to open the activity \textbf{thread\_detail} for the corresponding thread ID.
+
+\item \textit{Post\_thread} :  Handles the onClick event of the Post thread button. Uses \textbf{volley} to send a JsonObjectRequest to post the thread.
+\end{itemize}
+
+\subsubsection{Course\_Grades}
+\par\noindent This is another fragment in the CourseTab page. It displays the grades using an Expandable ListView. The adapter for the list view is set to an instance of the class, ExpandableListAdapter.
+\par\noindent It stores a list for the headings and a hashmap for the children(Score, Weightage, Total marks, Absolute marks in this case)of each list item.
+It has the following methods to populate the list view:
+\begin{itemize}
+\item \textit{prepareListData} : Takes as input four arrays, containing data corresponding to four children of each list item. Sets the list and hash map fields of the fragment.
+\item \textit{onCreateView} : Receives the \textbf{Bundle} passed on from the CourseTab page and extracts the lists of data. Also, creates an instance of ExpandableListView class and sets OnGroupClickListener to expand/collapse the children.
+\end{itemize}
+
+\subsubsection{Course\_Resources}
+\par\noindent This class also does not have any method/field other than the auto generated ones.
+
+\subsubsection{OneFragment}
+\par\noindent This class extends the Fragment class. It is the main fragment of the MainActivity page that uses ListView to display list of courses. It uses an instance of the MyApp\_cookie class to obtain the code of a course corresponding to its id.
+\par\noindent The method \textit{onCreateView} extracts the list of courses from the \textbf{Bundle} received from the MainActivity, and populates the ListView using an ArrayAdapter.
+\par\noindent It also uses \textit{setOnItemClickListener} method to start an \textbf{Intent} to open a particular Course Page on clicking any list item, along with a Toast.
+\subsubsection{TwoFragment}
+\par\noindent This class also extends the Fragment class. It uses an Expandable ListView to display the list of grades on the MainActivity page. 
+\par\noindent It stores an array of headers(listDataHeader) of all list elements and a hash map(listDataChild) storing the data corresponding to the children of each item().The following methods are used to populate the list view:
+\begin{itemize}
+\item \textit{prepareListData} : Sends a \textbf{JsonObjectRequest} to the server to receive the list of grades. The JsonArray is then parsed so as to set the listDataHeader and listDataChild fields. 
+\item \textit{onCreateView} : Creates an instance of ExpandableListView class and sets OnGroupClickListener to expand/collapse the children to display the details of the grade clicked.
+\end{itemize}
+
+\subsubsection{ThreeFragment}
+\par\noindent This class also extends the Fragment class. It uses a Custom ListView to display the list of notifications on the MainActivity page.
+\par\noindent The method \textit{onCreateView} uses the \textbf{Bundle} received from MainPage activity to form the arrays containing the text and the time of each notification. An instance of the class \textbf{CustomAdapter\_Thread} is then created and set as the list view's adapter.
+
+
+\subsection{BackEnd Classes}
+\subsubsection{MoodlePlus Class}
+\par\noindent This class contains the various auto-generated methods to initialize an activity.
+\par\noindent A handler has been added to execute the method Run() of a runnable after the fixed time specified by a private variable, splash\_time.
+\par\noindent The Run() method creates a new Intent to start the main activity.
+
+\subsubsection{MyApp\_cookie}
+\par\noindent This class has been made to handle cookies. It also maintains a global list of course codes and id's.
+\par\noindent It also holds the global JsonObjectRequest queue for volley.
+
+\subsubsection{Login Class}
+\par\noindent The Login class handles the dynamics and events of the main login page. The following methods have been included other than the standard methods:
+\begin{itemize}
+ \item \textbf{login} : Sends a JsonObjectRequest to the server with the user name and password entered by the user. If the login is successful, an \textbf{Intent} to navigate to the MainActivity page is started and otherwise, an error message is displayed accordingly.
+\end{itemize}
+
+\subsubsection{MainActivity}
+\par\noindent This class handles requests and data handling for the main page that displays tabs for courses, grades and notifications.
+\begin{lstlisting}[language=Java, caption={Fields \& Methods of MainActivity}]
+class MainActivity
+{
+	private:
+		long mRequestStartTime; //request start time
+		Toolbar toolbar;		// action bar
+		TabLayout tabLayout;	// UI element
+		ViewPager viewPager;	// instance of ViewPager class
+		String Username;		
+		String Password;
+		MyApp_cookie app_list;	// provides list of course codes &ids
+		OneFragment One;		// populated with courses list
+		TwoFragment two;		// populated with grades list
+		ThreeFragment three;	// populated with notifications list
+
+		void setupViewPager();	
+		// adds fragments to a ViewPagerAdapter object
+	protected:
+		void onCreate();		
+		// calls UpdateCourses & UpdateNotif, sets up ViewPager.
+
+	public:
+		void UpdateCourses();
+		// Adds a JsonObjectRequest to fetch list of courses, adds data to a bundle to be passed to One.
+		void UpdateNotif();
+		// Adds a JsonObjectRequest to fetch list of notifications, adds data to a bundle to be passed to three.
+
+		class ViewPagerAdapter
+		{
+			private:
+				List<Fragment> mFragmentList; 	 // list of fragments
+				list<String> mFragmentTitleList; // list of tab titles
+			public:
+				ViewPagerAdapter;
+				Fragment getItem(int);
+				int getCount();
+				void addFragment(Fragment,String);
+				CharSequence getPageTitle(int);
+		}
+};
+\end{lstlisting}
+
+\subsubsection{CourseTab}
+\par\noindent This class handles requests and data for tabs on the page for a particular course. It stores the course code as a private String. It has new instances of the classes Course\_Assignments, Course\_Threads and so on, that handle data population for the tabs in this page. The following methods are used as described:
+\begin{itemize}
+\item \textit{onCreate()} : Sets course code according to data from \textbf{Bundle} and calls the update functions described below, after which it calls setupViewPager method to populate the UI.
+\item \textit{UpdateAssgt()} : Adds a JsonObjectRequest for the list of assignments of the course. Creates a \textbf{Bundle} and sets it as the argument for the Assignments fragment.
+\item \textit{UpdateGrades()} : Adds a JsonObjectRequest for the list of grades of the course. Creates a \textbf{Bundle} and sets it as the argument for the Grades fragment.
+\item \textit{UpdateThreads()} : Adds a JsonObjectRequest for the list of threads of the course. Creates a \textbf{Bundle} and sets it as the argument for the Threads fragment.
+\end{itemize}
+\par\noindent The method \textit{setupViewPager} and the class ViewPagerAdapter are same as described in the class MainActivity.
+
+\subsubsection{Assign\_details}
+\par\noindent This class handles the data population on the page that displays the details for a particular assignment.
+\par\noindent The method \textit{onCreate()} adds a JsonObjectRequest for all the data regarding the assignment. Sets the text fields of the page accordingly. It also creates an instance of the \textbf{CustomAdapter\_Thread} class with the list of previous submissions to populate the ListView.
+
+\subsubsection{thread\_Details}
+\par\noindent This class handles the data population on the page that displays the details for a particular thread.
+\begin{itemize}
+\item \textit{onCreate()} : Adds a JsonObjectRequest for all the data regarding the thread, using the thread ID passed with the \textbf{Intent}. Sets the text fields of the page accordingly. It also creates an instance of the \textbf{CustomListAdapter} class with the list of comments to populate the ListView.
+\item \textit{PostComment()} : Handles the onClick event of Post Comment button. If the comment is not empty, then sends a JsonObjectRequest to post the comment on the server. Otherwise, displays a toast stating the same. Also calls the UpdateComments() function on successful posting.
+\item \textit{UpdateComments()} : Adds a JsonObjectRequest to fetch the list of comments from the server. It also creates a new instance of the \textbf{CustomListAdapter} class with the list of comments to refresh the ListView.
+\end{itemize}
+
+\subsubsection{ExpandableListAdapter}
+\par\noindent This class extends the BaseExpandableListAdapter class. It has been made to use a user defined layout for each item of the expandable listView. It's fields and methods are listed as follows:
+
+\begin{lstlisting}[language=Java, caption={Fields \& Methods of CustomListAdapter}]
+class ExpandableListAdapter
+{
+	private:
+		List<String> _listDataHeader;     // header titles
+		Context context;	     // main application context
+		HashMap<String, List<String>> _listDataChild;
+
+	public:
+		ExpandableListAdapter(Context,List<String>,HashMap<String,List<String>>)
+		// constructor
+		Object getChild(int,int);
+		// returns data in the specified child of the specified group
+		long getChildId(int,int);
+		// returns child position
+		View getChildView(int,int,boolean,View,ViewGroup);
+		// sets data in layout(list_item.xml) for one child of specified group
+		int getChildrenCount(int);
+		// returns number of children of specified group
+		Object getGroup(int);
+		// returns title of the specified group
+		int getGroupCount();
+		// returns number of groups
+		long getGroupId(int);
+		// returns group position
+		View getGroupView(int,boolean,View,ViewGroup);
+		// sets data in layout(list_group.xml) for the group title
+		boolean hasStableIds();
+		boolean isChildSelectable(int,int);
+};
+\end{lstlisting}
+
+
+
+\subsubsection{OtherWorks}
+\par\noindent It contains the following methods:
+\begin{itemize}
+\item \textit{time\_left(String)} : Takes as input the string representing the deadline, and returns a string containing the time remaining from the system current time.
+\end{itemize}
+
+\section{Error scenarios}
+\begin{itemize}
+\item \textbf{Login} : If the user name and password are not correct, then a suitable error message is displayed.
+
+\item \textbf{}
+\end{itemize}
+
+
+\section{Future endeavours}
+\begin{itemize}
+\item Keep local cache of changes done, at mobile level and sync them with the global server as soon as internet connectivity is supplied.
+\item Decrease the time taken to receive data from the server and populate the view.
+\end{itemize}
+
+
+\section{Source Code}
+\par\noindent The source code of the project is maintained in the following repository:\\
+https://github.com/aditi741997/Moodle-ANA.git
+
+\bibliographystyle{abbrv}
+\medskip
+\bibliography{references}
+
+
+\end{document}
