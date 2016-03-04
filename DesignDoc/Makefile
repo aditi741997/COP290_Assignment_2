@@ -8,4 +8,4 @@ DesignDoc.pdf: DesignDoc.tex
 
 
 clean:
-	rm -rf *.aux *.log *.toc *.blg *.bbl
+	rm -rf *.aux *.log *.toc *.blg *.bbl *.out
