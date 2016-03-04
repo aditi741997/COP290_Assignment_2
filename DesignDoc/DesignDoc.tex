@@ -24,11 +24,11 @@
 \author{
 	\vspace{5mm} \includegraphics[width=5cm]{logo.png} \\
 	 \textbf{Aditi}\\
-	TODO: Write roll numbers correctly \vspace{2mm} \\
+	2014CS10205 \vspace{2mm} \\
 	\textbf{Ayush Bhardwaj}\\ 
-	2013CS50287 \vspace{2mm} \\
+	2014CS10091 \vspace{2mm} \\
 	\textbf{Nikhil Gupts}\\ 
-	2013CS10231 \vspace{2mm}
+	2014CS50462 \vspace{2mm}
 }
 \date{\vspace{3mm} \textbf{March 2016} \vspace*{\fill}}
 
@@ -42,11 +42,17 @@
 	\newpage
 
 	\section{Objectives}
-		Design an app which which is :
-		\begin{itemize}
-			\item TODO
-			\item TODO
-			\item TODO
+		Design an app which is :
+		\begin{itemize} 
+			\item Complaint Management System for IIT Delhi
+			\item The Users of the app would be the people of the institute such as faculties, students, and institute employees
+			\item Addresses three levels of complaints: 
+				\begin{enumerate}
+					\item Indiviual Complaint 
+					\item Hostel-level Complaint
+					\item Institute-level complaint
+				\end{enumerate}
+			\item The users can submit their grievance to the the concerned authorities
 		\end{itemize}
 		%\begin{figure}[ht!]
           %\centering
@@ -54,16 +60,25 @@
         %\end{figure}
 	\section{Overall Design}
 		%The game which we will build is space invaders. It involves the player controlling a space ship and shooting down aliens. The aliens will fight back with bullets and missiles. The player has a limited number of lives and has to score the maximum in them.
-		TODO
+		TODO:  Add a basic description of main classes as in previous design doc 
 		\begin{enumerate}
-			\item The server side will be programmed in Python
+			\item The server side will be programmed in Web2py
 			\item The android app will be made using Java
+			\item The app would be extended to other phones as well as web clients
 			\item Volley will be used to send requests and receive responses
 			\item Doxygen will be used to create HTML documentation of the entire code base.
+			\item Users can select their prefered topics.Only complaints related to selected topics will be visible to the user.
 			\item The entire code will be split up in multiple files to ensure modularity in code.
 		\end{enumerate}
+	\section{User Interface}
+	TODO
 	\section{Features}
 		\subsection{Individual Complaints}
+		\begin{itemize}
+		\item The end user's complaint will be visible to the concerned authority only.
+		\item Once the complaint is addressed,the user should be able to mark it as resolved
+		\item The user can mark the complaint as resolved or take the complaint to the higher authority
+		\end{itemize}
 			\subsubsection{Options for the user}
 				The person filing the complaint can fill in the following options:
 				\begin{enumerate}
@@ -87,6 +102,16 @@
 					\item Take to higher authority
 				\end{enumerate}
 		\subsection{Hostel Level Complaints}
+		\begin{itemize}
+		\item The end user's complaint would be visible to all the hostel residents who will be affected by the complaint.
+		\item The concerned authority would have the right to mark the complaint as resolved.
+		\item The complaint will be referred to a higher authority in a hierarchical order if 
+			\begin{enumerate}
+			\item Authority has marked the complaint as resolved but majority of users are not satisfied
+			\item The time taken to resolve the complaint has exceeded a given time
+			\end{enumerate}
+		\item The Warden will be the highest authority.Veto powers will be given to the Warden
+		\end{itemize}
 			\subsubsection{User Options}
 				\begin{enumerate}
 					\item Name or Anonymous
@@ -113,6 +138,16 @@
 					\item Send to higher authority based on majority
 				\end{enumerate}
 		\subsection{Institute Level Complaints}
+		\begin{itemize}
+		\item The end user's complaint would be visible to all the institute residents who will be affected by the complaint.
+		\item The concerned authority would have the right to mark the complaint as resolved.
+		\item The complaint will be referred to a higher authority in a hierarchical order if 
+			\begin{enumerate}
+			\item Authority has marked the complaint as resolved but majority of the users are not satisfied
+			\item The time taken to resolve the complaint has exceeded a given time 
+			\end{enumerate}
+		\item The Concerned Dean will be the highest authority possessing Veto powers 
+		\end{itemize}
 			\subsubsection{User Options}
 				\begin{enumerate}
 					\item Name or Anonymous
@@ -160,14 +195,19 @@
 	
 	\section{Extra Features}
 
-	\section{Future Endeavours}
+	\section{Future Endeavors}
 		\begin{itemize} 
 			\item TODO
 			\item TODO
 			\item TODO
 		\end{itemize}   
+	\section{Source Code}
+		TODO :link
+	\section{References}
+	TODO
+			
 
 	\bibliographystyle{abbrv}
 	\medskip
 	\bibliography{references}
-\end{document}
+\end{document} 
