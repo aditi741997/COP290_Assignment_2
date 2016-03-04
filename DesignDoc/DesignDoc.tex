@@ -55,7 +55,7 @@
 			\item The Users of the App would be the people of the institute such as faculties, students, and institute employees
 			\item Addresses three levels of complaints: 
 				\begin{enumerate}
-					\item Indiviual Complaint 
+					\item Individual Complaint 
 					\item Hostel-level Complaint
 					\item Institute-level complaint
 				\end{enumerate}
@@ -68,8 +68,9 @@
 	\section{Overall Design}
 		%The game which we will build is space invaders. It involves the player controlling a space ship and shooting down aliens. The aliens will fight back with bullets and missiles. The player has a limited number of lives and has to score the maximum in them.
 		TODO:  Add a basic description of main classes as in previous design doc 
+		Different layouts
 		\begin{enumerate}
-			\item The server side will be programmed in Web2py
+			\item The server side will be programmed in Web2py ~\cite{Web2py_Basics}
 			\item The android app will be made using Java
 			\item The app would be extended to other phones as well as web clients
 			\item Volley will be used to send requests and receive responses
@@ -361,7 +362,10 @@
 			\subsection{Network APIs}
 			\subsection{Android App Front End}
 			\subsection{Android App Back End}
-	
+			\begin{itemize}
+			\item Volley will be used to send requests and receive responses.
+			\item A separate class will be used to maintain the Session Cookies
+			\end{itemize}
 	\section{Interaction amongst Sub Components}
 		% \subsection{enumerate}
 			\subsection{Back-end and Android App}
@@ -384,18 +388,16 @@
 	\item Users will be able to post comments in the thread related to the concerned complaint
 	\end{itemize}
 
-	\section{Future Endeavors}
+	\section{Future Endeavors} 
 		\begin{itemize} 
 			\item Keep local cache of changes done, at mobile level and sync them with the global server as soon as Internet connectivity is supplied.
 			\item To extend the scope of Application to Windows as well as iOS client.Same Networking API's will be used.
+			\item Users to be synchronized into the database via their Kerberos ID
+			\item Feature to maintain persistent login will be added
 		\end{itemize}   
 	\section{Source Code}
 	The source code of the project is maintained in the following repository: \\
 	https://github.com/aditi741997/COP290\_Assignment\_2.git
-	\section{References}
-	TODO
-			
-
 	\bibliographystyle{abbrv}
 	\medskip
 	\bibliography{references}
