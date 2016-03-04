@@ -1,0 +1,34 @@
+\BOOKMARK [1][-]{section.1}{Objectives}{}% 1
+\BOOKMARK [1][-]{section.2}{Overall Design}{}% 2
+\BOOKMARK [1][-]{section.3}{User Interface}{}% 3
+\BOOKMARK [1][-]{section.4}{Features}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{Individual Complaints}{section.4}% 5
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Options for the user}{subsection.4.1}% 6
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Options for the receiver}{subsection.4.1}% 7
+\BOOKMARK [3][-]{subsubsection.4.1.3}{Follow up options}{subsection.4.1}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Hostel Level Complaints}{section.4}% 9
+\BOOKMARK [3][-]{subsubsection.4.2.1}{User Options}{subsection.4.2}% 10
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Other's Options}{subsection.4.2}% 11
+\BOOKMARK [3][-]{subsubsection.4.2.3}{Receiver's Options}{subsection.4.2}% 12
+\BOOKMARK [3][-]{subsubsection.4.2.4}{Follow Up options}{subsection.4.2}% 13
+\BOOKMARK [2][-]{subsection.4.3}{Institute Level Complaints}{section.4}% 14
+\BOOKMARK [3][-]{subsubsection.4.3.1}{User Options}{subsection.4.3}% 15
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Other's Options}{subsection.4.3}% 16
+\BOOKMARK [3][-]{subsubsection.4.3.3}{Receiver's Options}{subsection.4.3}% 17
+\BOOKMARK [3][-]{subsubsection.4.3.4}{Follow Up options}{subsection.4.3}% 18
+\BOOKMARK [1][-]{section.5}{Sub Components}{}% 19
+\BOOKMARK [2][-]{subsection.5.1}{Server Back End}{section.5}% 20
+\BOOKMARK [2][-]{subsection.5.2}{Network APIs}{section.5}% 21
+\BOOKMARK [2][-]{subsection.5.3}{Android App Front End}{section.5}% 22
+\BOOKMARK [2][-]{subsection.5.4}{Android App Back End}{section.5}% 23
+\BOOKMARK [1][-]{section.6}{Interaction amongst Sub Components}{}% 24
+\BOOKMARK [2][-]{subsection.6.1}{Back-end and Android App}{section.6}% 25
+\BOOKMARK [2][-]{subsection.6.2}{Back-end and Network}{section.6}% 26
+\BOOKMARK [1][-]{section.7}{Testing Of Components}{}% 27
+\BOOKMARK [2][-]{subsection.7.1}{Server and APIs}{section.7}% 28
+\BOOKMARK [2][-]{subsection.7.2}{Android App}{section.7}% 29
+\BOOKMARK [2][-]{subsection.7.3}{Overall Testing}{section.7}% 30
+\BOOKMARK [1][-]{section.8}{Extra Features}{}% 31
+\BOOKMARK [1][-]{section.9}{Future Endeavors}{}% 32
+\BOOKMARK [1][-]{section.10}{Source Code}{}% 33
+\BOOKMARK [1][-]{section.11}{References}{}% 34
