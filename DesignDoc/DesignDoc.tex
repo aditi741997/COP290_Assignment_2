@@ -420,6 +420,25 @@
 \end{table}
 
 			\subsection{Network APIs}
+				The following API's will be provided:
+				\begin{enumerate}
+					\item \textbf{Login} \\
+						URL: \url{/default/login.json?userid=<username>&password=<password>}  \\
+						Returns: JSON object with Success/Failure and Username
+					\item \textbf{Logout} \\
+						URL: \url{/default/logout.json} \\
+						Returns: JSON object with Success/Failure
+					\item \textbf{Get Notifications} \\
+						URL: \url{/default/notifications.json} \\
+						Returns: JSON object containing list of all notifications. 
+						A notification will be a TODO 
+					\item \textbf{Get Preferences} \\
+						URL: \url{/user/preferences.json} \\
+						Returns: JSON object containing bitstrings of preferences and corresponding preference areas.
+					\item \textbf{Set Preferences} \\
+						URL: \url{/user/update_preferences.json?hostel=<hostel_pref>&institute=<insti_pref>&extra=<extra_pref>} \\
+						Returns:  JSON object containing updated bitstrings and corresponding preference areas.
+				\end{enumerate}
 			\subsection{Android App Front End}
 			\subsection{Android App Back End}
 			\begin{itemize}
@@ -447,6 +466,7 @@
 	\item Users will get option to mark as satisfactory/unsatisfactory after the complaint is resolved
 	\item Users will be able to post comments in the thread related to the concerned complaint
 	\item The admin has an option to make a phone call or send an email through the app to the person who lodged the complaint.
+	\item Feature to maintain persistent login will be added.
 	\end{itemize}
 
 	\section{Future Endeavors} 
@@ -454,7 +474,6 @@
 			\item Keep local cache of changes done, at mobile level and sync them with the global server as soon as Internet connectivity is supplied.
 			\item To extend the scope of Application to Windows as well as iOS client.Same Networking API's will be used.
 			\item Users to be synchronized into the database via their Kerberos ID
-			\item Feature to maintain persistent login will be added
 			\item View location in google map/instiapp
 		\end{itemize}   
 	\section{Source Code}
