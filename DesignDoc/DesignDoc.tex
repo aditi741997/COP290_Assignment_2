@@ -186,8 +186,8 @@
 			\subsection{Server Back End}
 				The back end has been divided into further sub components to facilitate the development process.
 					%\subsubsection
-					%\subsubsection
-					\begin{table}[]
+					\subsubsection{Databases}
+					\begin{table}[!htb]
 \centering
 \caption{User Database Table}
 \label{my-label}
@@ -207,7 +207,7 @@
 
 
 
-\begin{table}[]
+\begin{table}[!htb]
 \centering
 \caption{Preferences}
 \label{my-label}
@@ -223,7 +223,7 @@
 
 
 
-\begin{table}[]
+\begin{table}[!htb]
 \centering
 \caption{Administrator Information}
 \label{my-label}
@@ -240,7 +240,7 @@
 
 
 
-\begin{table}[]
+\begin{table}[!htb]
 \centering
 \caption{Responses to a Complaint}
 \label{my-label}
@@ -254,7 +254,7 @@
 \end{table}
 
 
-\begin{table}[]
+\begin{table}[!htb]
 \centering
 \caption{Hostel Mapping}
 \label{my-label}
@@ -268,7 +268,7 @@
 
 
 
-\begin{table}[]
+\begin{table}[!htb]
 \centering
 \caption{Complaint Category Mapping}
 \label{my-label}
@@ -281,7 +281,7 @@
 \end{table}
 
 
-\begin{table}[]
+\begin{table}[!htb]
 \centering
 \caption{Comments on a complaint}
 \label{my-label}
@@ -297,7 +297,7 @@
 \end{table}
 
 
-\begin{table}[]
+\begin{table}[!htb]
 \centering
 \caption{Complaint User Mapping}
 \label{my-label}
@@ -311,7 +311,7 @@
 
 
 
-\begin{table}[]
+\begin{table}[!htb]
 \centering
 \caption{Notifications}
 \label{my-label}
@@ -327,7 +327,7 @@
 \end{table}
 
 
-\begin{table}[]
+\begin{table}[!htb]
 \centering
 \caption{User Satisfaction Response}
 \label{my-label}
@@ -342,7 +342,7 @@
 
 
 
-\begin{table}[]
+\begin{table}[!htb]
 \centering
 \caption{Individual Complaint}
 \label{my-label}
@@ -363,7 +363,7 @@
 \end{tabular}
 \end{table}
 
-\begin{table}[]
+\begin{table}[!htb]
 \centering
 \caption{Hostel Level Complaint}
 \label{my-label}
@@ -392,7 +392,7 @@
 \end{tabular}
 \end{table}
 
-\begin{table}[]
+\begin{table}[!htb]
 \centering
 \caption{Institute Level Complaint}
 \label{my-label}
@@ -507,22 +507,32 @@
 					\item \textbf{Add User} \\ 
 					URL: \url{TODO: POST}\\
 					Returns: Adding user to the database 
-
-
-					\end{enumerate}
+				\end{enumerate}
+			\subsection{Further server tasks}
+				\begin{enumerate}
+					\item Crontab tasks will be used to schedule periodic events like database cleanup and sending complaints to higher authorities.
+					\item Crontab will also be used to generate push notifications for devices.
+				\end{enumerate}
 			\subsection{Android App Front End}
+				TODO: Nikhil
 			\subsection{Android App Back End}
-			\begin{itemize}
-			\item Volley will be used to send requests and receive responses.
-			\item A separate class will be used to maintain the Session Cookies
-			\end{itemize}
+				\begin{itemize}
+					\item Volley will be used to send requests and receive responses.
+					\item A separate class will be used to maintain the Session Cookies
+				\end{itemize}
+				TODO: Add code
 	\section{Interaction amongst Sub Components}
 		% \subsection{enumerate}
 			\subsection{Android App}
 			\subsection{API and Server}
-				\includegraphics[width=15cm]{Login.png} \\
-				\includegraphics[width=\linewidth]{Complaint.png}
+			\begin{enumerate}
+				\item Event flow diagram for user login \\
+					\includegraphics[width=15cm]{Login.png} \\
+				\item Event flow diagram for user adding a complaint. \\
+					\includegraphics[width=\linewidth]{Complaint.png}
+			\end{enumerate}
 			\subsection{Internal Server}
+				Event flow diagram for crontab scheduling.
 
 	
 	\section{Testing Of Components}
