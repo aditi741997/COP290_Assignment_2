@@ -515,12 +515,28 @@
 				\end{enumerate}
 			\subsection{Android App Front End}
 				TODO: Nikhil
-			\subsection{Android App Back End}
-				\begin{itemize}
-					\item Volley will be used to send requests and receive responses.
-					\item A separate class will be used to maintain the Session Cookies
-				\end{itemize}
-				TODO: Add code
+
+		\subsection{Android App Back End}
+		\begin{itemize}
+		\item Volley will be used to send requests and receive responses.
+		\item A separate class will be used to maintain the Session Cookies.
+		\begin{lstlisting}[language=Java, caption={App\_Cookie Class}]
+class App_Cookie extends Application
+{	
+   	CookieManager cookieManage;
+   	// Manages the Cookie Session for the Entire Application
+	public:
+ 	public void onCreate() 
+	{
+       cookieManage = new CookieManager();
+       CookieHandler.setDefault(cookieManage);
+       super.onCreate();
+   	};
+};
+\end{lstlisting}
+		\item TODO:Sh*** Pre****
+		\end{itemize}
+
 	\section{Interaction amongst Sub Components}
 		% \subsection{enumerate}
 			\subsection{Android App}
