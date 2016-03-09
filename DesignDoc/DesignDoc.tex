@@ -214,9 +214,9 @@
 \begin{tabular}{|c|c|c|c|}
 \hline
 \textbf{S.No.} & \textbf{Fields}            & \textbf{Type} & \textbf{Description}                                             \\ \hline
-1              & User Id                    & String        & Entry Number for students or Employee Code for staff and faculty \\ \hline
-2              & Hostel Preference          & String        & Bit string to represent interest in Hostel activities            \\ \hline
-3              & Institute Level Preference & String        & Bit string to represent interest in Institute activities         \\ \hline
+1              & User Id                    & String        & Entry Number for students or Employee Code \\ \hline
+2              & Hostel Preferences         & String        & Bit string to represent interest in Hostel activities            \\ \hline
+3              & Institute Preferences & String        & Bit string to represent interest in Institute activities         \\ \hline
 4              & Extra Preferences          & String        & Bit String to represent interest in Other activities             \\ \hline
 \end{tabular}
 \end{table}
@@ -230,7 +230,7 @@
 \begin{tabular}{|c|c|c|c|}
 \hline
 \textbf{S.No.} & \textbf{Fields} & \textbf{Type} & \textbf{Description}                                             \\ \hline
-1              & User Id         & String        & Entry Number for students or Employee Code for staff and faculty \\ \hline
+1              & User Id         & String        & Unique user id \\ \hline
 2              & Complaint Area  & Int           & Integer code for complaint area                                  \\ \hline
 3              & Level           & Int           & Priority level for person                                        \\ \hline
 4              & Description     & String        & Extra information                                                \\ \hline
@@ -535,8 +535,12 @@ class App_Cookie extends Application
 
 	\section{Interaction amongst Sub Components}
 		% \subsection{enumerate}
-			\subsection{Back-end and Android App}
-			\subsection{Back-end and Network}
+			\subsection{Android App}
+			\subsection{API and Server}
+				\includegraphics[width=15cm]{Login.png} \\
+				\includegraphics[width=\linewidth]{Complaint.png}
+			\subsection{Internal Server}
+
 	
 	\section{Testing Of Components}
 		% \begin{enumerate}
@@ -565,7 +569,7 @@ class App_Cookie extends Application
 		\end{itemize}   
 	\section{Source Code}
 	The source code of the project is maintained in the following repository: \\
-	https://github.com/aditi741997/COP290\_Assignment\_2.git
+	\url{https://github.com/aditi741997/COP290_Assignment_2.git}
 	\bibliographystyle{abbrv}
 	\medskip
 	\bibliography{references}
