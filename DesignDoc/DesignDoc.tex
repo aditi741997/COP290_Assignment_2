@@ -548,26 +548,31 @@ class App_Cookie extends Application
 					\includegraphics[width=\linewidth]{Complaint.png}
 			\end{enumerate}
 			\subsection{Internal Server}
-				Event flow diagram for crontab scheduling.
-
+				Event flow diagram for crontab scheduling. \\
+					\includegraphics[width=\linewidth]{cron.png}
 	
 	\section{Testing Of Components}
 		% \begin{enumerate}
 			\subsection{Server and APIs}
+				\begin{itemize}
+					\item Unit testing will be used to check if the server and end points are working correctly.
+					\item For each endpoint, stress testing will be done via python or bash scripts to verify that the APIs perform as expected in various situations.
+				\end{itemize}
 			\subsection{Android App}
+				We will use the Unit Testing component of Android studio to test each class created in the app for correctness. By doing this we will ensure that no errors take place on the android app and the user has a bug free experience.
 			\subsection{Overall Testing}
-	
+				We will use the app on our phones once it is ready to identify and squash any remaining bugs in the app or the server. 	
 	\section{Extra Features}
-	\begin{itemize}
-	\item The scope of the Application will be extended to Web Clients
-	\item Hierarchy of Authorities would be maintained for every Complaint Type and Category
-	\item In public level complaints option to register complaint as anonymous would be provided
-	\item Users would be allowed to select the categories that affect them.Only public level complaints related to these categories will be displayed to the user
-	\item Notification would be marked seen/unseen
-	\item Users will get option to mark as satisfactory/unsatisfactory after the complaint is resolved
-	\item Users will be able to post comments in the thread related to the concerned complaint
-	\item The admin has an option to make a phone call or send an email through the app to the person who lodged the complaint.
-	\end{itemize}
+		\begin{itemize}
+			\item The scope of the Application will be extended to Web Clients
+			\item Hierarchy of Authorities would be maintained for every Complaint Type and Category
+			\item In public level complaints option to register complaint as anonymous would be provided
+			\item Users would be allowed to select the categories that affect them.Only public level complaints related to these categories will be displayed to the user
+			\item Notification would be marked seen/unseen
+			\item Users will get option to mark as satisfactory/unsatisfactory after the complaint is resolved
+			\item Users will be able to post comments in the thread related to the concerned complaint
+			\item The admin has an option to make a phone call or send an email through the app to the person who lodged the complaint.
+		\end{itemize}
 
 	\section{Future Endeavors} 
 		\begin{itemize} 
