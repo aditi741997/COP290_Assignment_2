@@ -426,10 +426,13 @@
 				\begin{enumerate}
 					\item \textbf{Login} \\
 						URL: \url{/default/login.json?userid=<username>&password=<password>}  \\
-						Returns: JSON object with Success/Failure and Username
+						Returns: JSON object with Success/Failure and UserDetails
 					\item \textbf{Logout} \\
 						URL: \url{/default/logout.json} \\
 						Returns: JSON object with Success/Failure
+					\item \textbf{Change Password} \\
+						URL: \url{/default/change_pass.json&password=<password>} \\
+						Returns: JSON object with Success/Failure TODO: make it post	
 					\item \textbf{Get Notifications} \\
 						URL: \url{/default/notifications.json} \\
 						Returns: JSON object containing list of all notifications. 
@@ -442,41 +445,41 @@
 						Returns:  JSON object containing updated bitstrings and corresponding preference areas.
 					\item \textbf{Get Administrator} \\
 						URL: \url{/admin/get_admin.json?complian_area=<Complain>&level=<level>&Hostel=<hostel_id>}\\
-						Returns:  Return the administrator of a Complaint at a particular level
+						Returns:  JSON object containing  the administrator of a Complaint at a particular level
 					\item \textbf{Get Response} \\
 						URL: \url{/complaint/get_user_response.json?complian_id=<Complain>}\\
-						Returns:  Return the response of a user to a public complaint 
+						Returns:  JSON object containing the response of a user to a public complaint 
 					\item \textbf{Set Response} \\
 						URL: \url{/complaint/set_user_response.json?complian_id=<Complain>&Response=<response>}\\
-						Returns:  Sets the response of a user to a public complaint 
+						Returns:   JSON object with Success/Failure.Sets the response of a user to a public complaint 
 					\item \textbf{Complain Category Mapping} \\
 						URL: \url{/complaint/get_desc.json?category_id=<cat>}\\
-						Returns:  Gives the category description 
+						Returns:   JSON object containing the category description 
 					\item \textbf{Hostel Mapping} \\
 						URL: \url{/default/get_hostel.json?hostel_id=<hos_id>}\\
-						Returns:  Gives the category description 
+						Returns:  JSON object containing the Hostel,ID pair 
 					\item \textbf{Get Comment} \\
 						URL: \url{/complaint/get_comments.json?complain_id=<id>}\\
-						Returns:  Gives all the comments on the thread to a complain
+						Returns:  JSON object containing all the comments on the thread to a complain
 					\item \textbf{Post Comment} \\
 						URL: \url{/complaint/post_comments.json?complain_id=<id>}\\
-						Returns:  Success Response on posting a comment on the thread to a complain
+						Returns: JSON Success Response on posting a comment on the thread to a complain
 					\item \textbf{Get Notification} \\
 						URL: \url{/notification/get_noti.json}\\
-						Returns: Returns the set of notifications concerning the user
+						Returns: JSON object containing the set of notifications concerning the user
 					\item \textbf{Set Notification Status} \\
 						URL: \url{/notification/set_noti_status.json??compliant_id=<complain_id>}\\
-						Returns: Sets the seen/unseen status of the user
+						Returns: JSON object with Success/Failure.Sets the seen/unseen status of the user
 % We can change the controller for the following API's but i m putting it in the complaint controller only
 					\item \textbf{Get User Satisfaction} \\
 						URL: \url{/complaint/get_user_satus.json?compliant_id=<complain_id>}\\
-						Returns: Returns the user's satisfaction after the complaint is resolved
+						Returns: JSON object containing the user's satisfaction after the complaint is resolved
 					\item \textbf{Update user response} \\
 						URL: \url{/complaint/put_user_satus.json?compliant_id=<complain_id>&response<bool>}\\
-						Returns: Sets the user's satisfaction after the complaint is resolved
+						Returns: JSON object with Success/Failure.Sets the user's satisfaction after the complaint is resolved
 					\item \textbf{Add Complaint} \\
 						URL: \url{/complaint_data/add_complaint.json?compliant_type=<type>&Complaint_content=<content>&extra_info=<file>&anonymous=<bool_anon>}\\
-						Returns: Adds a complaint to the database
+						Returns: JSON object with Success/Failure.Adds a complaint to the database
 					\item \textbf{Edit Complaint} \\
 						URL: \url{/complaint_data/edit_complaint.json?complaint_id=<id>&compliant_type=<type>&Complaint_content=<content>&extra_info=<file>&boolean_remove=<remove>&anonymous=<bool_anon>}\\
 					% remove = true means we have to delete the complaint
@@ -487,26 +490,28 @@
 					\item \textbf{Get all Complaints}
 						URL: \url{/complaint_data/get_all.json}\\
 						Returns: Return all the complaints concerning the user
-					\item \textbf{Get Complaint Detail}	\\					URL: \url{/complaint_data/get_complaint_details.json?complaint_id=<id>}\\
-						Returns: Return the details of a complaint 
+					\item \textbf{Get Complaint Detail}	\\					
+						URL: \url{/complaint_data/get_complaint_details.json?complaint_id=<id>}\\
+						Returns: JSON object containing the details of a complaint 
 	% Admin_complaint will be the admin side controller
-					\item \textbf{Get Complaints to be Addressed} \\		URL: \url{/admin_complaint/get_all_complaints.json}\\
-					Returns: Return all the complaints to be addressed
+					\item \textbf{Get Complaints to be Addressed} \\	
+						URL: \url{/admin_complaint/get_all_complaints.json}\\
+						Returns: JSON object containing all the complaints to be addressed
 					\item \textbf{Get Complainant Details} \\
-					URL: \url{/admin_complaint/get_complainant.json?complaint_id=<id>}\\
-					Returns: Return  the Complainant's detail
+						URL: \url{/admin_complaint/get_complainant.json?complaint_id=<id>}\\
+						Returns: JSON object containing the Complainant's detail
 					\item \textbf{Mark Approved} \\
-					URL: \url{/admin_complaint/mark_resolved.json?Complaint_id=<id>&boolean_resolve=<bool_done>}\\
-					Returns: Success in marking for the Complainant's Approval
+						URL: \url{/admin_complaint/mark_resolved.json?Complaint_id=<id>&boolean_resolve=<bool_done>}\\
+						Returns: JSON object with Success/Failure.Success in marking for the Complainant's Approval
 					\item \textbf{Add Administrator's Comment} \\ 
-					URL: \url{/admin_complaint/add_comment.json?complaint_id=<id>&desc=<description>}\\
-					Returns: Success in marking for the Complainant's Approval
+						URL: \url{/admin_complaint/add_comment.json?complaint_id=<id>&desc=<description>}\\
+						Returns: JSON object with Success/Failure.Success in marking for the Complainant's Approval
 					\item \textbf{Take to Higher Authority} \\ 
-					URL: \url{/admin_complaint/add_comment.json?complaint_id=<id>}\\
-					Returns: Success in sending the complaint to higher authority
+						URL: \url{/admin_complaint/add_comment.json?complaint_id=<id>}\\
+						Returns: JSON object with Success/Failure.Success in sending the complaint to higher authority
 					\item \textbf{Add User} \\ 
-					URL: \url{TODO: POST}\\
-					Returns: Adding user to the database 
+						URL: \url{TODO: POST}\\
+						Returns: Adding user to the database 
 				\end{enumerate}
 			\subsection{Further server tasks}
 				\begin{enumerate}
@@ -533,8 +538,30 @@ class App_Cookie extends Application
        super.onCreate();
    	};
 };
-\end{lstlisting}
+		\end{lstlisting}
+
 		\item TODO:Sh*** Pre****
+\begin{lstlisting}[language=Java, caption={Persistent Login}]
+EditText username, password;
+public static final String AppPREFERENCES = "AppPrefs";
+public static final String UserId = "userId";
+SharedPreferences sharedpreferences;
+public void check_logged_in()
+{// Checks if the user is already logged.
+ // If logged in, he is directed to the HomePage. 
+ sharedpreferences = getSharedPreferences
+				(AppPREFERENCES,Context.MODE_PRIVATE);
+ SharedPreferences.Editor editor = sharedpreferences.edit();
+ int user_id= sharedpreferences.getInt("userID", 0);
+ if(user_id!=0) // User_id is zero, if none is logged in
+ {   Intent i = new Intent(Login.this,HomePage.class);
+     i.putExtra("userID",user_id);
+     startActivity(i);
+ // Logged in user is directed to his Home Page
+ }
+ return;
+};
+		\end{lstlisting}		
 		\end{itemize}
 
 	\section{Interaction amongst Sub Components}
