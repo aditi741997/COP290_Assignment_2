@@ -3,6 +3,9 @@
 \usepackage{listings}
 \usepackage{color} 
 \usepackage{hyperref}
+\usepackage{float}
+\usepackage{subcaption}
+
 \hypersetup{
     colorlinks=true, %set true if you want colored links
     linktoc=all,     %set to all if you want both sections and subsections linked
@@ -61,7 +64,7 @@
 				\end{enumerate}
 			\item The users can submit their grievance to the the concerned authorities
 		\end{itemize}
-		%\begin{figure}[ht!]
+		%\begin{figure}[H]
           %\centering
             %\includegraphics[width=1.0\linewidth]{gameplay.png}
         %\end{figure}
@@ -80,12 +83,60 @@
 			\item The entire code will be split up in multiple files to ensure modularity in code. 
 		\end{enumerate}
 	\section{User Interface}
-	TODO Add info
-		\includegraphics{splash.png} \\
-		\includegraphics{loginui.png} \\
-		\includegraphics{Complaints.png} \\
-		\includegraphics{PComplaints.png} \\
-		\includegraphics{incomplaint.png} \\
+	TODO Add info \\
+	    \begin{figure}[H]
+      \centering
+      \begin{subfigure}{.4\textwidth}
+          \centering
+          \includegraphics[width=0.9\linewidth]{splash.png}
+          \caption{Splash Screen}
+          \label{fig:sub1}
+      \end{subfigure}%
+      \begin{subfigure}{.4\textwidth}
+          \centering
+          \includegraphics[width=0.9\linewidth]{loginui.png}
+          \caption{Login Page}
+          \label{fig:sub2}
+      \end{subfigure}
+      % \caption{3D reconstruction}
+      \label{figstart}
+    \end{figure}
+
+	    \begin{figure}[H]
+      \centering
+      \begin{subfigure}{.4\textwidth}
+          \centering
+          \includegraphics[width=0.9\linewidth]{insidecomplaint.png}
+          \caption{Complaint Information UI}
+          \label{fig:sub1}
+      \end{subfigure}%
+      \begin{subfigure}{.4\textwidth}
+          \centering
+          \includegraphics[width=0.9\linewidth]{listcomplaints.png}
+          \caption{Complaints List View}
+          \label{fig:sub2}
+      \end{subfigure}
+      % \caption{3D reconstruction}
+      \label{figstart}
+    \end{figure}
+
+
+	    \begin{figure}[H]
+      \centering
+      \begin{subfigure}{.5\textwidth}
+          \centering
+		\includegraphics[width=0.9\linewidth]{test1complaints.png}
+          \caption{Splash Screen}
+          \label{fig:sub1}
+      \end{subfigure}%
+      % \caption{3D reconstruction}
+      \label{figstart}
+    \end{figure}
+
+		% \includegraphics[width=10cm]{splash.png} \\
+		% \includegraphics[width=10cm]{loginui.png} \\
+		% \includegraphics{PComplaints.png} \\
+		% \includegraphics{incomplaint.png} \\
 
 	\section{Features}
 		\subsection{Individual Complaints}
@@ -193,7 +244,7 @@
 				The back end has been divided into further sub components to facilitate the development process.
 					%\subsubsection
 					\subsubsection{Databases}
-					\begin{table}[!htb]
+					\begin{table}[H]
 \centering
 \caption{User Database Table}
 \label{my-label}
@@ -207,29 +258,20 @@
 5              & Hostel          & String        & Hostel if any                                                    \\ \hline
 6              & Other Details   & String        & Any other details                                                \\ \hline
 7              & Password	 	 & String        & Password in hashed form                                          \\ \hline
+8              & User Id                    & String        & Entry Number for students or Employee Code \\ \hline
+9              & Hostel Preferences         & String        & Bit string to represent interest in Hostel activities            \\ \hline
+10              & Institute Preferences & String        & Bit string to represent interest in Institute activities         \\ \hline
+11             & Extra Preferences          & String        & Bit String to represent interest in Other activities             \\ \hline
+
 \end{tabular}
 \end{table}
 
 
 
 
-\begin{table}[!htb]
-\centering
-\caption{Preferences}
-\label{my-label}
-\begin{tabular}{|c|c|c|c|}
-\hline
-\textbf{S.No.} & \textbf{Fields}            & \textbf{Type} & \textbf{Description}                                             \\ \hline
-1              & User Id                    & String        & Entry Number for students or Employee Code \\ \hline
-2              & Hostel Preferences         & String        & Bit string to represent interest in Hostel activities            \\ \hline
-3              & Institute Preferences & String        & Bit string to represent interest in Institute activities         \\ \hline
-4              & Extra Preferences          & String        & Bit String to represent interest in Other activities             \\ \hline
-\end{tabular}
-\end{table}
 
 
-
-\begin{table}[!htb]
+\begin{table}[H]
 \centering
 \caption{Administrator Information}
 \label{my-label}
@@ -246,7 +288,7 @@
 
 
 
-\begin{table}[!htb]
+\begin{table}[H]
 \centering
 \caption{Responses to a Complaint}
 \label{my-label}
@@ -260,7 +302,7 @@
 \end{table}
 
 
-\begin{table}[!htb]
+\begin{table}[H]
 \centering
 \caption{Hostel Mapping}
 \label{my-label}
@@ -274,7 +316,7 @@
 
 
 
-\begin{table}[!htb]
+\begin{table}[H]
 \centering
 \caption{Complaint Category Mapping}
 \label{my-label}
@@ -287,7 +329,7 @@
 \end{table}
 
 
-\begin{table}[!htb]
+\begin{table}[H]
 \centering
 \caption{Comments on a complaint}
 \label{my-label}
@@ -303,7 +345,7 @@
 \end{table}
 
 
-\begin{table}[!htb]
+\begin{table}[H]
 \centering
 \caption{Complaint User Mapping}
 \label{my-label}
@@ -317,7 +359,7 @@
 
 
 
-\begin{table}[!htb]
+\begin{table}[H]
 \centering
 \caption{Notifications}
 \label{my-label}
@@ -333,7 +375,7 @@
 \end{table}
 
 
-\begin{table}[!htb]
+\begin{table}[H]
 \centering
 \caption{User Satisfaction Response}
 \label{my-label}
@@ -348,7 +390,7 @@
 
 
 
-\begin{table}[!htb]
+\begin{table}[H]
 \centering
 \caption{Individual Complaint}
 \label{my-label}
@@ -369,7 +411,7 @@
 \end{tabular}
 \end{table}
 
-\begin{table}[!htb]
+\begin{table}[H]
 \centering
 \caption{Hostel Level Complaint}
 \label{my-label}
@@ -398,7 +440,7 @@
 \end{tabular}
 \end{table}
 
-\begin{table}[!htb]
+\begin{table}[H]
 \centering
 \caption{Institute Level Complaint}
 \label{my-label}
