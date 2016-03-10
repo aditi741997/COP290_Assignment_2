@@ -126,12 +126,46 @@
       \begin{subfigure}{.5\textwidth}
           \centering
 		\includegraphics[width=0.9\linewidth]{test1complaints.png}
-          \caption{Splash Screen}
+          \caption{Complaint Type Screen}
           \label{fig:sub1}
       \end{subfigure}%
       % \caption{3D reconstruction}
       \label{figstart}
     \end{figure}
+
+    	\subsection{Visioned Pages}
+    		\subsubsection{Splash Screen}
+    			\begin{itemize}
+    			\item This is the first screen that is displayed on the starting of the app.
+    			\item It has been made dynamic and interactive by adding animations and gesture recognitions
+    			\end{itemize}
+    		\subsubsection{Login Screen}
+    			\begin{itemize}
+    			\item The login page requests for the user's username and password and validates the login.
+    			\item It is displayed only after left swiping the splash screen.
+    			\end{itemize}
+    		\subsubsection{Complaint List Screen}
+    			\begin{itemize}
+    			\item This screen is a tabbed activity that contains the following tabs:
+    				\begin{enumerate}
+    					\item Notifications (Displays new complaints)
+						\item Complaints (Displays all the complaints, sorted by their types)
+						\item Alerts (Displays the complaints important to the user
+						)
+					\end{enumerate}
+				\item The tabs contain information using ListViews
+				\end{itemize}
+			\subsubsection{Complaint Type Screen}    
+				\begin{itemize}	
+				\item This screen lists all complaints of the same type in an ExplandableList type.
+				\item Clicking on a particular complaint will list some basic detains about the complaint.
+				\item Appyling the sliding gesture on the complaint will open up the detailed complaint information screen.
+				\end{itemize}
+			\subsubsection{Complaint Information Screen}
+				\begin{itemize}
+				\item This screen contails all the indepth details of the complaint.
+				\item It allows the user to add comments to the thread of the complaint.
+				\end{itemize}
 
 		% \includegraphics[width=10cm]{splash.png} \\
 		% \includegraphics[width=10cm]{loginui.png} \\
