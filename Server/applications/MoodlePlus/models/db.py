@@ -102,9 +102,9 @@ db.define_table(
     Field('contact_number',length=128,default=''),
     Field('hostel','integer'),
     Field('other_details',length=1024,default=''),
-    Field('hostel_pref',length=100,default=''),
-    Field('insti_pref',length=100,default=''),
-    Field('extra_pref',length=100,default=''),
+    Field('hostel_pref',length=100,default='00'),
+    Field('insti_pref',length=100,default='01'),
+    Field('extra_pref',length=100,default='00'),
     Field('password', 'password', length=512, readable=False, label='Password'),
     Field('registration_key', length=512, writable=False, readable=False, default=''),
     Field('reset_password_key', length=512, writable=False, readable=False, default=''),
@@ -117,6 +117,7 @@ custom_auth_table = db['users']
 auth.settings.table_user = custom_auth_table
 auth.settings.table_user_name = 'users'    #Very important to mention
 auth.settings.table_group_name = 'user_group'
+auth.settings.password_field = 'password'
 auth.settings.table_membership_name = 'user_membership'
 auth.settings.table_permission_name = 'user_permission'
 auth.settings.table_event_name = 'user_event'
@@ -172,7 +173,8 @@ db.define_table(
     Field('src_user_id','string'),
     Field('dest_user_id','string'),
     Field('description','string'),
-    Field('seen','integer'),
+    Field('time_stamp','datetime',default=datetime.now),
+    Field('seen','integer',default=0),
 )
 
 
