@@ -1,5 +1,6 @@
 package com.example.ayush.complaint_management_system;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,18 +10,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Login extends AppCompatActivity {
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +41,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        // TODO: To check for the **** if already set
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,59 +50,64 @@ public class Login extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
-    public void login(View view)
-    {EditText username=(EditText) findViewById(R.id.Username);
-     EditText pass=(EditText) findViewById(R.id.password);
-     String url="http://127.0.0.1/default/login.json";
-        JsonRequest stringRequest = new JsonRequest(Request.Method.POST,url,
-        new Response.Listener<String>() {
-        @Override
-        public void onResponse(String response)
-        {
+    public void login(View view) {
+        final EditText username = (EditText) findViewById(R.id.Username);
+        final EditText password = (EditText) findViewById(R.id.password);
+        String url = "http://127.0.0.1/default/login.json";
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, null,
+        new Response.Listener<JSONObject>() {
+                 @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                           // JsonObject x= response.g
+                            boolean success = response.getBoolean("success");
+                            if (success)
+                           {
+// String name=response.getString("Name")
+                            String id= response.getString("Unique_Id");
+                            // Sending only id as we can get all the information via database
+
+                                //TODO: Add an intent to start the main page activity
+                                //TODO: Also set the **** here
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),
+                                    "Error: " + e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
 
 
-        }
-        },
-        new Response.ErrorListener()
-        {
-        @Override
-        public void onErrorResponse(VolleyError error)
-        {
-        Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_LONG).show();
-        }
-        });
-    {   @Override
-        protected Map<String, String> getParams()
-        {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("teamname", teamname.getText().toString());
-        params.put("entry1", Entry1.getText().toString());
-        params.put("name1", Name1.getText().toString());
-        params.put("entry2", Entry2.getText().toString());
-        params.put("name2", Name2.getText().toString());
-        params.put("entry3", Entry3.getText().toString());
-        params.put("name3", Name3.getText().toString());
-        return params;
-        }
-    };
-    Volley.newRequestQueue(this).add(stringRequest);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(Login.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {   //@Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username", username.getText().toString());
+                params.put("password", password.getText().toString());
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(this).add(stringRequest);
 
 
 
-
-
-
-
-
-
-
-
-     )
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -110,5 +128,45 @@ public class Login extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Login Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.example.ayush.complaint_management_system/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Login Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.example.ayush.complaint_management_system/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
     }
 }
