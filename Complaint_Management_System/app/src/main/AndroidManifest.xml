@@ -40,8 +40,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddComplaint" />
         <activity
-            android:name=".Complaint_Tab"
-            android:label="@string/title_activity_complaint__tab"
+            android:name=".Complaint_Page"
+            android:label="@string/title_activity_complaint__page"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
