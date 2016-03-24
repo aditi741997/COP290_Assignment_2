@@ -7,4 +7,5 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_set_preferences">SetPreferences</string>
     <string name="title_activity_add_user">addUser</string>
+    <string name="title_activity_complaint__tab">Complaint_Tab</string>
 </resources>
