@@ -24,4 +24,36 @@
         android:layout_alignParentEnd="true"
         android:contextClickable="false"
         android:onClick="Reg_comp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="My Complaints"
+        android:id="@+id/My_comp"
+        android:layout_below="@+id/Reg"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="My_Complaints" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Add New User"
+        android:id="@+id/Add_User"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/My_comp"
+        android:layout_alignParentEnd="true"
+        android:onClick="Add_User" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="TODO: ANy other thing if req"
+        android:id="@+id/textView5"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/Add_User"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

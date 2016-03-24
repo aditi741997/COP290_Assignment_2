@@ -1,5 +1,6 @@
 package com.example.ayush.complaint_management_system;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -17,10 +18,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +57,7 @@ public class HomePage extends AppCompatActivity
        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
       /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +78,7 @@ public class HomePage extends AppCompatActivity
         if (Active) {
             viewPager.setCurrentItem(Integer.parseInt(activetab));
         }
-
+//TODO: set visibilities of user depending on user type
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -78,6 +88,11 @@ public class HomePage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //TODO: Call the api's to get concerned complaint list and notifications and populate in this only
+        pop_complaint_list();//These function can be shifted to their respective fragments as well
+        pop_noti_list();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -95,7 +110,81 @@ public class HomePage extends AppCompatActivity
     {
         TextView txt=(TextView) findViewById(R.id.Reg);
         txt.setText("Hello clickable");
+        //TODO: Add an intent to open a new Activity to  Register a Complaint
 
+
+    }
+    public void My_Complaints(View view)
+    {
+        TextView txt=(TextView) findViewById(R.id.My_comp);
+        txt.setText("Hello clickable");
+        String url="http://127.0.0.1/admin_complaint/get_all_complaints.json";
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response)
+                    {
+                    //TODO: Add an intent to open a new Activity showing self registered complaints or add it as a tab
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(HomePage.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        Volley.newRequestQueue(this).add(stringRequest);
+
+    }
+    public void Add_User(View view)
+    {
+        TextView txt=(TextView) findViewById(R.id.Add_User);
+        txt.setText("Hello clickable");
+        Intent I=new Intent(HomePage.this,addUser.class);
+        startActivity(I);
+    }
+    public void pop_complaint_list()
+    {String url= "http://127.0.0.1/complaint_data/get_all.json";
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response)
+                    {//TODO
+                    //We receive a set of complaints..sort them on the basis of level
+                     // make array on the basis of response array and populate the list view
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(HomePage.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        Volley.newRequestQueue(this).add(stringRequest);
+    }
+    public void pop_noti_list()
+    {String url= "http://127.0.0.1/notification/get_noti.json";
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response)
+                    {//TODO
+                        //We receive a set of complaints..sort them on the basis of level
+                        // make array on the basis of response array and populate the list view
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(HomePage.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        Volley.newRequestQueue(this).add(stringRequest);
     }
     @Override
     public void onStart() {
@@ -196,10 +285,32 @@ public class HomePage extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout)
+        {   String url="http://127.0.0.1/default/logout.json";
+            JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response)
+                        {Intent i=new Intent(HomePage.this,Login.class);
+                        Toast.makeText(HomePage.this,"",Toast.LENGTH_SHORT).show();
+                        startActivity(i);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(HomePage.this, error.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+            Volley.newRequestQueue(this).add(stringRequest);
+
             return true;
         }
-
+        if (id == R.id.action_Change_pass)
+        {//TODO: direct to a new activity or we can use popup dialog box
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
