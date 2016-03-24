@@ -96,12 +96,15 @@ from datetime import datetime,timedelta
 
 db.define_table(
     'users',
-    Field('first_name', length=128, default=''),
-    Field('last_name', length=128, default=''),
-    Field('email', length=128, unique=True),
+    Field('name', length=128, default=''),
+    Field('user_type', 'integer'),
     Field('username', length=100, unique=True), #cs5110272
-    Field('entry_no', length=100, unique=True), #2011CS50272
-    Field('type_','integer'), # 0 for student, 1 for professor
+    Field('contact_number',length=128,default=''),
+    Field('hostel','integer'),
+    Field('other_details',length=1024,default=''),
+    Field('hostel_pref',length=100,default=''),
+    Field('insti_pref',length=100,default=''),
+    Field('extra_pref',length=100,default=''),
     Field('password', 'password', length=512, readable=False, label='Password'),
     Field('registration_key', length=512, writable=False, readable=False, default=''),
     Field('reset_password_key', length=512, writable=False, readable=False, default=''),
@@ -120,117 +123,226 @@ auth.settings.table_event_name = 'user_event'
 auth.settings.login_userfield = 'username'        #the loginfield will be username
 auth.define_tables(username=False)    #Creating the table
 
-
-
 db.define_table(
-    'static_vars',
-    Field('name','string', unique=True),
-    Field('int_value','integer'),
-    Field('string_value','string'),
-)
-
-db.define_table(
-    'user_vars',
-    Field('user_id',db.users),
-    Field('name','string'),
-    Field('int_value','integer'),
-    Field('string_value','string'),
-)
-
-db.define_table(
-    'courses',
-    Field('name','string'),
-    Field('code','string'),
+    'admin_info',
+    Field('username','string'),
+    Field('complaint_area','integer'),
+    Field('admin_level','integer'),
     Field('description','string'),
-    Field('credits','integer'),
-    Field('l_t_p','string'), # 3-0-1
+    Field('hostel_id','integer'),
 )
 
 db.define_table(
-    'registered_courses',
-    Field('course_id',db.courses),
-    Field('professor',db.users),
-    Field('year_','integer'),
-    Field('semester','integer'), # 0,1,2 summer, break, fall
-    Field('starting_date','datetime'),
-    Field('ending_date','datetime'),
+    'complaint_response',
+    Field('username','string'),
+    Field('complaint_id','string'),
+    Field('response','integer'),
 )
 
 db.define_table(
-    'student_registrations',
-    Field('student_id',db.users),
-    Field('registered_course_id',db.registered_courses),
+    'hostel_mapping',
+    Field('hostel_id','integer',unique=True),
+    Field('hostel_name','string'),
 )
 
 db.define_table(
-    'ta_registrations',
-    Field('user_id', db.users),
-    Field('registered_course_id',db.registered_courses),
+    'complaint_category',
+    Field('category_id','integer',unique=True),
+    Field('category_description','string'),
 )
 
 db.define_table(
-    'events',
-    Field('registered_course_id', db.registered_courses),
-    Field('type_','integer'), # 0 assignment, 1 announcement
-    Field('name','string'),
+    'comments_complaint',
+    Field('complaint_id','string'),
+    Field('user_id','string'),
     Field('description','string'),
-    Field('created_at','datetime',default=datetime.now),
-    Field('deadline','datetime'),
-    Field('late_days_allowed','integer'),
-    Field('file_','upload'),
+    Field('time_stamp','datetime'),
+    Field('anonymous','integer'),
 )
 
 db.define_table(
-    'grades',
-    Field('registered_course_id',db.registered_courses),
-    Field('user_id', db.users),
-    Field('name','string'),
-    Field('score','double'),
-    Field('out_of','double'),
-    Field('weightage','double'),
-)
-
-db.define_table(
-    'resources',
-    Field('registered_course_id',db.registered_courses),
-    Field('user_id',db.users),
-    Field('is_public','integer'),
-    Field('name','string'),
-    Field('file_','upload'),
-    Field('created_at','datetime',default=datetime.now),
-)
-
-db.define_table(
-    'submissions',
-    Field('user_id',db.users),
-    Field('event_id', db.events),
-    Field('name', 'string'),
-    Field('file_', 'upload'),
-    Field('created_at','datetime',default=datetime.now)
-)
-
-db.define_table(
-    'threads',
-    Field('user_id', db.users),
-    Field('registered_course_id', db.registered_courses),
-    Field('created_at', 'datetime', default=datetime.now),
-    Field('updated_at', 'datetime', default=datetime.now),
-    Field('title','string'),
-    Field('description', 'string'),
+    'complaint_user_mapping',
+    Field('complaint_id','string'),
+    Field('user_id','string'),
 )
 
 db.define_table(
     'notifications',
-    Field('user_id', db.users),
-    Field('description', 'string'),
-    Field('is_seen', 'integer', default=0),
-    Field('created_at', 'datetime', default=datetime.now),
+    Field('complaint_id','string'),
+    Field('src_user_id','string'),
+    Field('dest_user_id','string'),
+    Field('description','string'),
+    Field('seen','integer'),
+)
+
+
+db.define_table(
+    'user_satisfaction_response',
+    Field('username','string'),
+    Field('complaint_id','string'),
+    Field('response','integer'),
 )
 
 db.define_table(
-    'comments',
-    Field('thread_id', db.threads),
-    Field('user_id', db.users),
-    Field('description', 'string'),
-    Field('created_at', 'datetime', default=datetime.now),
+    'indiv_complaints',
+    Field('complaint_id','string',unique=True),
+    Field('username','string'),
+    Field('complaint_type','integer'),
+    Field('complaint_content','string'),
+    Field('extra_info','string'),
+    Field('admin_id','string'),
+    Field('time_stamp','datetime'),
+    Field('resolved','integer'),
+    Field('mark_for_resolution','integer'),
+    Field('comment_comp','string'),
+    Field('prev_id','string'),
 )
+
+db.define_table(
+    'hostel_complaints',
+    Field('complaint_id','string',unique=True),
+    Field('username','string'),
+    Field('complaint_content','integer'),
+    Field('extra_info','string'),
+    Field('complaint_content','string'),
+    Field('admin_id','string'),
+    Field('time_stamp','datetime'),
+    Field('resolved','integer'),
+    Field('mark_for_resolution','integer'),
+    Field('comment_comp','string'),
+    Field('prev_id','string'),
+    Field('hostel','integer'),
+    Field('anonymous','integer'),
+    Field('num_up','integer'),
+    Field('num_down','integer'),
+    Field('num_neutr','integer'),
+    Field('num_sat','integer'),
+    Field('num_unsat','integer'),
+)
+
+db.define_table(
+    'insti_complaints',
+    Field('complaint_id','string',unique=True),
+    Field('username','string'),
+    Field('complaint_content','integer'),
+    Field('extra_info','string'),
+    Field('complaint_content','string'),
+    Field('admin_id','string'),
+    Field('time_stamp','datetime'),
+    Field('resolved','integer'),
+    Field('mark_for_resolution','integer'),
+    Field('comment_comp','string'),
+    Field('prev_id','string'),
+    Field('anonymous','integer'),
+    Field('num_up','integer'),
+    Field('num_down','integer'),
+    Field('num_neutr','integer'),
+    Field('num_sat','integer'),
+    Field('num_unsat','integer'),
+)
+
+# db.define_table(
+#     'user_vars',
+#     Field('user_id',db.users),
+#     Field('name','string'),
+#     Field('int_value','integer'),
+#     Field('string_value','string'),
+# )
+
+# db.define_table(
+#     'courses',
+#     Field('name','string'),
+#     Field('code','string'),
+#     Field('description','string'),
+#     Field('credits','integer'),
+#     Field('l_t_p','string'), # 3-0-1
+# )
+
+# db.define_table(
+#     'registered_courses',
+#     Field('course_id',db.courses),
+#     Field('professor',db.users),
+#     Field('year_','integer'),
+#     Field('semester','integer'), # 0,1,2 summer, break, fall
+#     Field('starting_date','datetime'),
+#     Field('ending_date','datetime'),
+# )
+
+# db.define_table(
+#     'student_registrations',
+#     Field('student_id',db.users),
+#     Field('registered_course_id',db.registered_courses),
+# )
+
+# db.define_table(
+#     'ta_registrations',
+#     Field('user_id', db.users),
+#     Field('registered_course_id',db.registered_courses),
+# )
+
+# db.define_table(
+#     'events',
+#     Field('registered_course_id', db.registered_courses),
+#     Field('type_','integer'), # 0 assignment, 1 announcement
+#     Field('name','string'),
+#     Field('description','string'),
+#     Field('created_at','datetime',default=datetime.now),
+#     Field('deadline','datetime'),
+#     Field('late_days_allowed','integer'),
+#     Field('file_','upload'),
+# )
+
+# db.define_table(
+#     'grades',
+#     Field('registered_course_id',db.registered_courses),
+#     Field('user_id', db.users),
+#     Field('name','string'),
+#     Field('score','double'),
+#     Field('out_of','double'),
+#     Field('weightage','double'),
+# )
+
+# db.define_table(
+#     'resources',
+#     Field('registered_course_id',db.registered_courses),
+#     Field('user_id',db.users),
+#     Field('is_public','integer'),
+#     Field('name','string'),
+#     Field('file_','upload'),
+#     Field('created_at','datetime',default=datetime.now),
+# )
+
+# db.define_table(
+#     'submissions',
+#     Field('user_id',db.users),
+#     Field('event_id', db.events),
+#     Field('name', 'string'),
+#     Field('file_', 'upload'),
+#     Field('created_at','datetime',default=datetime.now)
+# )
+
+# db.define_table(
+#     'threads',
+#     Field('user_id', db.users),
+#     Field('registered_course_id', db.registered_courses),
+#     Field('created_at', 'datetime', default=datetime.now),
+#     Field('updated_at', 'datetime', default=datetime.now),
+#     Field('title','string'),
+#     Field('description', 'string'),
+# )
+
+# db.define_table(
+#     'notifications',
+#     Field('user_id', db.users),
+#     Field('description', 'string'),
+#     Field('is_seen', 'integer', default=0),
+#     Field('created_at', 'datetime', default=datetime.now),
+# )
+
+# db.define_table(
+#     'comments',
+#     Field('thread_id', db.threads),
+#     Field('user_id', db.users),
+#     Field('description', 'string'),
+#     Field('created_at', 'datetime', default=datetime.now),
+# )
