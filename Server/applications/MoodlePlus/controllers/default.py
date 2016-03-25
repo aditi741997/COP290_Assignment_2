@@ -109,7 +109,7 @@ def login():
     userid = request.vars.userid
     password = request.vars.password
     user = auth.login_bare(userid,password)
-    return dict(success=False if not user else True, user=user)
+    return dict(success=False if not user else True, Unique_Id=user["username"] if user else "",userid =userid,passwd =password)
 
 def change_pass():
     # oldpassword = request.vars.oldpwd
@@ -159,6 +159,8 @@ def populate_db():
         password="ayush",
     )
     
+
+
     db.users.insert(
         name="Nikhil",
         user_type=0,
@@ -179,9 +181,17 @@ def populate_db():
 
     db.admin_info.insert(
         username="a1234",
-        complaint_area=1,
+        complaint_area=0,
         admin_level=2,
-        description='Electriction for hostel 1',
+        description='Electriction for all hostels',
+        hostel_id=1,
+    )
+    
+    db.admin_info.insert(
+        username="a12345",
+        complaint_area=0,
+        admin_level=1,
+        description='Senior Electriction for all hostels',
         hostel_id=1,
     )
 
