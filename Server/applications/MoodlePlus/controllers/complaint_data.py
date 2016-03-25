@@ -63,6 +63,25 @@ def edit_complaint():
     # TODO: Work out later
     return dict(Success=false)
 
+def get_all():
+    if (auth.is_logged_in()):
+        allcomp = db(db.complaint_user_mapping.user_id==auth.user.username).select()
+        IndivComp = []
+        HostelComp = []
+        InstiComp = []
+        for elem in allcomp:
+            compid = elem["complaint_id"]
+            if compid[:2]=="i_":
+                complaint = db(db.indiv_complaints.complaint_id==compid).select()[0]
+                IndivComp.append(complaint)
+            elif compid[:2]=="h_":
+                complaint = db(db.hostel_complaints.complaint_id==compid).select()[0]
+                HostelComp.append(complaint)
+            elif compid[:2]=="in":
+                complaint = db(db.insti_complaints.complaint_id==compid).select()[0]
+                InstiComp.append(complaint)
+        return dict(Individual=IndivComp, Hostel = HostelComp, Institute = InstiComp)
+    return dict(Complaints=[])
 
 def get_complaint_details():
     if ("complaint_id" in request.vars and auth.is_logged_in()):

@@ -242,6 +242,28 @@ def populate_db():
         description="time pass",  
     )
 
+    db.notifications.insert(
+        complaint_id="i_1",
+        src_user_id="cs1130231",
+        dest_user_id="cs5140462",
+        description="Test notification 1"
+    )
+    
+    db.notifications.insert(
+        complaint_id="i_2",
+        src_user_id="cs5140462",
+        dest_user_id="cs5140462",
+        description="Test notification 2 for complaint 2"
+    )
+    
+    db.notifications.insert(
+        complaint_id="i_3",
+        src_user_id="cs1140205",
+        dest_user_id="cs5140462",
+        description="Test notification 3 for complaint 3"
+    )
+
+
     # db.users.insert(
     #     first_name="Jasmeet",
     #     last_name="Singh",
