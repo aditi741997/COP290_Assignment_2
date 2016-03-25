@@ -56,7 +56,7 @@ def add_complaint():
         # required = people[0]
         return dict(content=content,People=people, hostelid = hostelid,newid = NewCompId)            
     else:
-        return dict(Success=false)
+        return dict(Success=False)
 
 def edit_complaint():
     # if ("complaint_id" in request.vars and auth.is_logged_in()):
