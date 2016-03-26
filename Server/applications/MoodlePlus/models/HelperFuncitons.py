@@ -1,11 +1,12 @@
-def indiv_complaints():
+def GetIndivComplaints():
 	if auth.is_logged_in():
 		allcomp = db(db.indiv_complaints.username==auth.user.username).select()
 		return allcomp
 	return []
 
 def isadmin():
-	return len(db(db.admin_info.username==auth.user.username).select())>0
+	# return len(db(db.admin_info.username==auth.user.username).select())>0
+	return True
 
 def AllCategories():
 	a = db(db.complaint_category.category_id>=0).select()
@@ -19,3 +20,7 @@ def AllCategories():
 	for i in xrange(len(b)):
 		d.append((b[i],arr[0][i],arr[1][i],arr[2][i]))
 	return d
+
+def isspecial():
+	# return len(db(db.admin_info.username==auth.user.username and db.admin_info.admin_level==-1).select())>0
+	return True

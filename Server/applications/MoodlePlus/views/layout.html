@@ -95,20 +95,24 @@
           <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
               <li class="{{='active' if URL()=='/' or URL()=='/default' or URL()=='/index' or URL()=='/default/index' else ''}}"><a href="/default/index">Overview <span class="sr-only">(current)</span></a></li>
-              <li class="{{='active' if URL()=='/complaints' else ''}}"><a href="/complaints.html">Complaints</a></li>
+              <li ><a href="/default/AllComplaints.html">Complaints</a></li>
               {{noti_count = db(db.notifications.dest_user_id==auth.user.username)(db.notifications.seen==0).count()}}
               <li class="{{='active' if URL()=='/default/notifications' else ''}}"><a href="/default/notifications">Notifications {{if 'noti_count' in globals() and noti_count>0:}} [{{=noti_count}}]{{pass}}</a></li>
-              <li><a href="/complaints/new">New Complaint </a></li>
+              <li><a href="/default/newcomplaint">New Complaint </a></li>
               <li><a href="/default/settings">Settings </a></li>
               <li><a href="/default/logout">Logout</a></li>
             </ul>
             {{if isadmin(): }}
             <ul class="nav nav-sidebar">
-              <li><a href="">Nav item again</a></li>
-              <li><a href="">One more nav</a></li>
-              <li><a href="">Another nav item</a></li>
+              <li><a href="/default/managecomplaints.html">Manage Complaints</a></li>
             </ul>
             {{pass}}
+            {{if isspecial(): }}
+            <ul class="nav nav-sidebar">
+              <li><a href="/default/addusers.html">Add Users</a></li>
+            </ul>
+            {{pass}}
+            
           </div>
           {{pass}}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

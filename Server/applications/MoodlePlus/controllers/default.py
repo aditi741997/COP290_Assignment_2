@@ -49,6 +49,30 @@ def logout():
 def settings():
     return dict(success= True)
 
+def change_pwd():
+    return dict(success=True)
+
+def newcomplaint():
+    return dict(success=True)
+
+def AllComplaints():
+    tab="indiv"
+    # if len(request_args)<1:
+    try:
+        tab=str(request.args[0])
+    except:
+        tab="indiv"
+    return dict(success=True,tab=tab)
+
+def addusers():
+    return dict(success=True)
+
+def complaint():
+    return dict(success=True)
+
+def managecomplaints():
+    return dict(success=True)
+
 def user():
     """
     exposes:
