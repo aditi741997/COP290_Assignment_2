@@ -19,13 +19,6 @@ def index():
     response.flash = T("Welcome on Moodle+")
     return dict(noti_count=4)
 
-def grades():
-    grades = db(db.grades.user_id==auth.user.id).select()
-    courses = []
-    for grade in grades:
-        courses.append(db(db.courses.id==grade.registered_course_id.course_id).select().first())
-    return dict(grades=grades, courses=courses)
-
 def notifications():
     # return dict(notifcations=auth.user.username)
     noti = db(db.notifications.dest_user_id==auth.user.username).select(orderby=~db.notifications.time_stamp)
@@ -145,7 +138,7 @@ def populate_db():
         name="Aditi",
         user_type=0,
         username="cs1140205",
-        contact_number="7838969542",
+        contact_number="blah",
         hostel=1,
         password="aditi",
     )
