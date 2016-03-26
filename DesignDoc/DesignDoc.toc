@@ -1,36 +1,43 @@
-\contentsline {section}{\numberline {1}Objectives}{3}{section.1}
-\contentsline {section}{\numberline {2}Overall Design}{3}{section.2}
-\contentsline {section}{\numberline {3}User Interface}{3}{section.3}
-\contentsline {section}{\numberline {4}Features}{4}{section.4}
-\contentsline {subsection}{\numberline {4.1}Individual Complaints}{4}{subsection.4.1}
-\contentsline {subsubsection}{\numberline {4.1.1}Options for the user}{4}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}Options for the receiver}{4}{subsubsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.3}Follow up options}{4}{subsubsection.4.1.3}
-\contentsline {subsection}{\numberline {4.2}Hostel Level Complaints}{4}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}User Options}{5}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}Other's Options}{5}{subsubsection.4.2.2}
-\contentsline {subsubsection}{\numberline {4.2.3}Receiver's Options}{5}{subsubsection.4.2.3}
-\contentsline {subsubsection}{\numberline {4.2.4}Follow Up options}{5}{subsubsection.4.2.4}
-\contentsline {subsection}{\numberline {4.3}Institute Level Complaints}{6}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4.3.1}User Options}{6}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.2}Other's Options}{6}{subsubsection.4.3.2}
-\contentsline {subsubsection}{\numberline {4.3.3}Receiver's Options}{6}{subsubsection.4.3.3}
-\contentsline {subsubsection}{\numberline {4.3.4}Follow Up options}{6}{subsubsection.4.3.4}
-\contentsline {section}{\numberline {5}Sub Components}{7}{section.5}
-\contentsline {subsection}{\numberline {5.1}Server Back End}{7}{subsection.5.1}
-\contentsline {subsubsection}{\numberline {5.1.1}Databases}{7}{subsubsection.5.1.1}
-\contentsline {subsection}{\numberline {5.2}Network APIs}{8}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Further server tasks}{12}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Android App Front End}{13}{subsection.5.4}
-\contentsline {subsection}{\numberline {5.5}Android App Back End}{13}{subsection.5.5}
-\contentsline {section}{\numberline {6}Interaction amongst Sub Components}{13}{section.6}
-\contentsline {subsection}{\numberline {6.1}Android App}{13}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}API and Server}{13}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Internal Server}{15}{subsection.6.3}
-\contentsline {section}{\numberline {7}Testing Of Components}{15}{section.7}
-\contentsline {subsection}{\numberline {7.1}Server and APIs}{15}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Android App}{15}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}Overall Testing}{16}{subsection.7.3}
-\contentsline {section}{\numberline {8}Extra Features}{16}{section.8}
-\contentsline {section}{\numberline {9}Future Endeavors}{16}{section.9}
-\contentsline {section}{\numberline {10}Source Code}{16}{section.10}
+\contentsline {section}{\numberline {1}Objectives}{4}{section.1}
+\contentsline {section}{\numberline {2}Overall Design}{4}{section.2}
+\contentsline {section}{\numberline {3}User Interface}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Front End}{6}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Splash Screen}{6}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Login Screen}{6}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Complaint List Screen}{6}{subsubsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.4}Complaint Type Screen}{7}{subsubsection.3.1.4}
+\contentsline {subsubsection}{\numberline {3.1.5}Complaint Information Screen}{7}{subsubsection.3.1.5}
+\contentsline {section}{\numberline {4}Features}{7}{section.4}
+\contentsline {subsection}{\numberline {4.1}Individual Complaints}{7}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Options for the user}{7}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}Options for the receiver}{8}{subsubsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.3}Follow up options}{8}{subsubsection.4.1.3}
+\contentsline {subsubsection}{\numberline {4.1.4}Complaint Categories}{8}{subsubsection.4.1.4}
+\contentsline {subsection}{\numberline {4.2}Hostel Level Complaints}{8}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}User Options}{8}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Other's Options}{9}{subsubsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.3}Receiver's Options}{9}{subsubsection.4.2.3}
+\contentsline {subsubsection}{\numberline {4.2.4}Follow Up options}{9}{subsubsection.4.2.4}
+\contentsline {subsubsection}{\numberline {4.2.5}Complaint Categories}{9}{subsubsection.4.2.5}
+\contentsline {subsection}{\numberline {4.3}Institute Level Complaints}{9}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}User Options}{10}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Other's Options}{10}{subsubsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.3}Receiver's Options}{10}{subsubsection.4.3.3}
+\contentsline {subsubsection}{\numberline {4.3.4}Follow Up options}{10}{subsubsection.4.3.4}
+\contentsline {subsubsection}{\numberline {4.3.5}Complaint Categories}{10}{subsubsection.4.3.5}
+\contentsline {section}{\numberline {5}Sub Components}{10}{section.5}
+\contentsline {subsection}{\numberline {5.1}Server Back End}{10}{subsection.5.1}
+\contentsline {subsubsection}{\numberline {5.1.1}Databases}{11}{subsubsection.5.1.1}
+\contentsline {subsection}{\numberline {5.2}Network APIs}{14}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Further server tasks}{17}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Android App Back End}{18}{subsection.5.4}
+\contentsline {section}{\numberline {6}Interaction amongst Sub Components}{19}{section.6}
+\contentsline {subsection}{\numberline {6.1}API and Server}{19}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Internal Server}{21}{subsection.6.2}
+\contentsline {section}{\numberline {7}Testing Of Components}{21}{section.7}
+\contentsline {subsection}{\numberline {7.1}Server and APIs}{21}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Android App}{21}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Overall Testing}{22}{subsection.7.3}
+\contentsline {section}{\numberline {8}Extra Features}{22}{section.8}
+\contentsline {section}{\numberline {9}Future Endeavors}{22}{section.9}
+\contentsline {section}{\numberline {10}Source Code}{22}{section.10}
