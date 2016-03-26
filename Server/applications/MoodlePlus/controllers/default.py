@@ -46,6 +46,9 @@ def logout():
     else:
         return dict(success="did not work")
 
+def settings():
+    return dict(success= True)
+
 def user():
     """
     exposes:
