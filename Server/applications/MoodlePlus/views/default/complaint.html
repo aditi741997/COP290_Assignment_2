@@ -1,2 +1,28 @@
 {{extend 'layout.html'}}
-<h1> All complaint info and actions if applicable</h1>
+<h1> Complaint Information </h1>
+{{if comptype==0 :}}
+<div class="table-resposive">
+<table class="table table-striped">
+<tr><td>Complaint Id: </td> <td>{{=complaint["complaint_id"]}}</td></tr>
+<tr><td>Complaint Type</td><td>TODO: Mapped category</td></tr>
+<tr><td>Content</td><td>{{=complaint["complaint_id"]}}</td></tr>
+<tr><td>Extra Details</td><td>{{=complaint["extra_info"]}}</td></tr>
+<tr><td>Time Elapsed</td><td>TODO</td></tr>
+<tr><td>Resolved ? </td> <td>TODO</td></tr>
+<tr><td>Admin Comments</td><td>TODO</td></tr>
+<tr><td>Previous Threads:</td><td>TODO</td></tr>
+</table>
+</div>
+{{pass}}
+
+{{if comptype==1: }}
+
+{{pass}}
+
+{{if comptype==2 :}}
+
+{{pass}}
+
+{{if admin: }}
+
+{{pass}}

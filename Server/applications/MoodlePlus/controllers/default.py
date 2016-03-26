@@ -68,7 +68,36 @@ def addusers():
     return dict(success=True)
 
 def complaint():
-    return dict(success=True)
+    complaint =None
+    comptype=-1
+    admin=0
+    dummy="valid"
+    comments=[]
+    try:
+        tab=str(request.args[0])
+        if tab[:2]=="i_":
+            comps = db(db.indiv_complaints.complaint_id==tab).select()
+            if len(comps):
+                complaint=comps[0]
+                comptype=0
+        elif tab[:2]=="h_":
+            comps = db(db.hostel_complaints.complaint_id==tab).select()
+            if len(comps):
+                complaint=comps[0]
+                comptype=1
+        elif tab[:2]=="in":
+            comps = db(db.insti_complaints.complaint_id==tab).select()
+            if len(comps):
+                complaint=comps[0]
+                comptype=2
+        if complaint:
+            admin=(auth.user.username==complaint["admin_id"])
+        # TODO: Sanitize anon
+        comments=db(db.comments_complaint.complaint_id==tab).select()
+    except:
+        y=5
+        dummy="invalid"
+    return dict(complaint=complaint,comptype=comptype,admin=admin,comments=comments,dummy=dummy)
 
 def managecomplaints():
     return dict(success=True)
