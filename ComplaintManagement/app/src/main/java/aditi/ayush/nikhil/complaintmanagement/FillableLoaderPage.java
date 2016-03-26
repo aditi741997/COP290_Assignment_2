@@ -1,5 +1,7 @@
 package aditi.ayush.nikhil.complaintmanagement;
 
+        import android.content.DialogInterface;
+        import android.content.Intent;
         import android.graphics.Color;
         import android.graphics.Typeface;
         import android.os.Bundle;
@@ -11,9 +13,12 @@ package aditi.ayush.nikhil.complaintmanagement;
         import android.view.ViewGroup;
         import android.view.animation.Animation;
         import android.view.animation.AnimationUtils;
+        import android.widget.Button;
+        import android.widget.EditText;
         import android.widget.FrameLayout;
         import android.widget.ImageView;
         import android.widget.TextView;
+        import android.widget.Toast;
 
         import butterknife.Bind;
         import butterknife.ButterKnife;
@@ -22,6 +27,23 @@ package aditi.ayush.nikhil.complaintmanagement;
         import com.github.jorgecastillo.FillableLoaderBuilder;
         import com.github.jorgecastillo.clippingtransforms.WavesClippingTransform;
         import com.github.jorgecastillo.listener.OnStateChangeListener;
+
+        import org.json.JSONException;
+        import org.json.JSONObject;
+
+        import java.net.CookieHandler;
+        import java.net.CookieManager;
+        import java.util.HashMap;
+        import java.util.Map;
+
+        import com.android.volley.Request;
+        import com.android.volley.Response;
+        import com.android.volley.VolleyError;
+        import com.android.volley.toolbox.JsonObjectRequest;
+        import com.android.volley.toolbox.Volley;
+        import com.google.android.gms.appindexing.Action;
+        import com.google.android.gms.appindexing.AppIndex;
+        import com.google.android.gms.common.api.GoogleApiClient;
 
 public class FillableLoaderPage extends Fragment implements OnStateChangeListener, ResettableView {
 
@@ -93,7 +115,7 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
             text5.startAnimation(animation5);
 
             TextView myTextView = (TextView) myFragmentView.findViewById(R.id.complaint);
-            Typeface typeFace = FontLoader.getTypeFace(getContext(), "DroidBold");
+            Typeface typeFace = FontLoader.getTypeFace(getActivity().getApplicationContext(), "DroidBold");
             if (typeFace != null) myTextView.setTypeface(typeFace);
 
         }
@@ -102,6 +124,104 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
             TextView myTextView = (TextView)myFragmentView.findViewById(R.id.Login);
             Typeface typeFace = FontLoader.getTypeFace(getActivity(), "RECOGNITION");
             if (typeFace != null) myTextView.setTypeface(typeFace);
+
+            final EditText username = (EditText) myFragmentView.findViewById(R.id.Username);
+            final EditText password = (EditText) myFragmentView.findViewById(R.id.password);
+
+
+            Button button = (Button) myFragmentView.findViewById(R.id.button);
+            button.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View V)
+//                {   final String Username = username.getText().toString();
+//                    final String Password = password.getText().toString();
+//
+//                    Toast.makeText(getActivity().getApplicationContext(),
+//                                                    "Click Success\t" + Username +"\t" + Password,
+//                                                    Toast.LENGTH_LONG).show();
+//                }
+                {
+                    CookieManager manager = new CookieManager();
+                    CookieHandler.setDefault(manager);
+                    final String Username = username.getText().toString();
+                    final String Password = password.getText().toString();
+                    String url = "http://10.192.38.23:8000/default/login.json";
+                    String url1 = "http://10.192.38.23:8000/default/login.json?userid="+Username+"&password="+Password;
+
+                    JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url1, null,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    try {
+                                        // JsonObject x= response.g
+                                        boolean success = response.getBoolean("success");
+//                                        boolean user = response.getBoolean("UserType");
+                                        String s1 = response.getString("userid");
+                                        String s2 = response.getString("passwd");
+
+                                        if (success)
+                                        {
+// String name=response.getString("Name")
+                                            String id= response.getString("Unique_Id");
+                                            // Sending only id as we can get all the information via database
+                                            //TODO: Add an intent to start the main page activity
+                                            //TODO: Also set the **** here
+                                            Toast.makeText(getActivity().getApplicationContext(),
+                                                    "Login Success" + "\t" + s1 + "\t" + s2,
+                                                    Toast.LENGTH_LONG).show();
+                                            Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
+                                            Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
+                                            i.putExtra("UserType", Username);
+                                            startActivity(i);
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(getActivity().getApplicationContext(),
+                                                    "Login not success" + success + "\t" +s1 + "\t" +s2,
+                                                    Toast.LENGTH_LONG).show();
+                                            Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
+                                            Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
+                                            i.putExtra("UserType", Username);
+                                            startActivity(i);
+                                        }
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                        Toast.makeText(getActivity().getApplicationContext(),
+                                                "Error: " + e.getMessage(),
+                                                Toast.LENGTH_LONG).show();
+                                        Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
+                                        Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
+                                        i.putExtra("UserType", Username);
+                                        startActivity(i);
+                                    }
+
+
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getActivity().getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                                    Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
+                                    Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
+                                    i.putExtra("UserType", Username);
+                                    startActivity(i);
+                                }
+                            }) {   //@Override
+                        protected Map<String, String> getParams() {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("userid", username.getText().toString());
+                            params.put("password", password.getText().toString());
+                            return params;
+                        }
+                    };
+
+                    Volley.newRequestQueue(getActivity().getApplicationContext()).add(stringRequest);
+
+                }
+            });
 
         }
 
@@ -126,6 +246,8 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
                     .clippingTransform(new WavesClippingTransform())
                     .fillDuration(10000)
                     .build();
+
+
         } else {
             fillableLoader.setSvgPath(pageNum == 0 ? Paths.COMPLAIN : Paths.COMPLAIN);
 
@@ -133,6 +255,8 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
 
         fillableLoader.setOnStateChangeListener(this);
     }
+
+
 
     @Override public void onStateChange(int state) {
         ((MainActivity) getActivity()).showStateHint(state);
