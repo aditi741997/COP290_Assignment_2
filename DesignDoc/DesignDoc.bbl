@@ -1,5 +1,9 @@
 \begin{thebibliography}{1}
 
+\bibitem{multiple_screen_sizes}
+Supporting tab and phone view.
+\newblock http://developer.android.com/training/multiscreen/screensizes.html.
+
 \bibitem{Web2py_Basics}
 Web2py.
 \newblock http://www.web2py.com/appliances/.

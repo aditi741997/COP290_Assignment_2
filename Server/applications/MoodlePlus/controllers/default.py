@@ -16,7 +16,7 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    response.flash = T("Welcome on Moodle+")
+    response.flash = T("Welcome to Moodle+")
     return dict(noti_count=4)
 
 def grades():
@@ -145,7 +145,7 @@ def populate_db():
         name="Aditi",
         user_type=0,
         username="cs1140205",
-        contact_number="7838969542",
+        contact_number="dhinchak",
         hostel=1,
         password="aditi",
     )
