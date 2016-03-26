@@ -95,7 +95,7 @@
           <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
               <li class="{{='active' if URL()=='/' or URL()=='/default' or URL()=='/index' or URL()=='/default/index' else ''}}"><a href="/default/index">Overview <span class="sr-only">(current)</span></a></li>
-              <li class="{{='active' if URL()=='/default/complaints' else ''}}"><a href="/default/complaints">Complaints</a></li>
+              <li class="{{='active' if URL()=='/complaints' else ''}}"><a href="/complaints.html">Complaints</a></li>
               {{noti_count = db(db.notifications.dest_user_id==auth.user.username)(db.notifications.seen==0).count()}}
               <li class="{{='active' if URL()=='/default/notifications' else ''}}"><a href="/default/notifications">Notifications {{if 'noti_count' in globals() and noti_count>0:}} [{{=noti_count}}]{{pass}}</a></li>
             </ul>
