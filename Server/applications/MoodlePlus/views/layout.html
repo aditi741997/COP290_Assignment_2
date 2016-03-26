@@ -63,10 +63,12 @@
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-right">
-            {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
+            {{#='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
+            {{="Yello"}}
           </ul>
           {{if response.menu and auth.is_logged_in():}}
-            {{=MENU(response.menu, _class='nav navbar-nav',li_class='dropdown',ul_class='dropdown-menu')}}
+            <!-- {{=MENU(response.menu, _class='nav navbar-nav',li_class='dropdown',ul_class='dropdown-menu')}} -->
+            {{="HELLO"}}
           {{pass}}
         </div>
       </div>
@@ -93,15 +95,9 @@
           <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
               <li class="{{='active' if URL()=='/' or URL()=='/default' or URL()=='/index' or URL()=='/default/index' else ''}}"><a href="/default/index">Overview <span class="sr-only">(current)</span></a></li>
-              <li class="{{='active' if URL()=='/default/grades' else ''}}"><a href="/default/grades">Grades</a></li>
-              {{noti_count = db(db.notifications.user_id==auth.user.id)(db.notifications.is_seen==0).count()}}
+              <li class="{{='active' if URL()=='/default/complaints' else ''}}"><a href="/default/complaints">Complaints</a></li>
+              {{noti_count = db(db.notifications.dest_user_id==auth.user.username)(db.notifications.seen==0).count()}}
               <li class="{{='active' if URL()=='/default/notifications' else ''}}"><a href="/default/notifications">Notifications {{if 'noti_count' in globals() and noti_count>0:}} [{{=noti_count}}]{{pass}}</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-              <li><span class="sidebar_title">My Courses</span></li>
-              {{for this_course in courses_list()["courses"]:}}
-                {{=LI(A(this_course.name,_href="/courses/course/"+this_course.code),_class="active" if len(request.args)>0 and request.args[0]==this_course.code else "")}}
-              {{pass}}
             </ul>
             <!-- <ul class="nav nav-sidebar">
               <li><a href="">Nav item again</a></li>

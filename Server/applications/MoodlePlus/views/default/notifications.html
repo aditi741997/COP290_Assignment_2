@@ -6,15 +6,17 @@
 				<tr>
 					<td>S.no.</td>
 					<td>Notification</td>
+					<td>From User Id </td>
 					<td>Time</td>
 				</tr>
 			</thead>
 			<tbody>
 			{{for i,noti in enumerate(notifications):}}
-				<tr style="{{='background:lightblue' if noti.is_seen==0 else ''}}">
+				<tr style="{{='background:lightblue' if noti.seen==0 else ''}}">
 					<td>{{=i+1}}</td>
 					<td>{{=XML(noti.description)}}</td>
-					<td>{{=timeHuman(noti.created_at)}}</td>
+					<td>{{=XML(noti.src_user_id)}}</td>
+					<td>{{=timeHuman(noti.time_stamp)}}</td>
 				</tr>
 			{{pass}}
 			</tbody>

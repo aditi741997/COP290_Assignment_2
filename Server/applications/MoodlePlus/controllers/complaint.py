@@ -90,3 +90,58 @@ def put_user_status():
         return dict(Status=1)
     # Todo: add things for hostel and insti level parts
     return dict(Status = 0)
+
+def GetAdminLevel(usname,comp_area):
+    return db(db.admin_info.username==usname and db.admin_info.complaint_area==comp_area).select()[0]["admin_level"]
+
+def high_auth():
+    if ("complaint_id" in request.vars and auth.is_logged_in()):
+        # For indiv complaints only
+        compid = request.vars.complaint_id
+        compdetails = db(db.indiv_complaints.complaint_id==compid).select()
+        if compdetails==[]:
+            return dict(success=False)
+        else:
+            compdetails=compdetails[0]
+            if compdetails["username"]==auth.user.username:
+                # Student wants to take it to higher
+                if compdetails["resolved"]==0 and compdetails["mark_for_resolution"]==1:
+                    # Student can take it above
+                    newcompid = GetNewCompId(0)
+                    comptype = compdetails["complaint_type"]
+                    hostelid = auth.user.hostel
+                    people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
+                    people1= []
+                    if len(people)==0:
+                        people1 = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
+                    if len(people1)==0:
+                        return dict(Success=False)
+                    peoplenew = people+people1
+                    bestsofar=-1             
+                    newpeopleid = None
+                    prevlevel=GetAdminLevel(compdetails["admin_id"],comptype)       
+                    for elem  in peoplenew:
+                        if elem["admin_level"]<prevlevel:
+                            if bestsofar<=elem["admin_level"]:
+                                bestsofar=elem["admin_level"]
+                                newpeopleid=elem["username"]
+                    if newpeopleid==None:
+                        return dict(Success=False) 
+                    db.indiv_complaints.insert(
+                        complaint_id=NewCompId,
+                        username=usname,
+                        complaint_type=comptype,
+                        complaint_content=content,
+                        admin_id=newpeopleid,
+                        prev_id=compdetails["complain_id"])
+                    db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=usname)
+                    db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=newpeopleid)
+                    db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=newpeopleid,description="New complaint!")
+                    return dict(Sucess=True)
+            return dict(Success=False)
+
+
+
+
+
+

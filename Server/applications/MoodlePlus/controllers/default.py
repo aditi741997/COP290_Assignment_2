@@ -16,15 +16,8 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    response.flash = T("Welcome on Moodle+")
+    response.flash = T("Welcome to Complaint Management System")
     return dict(noti_count=4)
-
-def grades():
-    grades = db(db.grades.user_id==auth.user.id).select()
-    courses = []
-    for grade in grades:
-        courses.append(db(db.courses.id==grade.registered_course_id.course_id).select().first())
-    return dict(grades=grades, courses=courses)
 
 def notifications():
     # return dict(notifcations=auth.user.username)
@@ -109,7 +102,7 @@ def login():
     userid = request.vars.userid
     password = request.vars.password
     user = auth.login_bare(userid,password)
-    return dict(success=False if not user else True, user=user)
+    return dict(success=False if not user else True, Unique_Id=user["username"] if user else "",userid =userid,passwd =password)
 
 def change_pass():
     # oldpassword = request.vars.oldpwd
@@ -145,7 +138,7 @@ def populate_db():
         name="Aditi",
         user_type=0,
         username="cs1140205",
-        contact_number="7838969542",
+        contact_number="dhinchak",
         hostel=1,
         password="aditi",
     )
@@ -159,6 +152,8 @@ def populate_db():
         password="ayush",
     )
     
+
+
     db.users.insert(
         name="Nikhil",
         user_type=0,
@@ -179,9 +174,17 @@ def populate_db():
 
     db.admin_info.insert(
         username="a1234",
-        complaint_area=1,
+        complaint_area=0,
         admin_level=2,
-        description='Electriction for hostel 1',
+        description='Electriction for all hostels',
+        hostel_id=1,
+    )
+    
+    db.admin_info.insert(
+        username="a12345",
+        complaint_area=0,
+        admin_level=1,
+        description='Senior Electriction for all hostels',
         hostel_id=1,
     )
 
@@ -232,68 +235,26 @@ def populate_db():
         description="time pass",  
     )
 
-    # db.users.insert(
-    #     first_name="Jasmeet",
-    #     last_name="Singh",
-    #     email="cs5110281@cse.iitd.ac.in",
-    #     username="cs5110281",
-    #     entry_no="2011CS50281",
-    #     type_=0,
-    #     password="jasmeet",
-    # )
-
-    # db.users.insert(
-    #     first_name="Abhishek",
-    #     last_name="Bansal",
-    #     email="cs5110271@cse.iitd.ac.in",
-    #     username="cs5110271",
-    #     entry_no="2011CS50271",
-    #     type_=0,
-    #     password="abhishek",
-    # )
-
-
-    # db.users.insert(
-    #     first_name="Shubham",
-    #     last_name="Jindal",
-    #     email="cs5110300@cse.iitd.ac.in",
-    #     username="cs5110300",
-    #     entry_no="2011CS50300",
-    #     type_=0,
-    #     password="shubham",
-    # )
-
-
-    # ## create 3 professors
-    # db.users.insert(
-    #     first_name="Vinay",
-    #     last_name="Ribeiro",
-    #     email="vinay@cse.iitd.ac.in",
-    #     username="vinay",
-    #     entry_no="vinay",
-    #     type_=1,
-    #     password="vinay",
-    # )
-
-    # db.users.insert(
-    #     first_name="Suresh",
-    #     last_name="Gupta",
-    #     email="scgupta@cse.moodle.in",
-    #     username="scgupta",
-    #     entry_no="scgupta",
-    #     type_=1,
-    #     password="scgupta",
-    # )
-
-    # db.users.insert(
-    #     first_name="Subodh",
-    #     last_name="Kumar",
-    #     email="subodh@cse.iitd.ac.in",
-    #     username="subodh",
-    #     entry_no="subodh",
-    #     type_=1,
-    #     password="subodh",
-    # )
+    db.notifications.insert(
+        complaint_id="i_1",
+        src_user_id="cs1130231",
+        dest_user_id="cs5140462",
+        description="Test notification 1"
+    )
+    
+    db.notifications.insert(
+        complaint_id="i_2",
+        src_user_id="cs5140462",
+        dest_user_id="cs5140462",
+        description="Test notification 2 for complaint 2"
+    )
+    
+    db.notifications.insert(
+        complaint_id="i_3",
+        src_user_id="cs1140205",
+        dest_user_id="cs5140462",
+        description="Test notification 3 for complaint 3"
+    )
 
 
     # ## create 7 courses
