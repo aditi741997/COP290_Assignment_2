@@ -16,7 +16,7 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    response.flash = T("Welcome to Moodle+")
+    response.flash = T("Welcome to Complaint Management System")
     return dict(noti_count=4)
 
 def notifications():
@@ -255,70 +255,6 @@ def populate_db():
         dest_user_id="cs5140462",
         description="Test notification 3 for complaint 3"
     )
-
-
-    # db.users.insert(
-    #     first_name="Jasmeet",
-    #     last_name="Singh",
-    #     email="cs5110281@cse.iitd.ac.in",
-    #     username="cs5110281",
-    #     entry_no="2011CS50281",
-    #     type_=0,
-    #     password="jasmeet",
-    # )
-
-    # db.users.insert(
-    #     first_name="Abhishek",
-    #     last_name="Bansal",
-    #     email="cs5110271@cse.iitd.ac.in",
-    #     username="cs5110271",
-    #     entry_no="2011CS50271",
-    #     type_=0,
-    #     password="abhishek",
-    # )
-
-
-    # db.users.insert(
-    #     first_name="Shubham",
-    #     last_name="Jindal",
-    #     email="cs5110300@cse.iitd.ac.in",
-    #     username="cs5110300",
-    #     entry_no="2011CS50300",
-    #     type_=0,
-    #     password="shubham",
-    # )
-
-
-    # ## create 3 professors
-    # db.users.insert(
-    #     first_name="Vinay",
-    #     last_name="Ribeiro",
-    #     email="vinay@cse.iitd.ac.in",
-    #     username="vinay",
-    #     entry_no="vinay",
-    #     type_=1,
-    #     password="vinay",
-    # )
-
-    # db.users.insert(
-    #     first_name="Suresh",
-    #     last_name="Gupta",
-    #     email="scgupta@cse.moodle.in",
-    #     username="scgupta",
-    #     entry_no="scgupta",
-    #     type_=1,
-    #     password="scgupta",
-    # )
-
-    # db.users.insert(
-    #     first_name="Subodh",
-    #     last_name="Kumar",
-    #     email="subodh@cse.iitd.ac.in",
-    #     username="subodh",
-    #     entry_no="subodh",
-    #     type_=1,
-    #     password="subodh",
-    # )
 
 
     # ## create 7 courses
