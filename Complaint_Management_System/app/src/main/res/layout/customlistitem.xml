@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/SerialNo"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_weight="1.6"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:text="SNo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="100"
+        android:layout_weight="0.9"
+        android:layout_gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+        android:id="@+id/ATitle"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="Title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.25"
+        android:textSize="18dp"
+        android:id="@+id/Time"
+        android:layout_gravity="center"
+        android:text="Time"
+        android:textColor="@color/colorPrimary" />
+
+
+
+</LinearLayout>

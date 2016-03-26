@@ -28,7 +28,7 @@ public class AddComplaint extends AppCompatActivity
         setContentView(R.layout.activity_add_complaint);
     }
     private void Reg_comp(View view)
-    {String url="http://127.0.0.1/complaint_data/add_complaint.json";
+    {String url="http://127.0.0.1:8000/complaint_data/add_complaint.json";
         JsonObjectRequest Complaint = new JsonObjectRequest(Request.Method.POST, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
