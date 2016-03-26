@@ -4,7 +4,16 @@ def GetIndivComplaints():
 		return allcomp
 	return []
 
+def GetHostelComplaints():
+	# TODO
+	return []
+
+def GetInstiComplaints():
+	# TODO
+	return []
+
 def isadmin():
+	# TODO: remove comment
 	# return len(db(db.admin_info.username==auth.user.username).select())>0
 	return True
 
@@ -22,5 +31,6 @@ def AllCategories():
 	return d
 
 def isspecial():
+	# TODO: Remove comment
 	# return len(db(db.admin_info.username==auth.user.username and db.admin_info.admin_level==-1).select())>0
 	return True

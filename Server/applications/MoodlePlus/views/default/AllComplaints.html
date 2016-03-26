@@ -18,20 +18,58 @@
 	<li role="presentation" class={{="active" if tab=="insti" else ""}}><a href="{{=URL('default','AllComplaints',args=request.args3)}}"> Institute Complaints </a></li>
 </ul>
 <br>
+<!-- TODO: Use contextual classes for tables -->
 
-{{if tag==indiv :}}
+{{if tab=="indiv" :}}
 	{{x=GetIndivComplaints()}}
 		<div class="table-responsive">
 		<table class="table table-striped">
-		{{for elem in x :}}
-			<tr> <td>
+		{{for i in xrange (len(x)) :}}
+			{{elem=x[i]}}
+			<tr> 
+				<td> {{=i+1}}</td>
+				<td>{{=elem["complaint_content"]}}</td> 
+				<td>{{="Resolved" if elem["resolved"] else "Not Resolved"}}</td>
+				<td>{{=timeHuman(elem["time_stamp"])}}</td>
+				<td><a href="{{=URL('default','complaint',elem['complaint_id'])}}">More Info</a> </td>
+			</tr>
 		{{pass}}
 		</table>
 		</div>
 {{pass}}
 
-{{if tag==hostel :}}
+{{if tab=="hostel" :}}
+	{{x=GetHostelComplaints()}}
+		<div class="table-responsive">
+		<table class="table table-striped">
+		{{for i in xrange (len(x)) :}}
+			{{elem=x[i]}}
+			<tr> 
+				<td> {{=i+1}}</td>
+				<td>{{=elem["complaint_content"]}}</td> 
+				<td>{{="Resolved" if elem["resolved"] else "Not Resolved"}}</td>
+				<td>{{=timeHuman(elem["time_stamp"])}}</td>
+				<td><a href="{{=URL('default','complaint',elem['complaint_id'])}}">More Info</a> </td>
+			</tr>
+		{{pass}}
+		</table>
+		</div>
 {{pass}}
 
-{{if tag==insti :}}
+{{if tab=="insti" :}}
+	{{x=GetInstiComplaints()}}
+		<div class="table-responsive">
+		<table class="table table-striped">
+		{{for i in xrange (len(x)) :}}
+			{{elem=x[i]}}
+			<tr> 
+				<td> {{=i+1}}</td>
+				<td>{{=elem["complaint_content"]}}</td> 
+				<td>{{="Resolved" if elem["resolved"] else "Not Resolved"}}</td>
+				<td>{{=timeHuman(elem["time_stamp"])}}</td>
+				<td><a href="{{=URL('default','complaint',elem['complaint_id'])}}">More Info</a> </td>
+			</tr>
+		{{pass}}
+		</table>
+		</div>
 {{pass}}
