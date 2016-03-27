@@ -157,7 +157,7 @@ db.define_table(
     Field('complaint_id','string'),
     Field('user_id','string'),
     Field('description','string'),
-    Field('time_stamp','datetime'),
+    Field('time_stamp','datetime',default=datetime.now),
     Field('anonymous','integer',default=0),
 )
 

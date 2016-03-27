@@ -196,6 +196,17 @@ def complaint():
     except:
         y=5
         dummy="invalid"
+    try:
+        comment = request.vars.comment
+        if comment:
+            db.comments_complaint.insert(
+                complaint_id = complaint["complaint_id"],
+                user_id = auth.user.username,
+                description=comment
+            )
+        comments=db(db.comments_complaint.complaint_id==tab).select()        
+    except:
+        comment=""    
     return dict(complaint=complaint,complainant=complainant,comptype=comptype,admindetails=admindetails,admin=admin,comments=comments,dummy=dummy)
 
 def managecomplaints():    

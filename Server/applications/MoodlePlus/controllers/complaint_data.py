@@ -31,7 +31,7 @@ def add_complaint():
         # TODO: extend to insti and hostel
         typecomp = request.vars.type
         comptype = request.vars.complaint_type
-        comptype = db(db.complaint_category.category_description==comptype).select()[0]
+        comptype = db(db.complaint_category.category_description==comptype).select()[0]["category_id"]
         content = request.vars.content
         anon = int(request.vars.anonymous)
         usname = auth.user.username
@@ -42,12 +42,12 @@ def add_complaint():
             extradet=""
         hostelid = GetHostel(auth.user.username)
         # and (db.admin_info.hostel_id<0 or db.admin_info.hostel_id==GetHostel(auth.user.username()))
-        if (typecomp=="in"):
+        if (typecomp=="i"):
             people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
             if len(people)==0:
                 people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
             if len(people)==0:
-                return dict(Success=False)
+                return dict(Success=False,comptype=comptype)
             people=people[0]
             peopleid = people["username"]
             NewCompId=GetNewCompId(0)
@@ -63,7 +63,7 @@ def add_complaint():
             db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=peopleid,description="New complaint!")
             # pref = db(db.admin_info.complaint_area==comptype).select()
             # required = people[0]
-            return dict(content=content,People=people, hostelid = hostelid,newid = NewCompId)            
+            return dict(Success=True, content=content,People=people, hostelid = hostelid,newid = NewCompId)            
         elif (typecomp=="h"):
             people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
             if len(people)==0:
@@ -87,8 +87,8 @@ def add_complaint():
             db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=peopleid,description="New complaint!")
             # pref = db(db.admin_info.complaint_area==comptype).select()
             # required = people[0]
-            return dict(content=content,People=people, hostelid = hostelid,newid = NewCompId)            
-        elif (typecomp=="i"):
+            return dict(Success=True,content=content,People=people, hostelid = hostelid,newid = NewCompId)            
+        elif (typecomp=="in"):
             # people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
             # if len(people)==0:
             people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
@@ -110,8 +110,9 @@ def add_complaint():
             db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=peopleid,description="New complaint!")
             # pref = db(db.admin_info.complaint_area==comptype).select()
             # required = people[0]
+            return dict(Success=True,content=content,People=people, hostelid = hostelid,newid = NewCompId)                    
     else:
-        return dict(Success=False)
+        return dict(Success=False,LoggedIn=auth.is_logged_in())
 
 def edit_complaint():
     # if ("complaint_id" in request.vars and auth.is_logged_in()):
@@ -153,7 +154,10 @@ def get_complaint_details():
             # Hostel complaint
         else:
             return dict(Details=[])
+        category=""
         if pref==[]:
             pref=[[]]
-        return dict(Details=pref[0])
+        else:
+            category=db(db.complaint_category.category_id==pref[0]["complaint_type"]).select()[0]["category_description"]
+        return dict(Details=pref[0],category=category,timest=timeHuman(pref[0]["time_stamp"]))
     return dict(Details=[])
