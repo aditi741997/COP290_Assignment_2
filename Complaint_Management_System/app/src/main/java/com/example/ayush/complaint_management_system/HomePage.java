@@ -166,7 +166,7 @@ public class HomePage extends AppCompatActivity
         Volley.newRequestQueue(this).add(stringRequest);
     }
     public void pop_noti_list()
-    {String url= "http://127.0.0.1/notification/get_noti.json";
+    {String url= "http://10.192.38.23:8000/notification/get_noti.json";
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override

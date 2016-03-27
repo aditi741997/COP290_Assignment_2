@@ -16,37 +16,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="TODO: Add the option and user to select preferences"
+        android:text="User Preferences"
         android:id="@+id/textView3"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp" />
+        android:layout_marginTop="10dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="TODO: Make separate tables/list for institute and hostel"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save Prefernces"
-        android:id="@+id/button2"
-        android:layout_below="@+id/textView4"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="135dp"
-        android:onClick="save" />
+        android:layout_marginBottom="45dp">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back to HomePage"
-        android:id="@+id/button3"
-        android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:onClick="Back" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="Save Prefernces"
+            android:id="@+id/button2"
+            android:layout_centerHorizontal="true"
+            android:onClick="save" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="Back to HomePage"
+            android:id="@+id/button3"
+            android:onClick="Back" />
+    </LinearLayout>
 </RelativeLayout>

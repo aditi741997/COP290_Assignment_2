@@ -59,22 +59,37 @@ public class Login extends AppCompatActivity {
     public void login(View view) {
         final EditText username = (EditText) findViewById(R.id.Username);
         final EditText password = (EditText) findViewById(R.id.password);
-        String url = "http://127.0.0.1/default/login.json";
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, null,
+        final String Username = username.getText().toString();
+        final String Password = password.getText().toString();
+        String url = "http://10.192.38.23:8000/default/login.json";
+        String url1 = "http://10.192.38.23:8000/default/login.json?userid="+Username+"&password="+Password;
+
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url1, null,
         new Response.Listener<JSONObject>() {
                  @Override
                     public void onResponse(JSONObject response) {
                         try {
                            // JsonObject x= response.g
                             boolean success = response.getBoolean("success");
+                            String s1 = response.getString("userid");
+                            String s2 = response.getString("passwd");
+
                             if (success)
                            {
 // String name=response.getString("Name")
                             String id= response.getString("Unique_Id");
                             // Sending only id as we can get all the information via database
-
                                 //TODO: Add an intent to start the main page activity
                                 //TODO: Also set the **** here
+                               Toast.makeText(getApplicationContext(),
+                                       "Login Success" + "\t" +s1 + "\t" +s2,
+                                       Toast.LENGTH_LONG).show();
+                            }
+                            else
+                            {
+                                Toast.makeText(getApplicationContext(),
+                                        "Login not success" + success + "\t" +s1 + "\t" +s2,
+                                        Toast.LENGTH_LONG).show();
                             }
 
                         } catch (JSONException e) {
@@ -95,7 +110,7 @@ public class Login extends AppCompatActivity {
                 }) {   //@Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("username", username.getText().toString());
+                params.put("userid", username.getText().toString());
                 params.put("password", password.getText().toString());
                 return params;
             }

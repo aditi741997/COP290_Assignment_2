@@ -5,7 +5,7 @@
 ## Customize your APP title, subtitle and menus here
 #########################################################################
 
-response.logo = A(B('Moodle',XML('&nbsp;'),SPAN('Plus')),XML('&trade;&nbsp;'),
+response.logo = A(B('Complaint',XML('&nbsp;'),SPAN('Management')),XML('&trade;&nbsp;'),
                   _class="navbar-brand",_href="/",
                   _id="web2py-logo")
 response.title = request.application.replace('_',' ').title()

@@ -1,5 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ListBackground"
+    tools:context="notifications">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Hello"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:id="@+id/three"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:visibility="invisible"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/notif_list"
+        android:layout_alignParentTop="true"
+        android:paddingRight="6dp"
+        android:paddingLeft="6dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="58dp">
+    </ListView>
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="No Notifications"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/No_Notification"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/Image_No"
+            android:background="@drawable/bluebackground"
+            android:layout_weight="1.6"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:textColor="@color/colorAccent"
+            android:text="S.No." />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/Image_notification"
+            android:background="@drawable/bluebackground"
+            android:layout_weight="0.9"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/Image_No"
+            android:layout_toEndOf="@+id/Image_No"
+            android:layout_marginLeft="1dp"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:text="Notifications" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/Image_Date"
+            android:background="@drawable/bluebackground"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1.25"
+            android:layout_marginLeft="1dp"
+            android:layout_toRightOf="@+id/Image_notification"
+            android:layout_toEndOf="@+id/Image_notification"
+            android:textSize="16dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:text="Date Added" />
+
+    </LinearLayout>
 
 </RelativeLayout>

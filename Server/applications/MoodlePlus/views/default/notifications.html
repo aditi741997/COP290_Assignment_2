@@ -8,6 +8,7 @@
 					<td>Notification</td>
 					<td>From User Id </td>
 					<td>Time</td>
+					<td>Complaint</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -17,6 +18,7 @@
 					<td>{{=XML(noti.description)}}</td>
 					<td>{{=XML(noti.src_user_id)}}</td>
 					<td>{{=timeHuman(noti.time_stamp)}}</td>
+					<td><a href="{{=URL('default','complaint',noti.complaint_id)}}">More Info</a> </td>
 				</tr>
 			{{pass}}
 			</tbody>
