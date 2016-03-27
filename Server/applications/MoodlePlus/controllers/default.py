@@ -16,7 +16,10 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    response.flash = T("Welcome to Complaint Management System")
+    if (auth.user):
+        response.flash = T("Welcome " + auth.user.name + " to Complaint Management System")
+    else:
+        response.flash =T("Welcome to Complaint Management System")
     return dict(noti_count=4)
 
 def notifications():
@@ -55,8 +58,95 @@ def change_pwd():
     return dict(success=True)
 
 @auth.requires_login()
-def newcomplaint():
-    return dict(success=True)
+def newcomplaint():    
+    try:
+        tab=str(request.args[0])
+    except:
+        tab="indiv"
+    categories=db(db.complaint_category.category_id>=0).select()
+    return dict(success=True,tab=tab,categories=categories)
+
+def newcompl():
+    t1 = request.args[0]
+    complaint_content=request.vars.complaint_content
+    extradet=request.vars.extra_info
+    comptype=int(request.vars.complaint_type)
+    anon=int(request.vars.anonymous)
+    usname=auth.user.username
+    if t1=="indiv":
+        hostelid = GetHostelID(auth.user.username)
+        # and (db.admin_info.hostel_id<0 or db.admin_info.hostel_id==GetHostel(auth.user.username()))
+        people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
+        if len(people)==0:
+            people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
+        if len(people)==0:
+            return dict(success=False,complaint_content="no admin found")
+        people=people[0]
+        peopleid = people["username"]
+        NewCompId=GetNewCompId(0)
+        db.indiv_complaints.insert(
+            complaint_id=NewCompId,
+            username=usname,
+            complaint_type=comptype,
+            complaint_content=complaint_content,
+            extra_info=extradet,
+            admin_id=peopleid)
+        db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=usname)
+        db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=peopleid)
+        db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=peopleid,description="New complaint!")        
+        return dict(success=True,complaint_content=complaint_content,extra_info=extradet)
+    elif t1=="hostel":
+        hostelid = GetHostelID(auth.user.username)
+        # and (db.admin_info.hostel_id<0 or db.admin_info.hostel_id==GetHostel(auth.user.username()))
+        people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
+        if len(people)==0:
+            people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
+        if len(people)==0:
+            return dict(success=False,complaint_content="no admin found")
+        people=people[0]
+        peopleid = people["username"]
+        NewCompId=GetNewCompId(1)
+        db.hostel_complaints.insert(
+            complaint_id=NewCompId,
+            username=usname,
+            hostel=hostelid,
+            complaint_type=comptype,
+            complaint_content=complaint_content,
+            extra_info=extradet,
+            admin_id=peopleid,
+            anonymous=anon
+            )
+        db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=usname)
+        db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=peopleid)
+        db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=peopleid,description="New complaint!")        
+        return dict(success=True,complaint_content=complaint_content,extra_info=extradet)
+    elif t1=="insti":
+        hostelid = GetHostelID(auth.user.username)
+        # and (db.admin_info.hostel_id<0 or db.admin_info.hostel_id==GetHostel(auth.user.username()))
+        people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
+        if len(people)==0:
+            people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
+        if len(people)==0:
+            return dict(success=False,complaint_content="no admin found")
+        people=people[0]
+        peopleid = people["username"]
+        NewCompId=GetNewCompId(2)
+        db.insti_complaints.insert(
+            complaint_id=NewCompId,
+            username=usname,
+            hostel=hostelid,
+            complaint_type=comptype,
+            complaint_content=complaint_content,
+            extra_info=extradet,
+            admin_id=peopleid,
+            anonymous=anon
+            )
+        db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=usname)
+        db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=peopleid)
+        db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=peopleid,description="New complaint!")        
+        return dict(success=True,complaint_content=complaint_content,extra_info=extradet)
+        
+    return dict(success=False,complaint_content=request.args[0],extra_info=extradet)
 
 @auth.requires_login()
 def AllComplaints():
@@ -179,7 +269,7 @@ def login():
     return dict(success=False if not user else True, Unique_Id=user["username"] if user else "",userid =userid,passwd =password)
 
 def change_pass():
-    oldpassword = request.vars.oldpwd
+    # oldpassword = request.vars.oldpwd
     newpassword = request.vars.newpwd
     table_user=auth.settings.table_user
     passfield = auth.settings.password_field
@@ -187,7 +277,21 @@ def change_pass():
     d={passfield: newpassword}
     temp = s.validate_and_update(**d)
     response.flash = T("Password Changed Successfully")
-    return dict(success= temp,oldpwd=oldpassword,newpwd=newpassword)
+    return dict(success= temp,newpwd=newpassword)
+
+# @auth.requires_login
+def change_passwd1():
+    # return dict(success=True)
+    # oldpassword = request.vars.oldpwd
+    newpassword = request.vars.newpwd
+    table_user=auth.settings.table_user
+    passfield = auth.settings.password_field
+    s=db(table_user.id== auth.user_id)
+    d={passfield: newpassword}
+    temp = s.validate_and_update(**d)
+    # response.flash = T("Password Changed Successfully")
+    return dict(success= temp,newpwd=newpassword)
+
 
 def clear_db():
     for table in db.tables():
@@ -355,6 +459,7 @@ def populate_db():
         extra_info="Extra info for comp 2",
         admin_id="a1234"
     )
+
     db.indiv_complaints.insert(
         complaint_id="i_3",
         username="cs5140462",

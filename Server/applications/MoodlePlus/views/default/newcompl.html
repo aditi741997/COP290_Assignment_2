@@ -1,0 +1,11 @@
+{{extend 'layout.html'}}
+
+
+{{if success:}}
+<h1> New Complaint Added! </h1>
+{{else:}}
+<h1> Unable to add complaint </h1>
+{{pass}}
+<!-- <h1>{{=complaint_content}}</h1> -->
+<h2>{{=complaint_content}}</h2>
+<!-- <h1>{{=extra_info}}</h1> -->

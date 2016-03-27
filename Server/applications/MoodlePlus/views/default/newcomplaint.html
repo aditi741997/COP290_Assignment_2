@@ -1,2 +1,60 @@
 {{extend 'layout.html'}}
-<h1> TODO</h1>
+{{request_args=request.args}}
+{{if (len(request_args)< 1): }}
+	{{request_args.append("")}}
+{{pass}}
+{{request.args1 = list(request_args)}}
+{{request.args1[0]="indiv"}}
+{{request.args2 = list(request_args)}}
+{{request.args2[0]="hostel"}}
+{{request.args3 = list(request_args)}}
+{{request.args3[0]="insti"}}
+<h1> New Complaint </h1>
+
+<ul class="nav nav-tabs nav-justified">
+	<li role="presentation" class={{="active" if tab=="indiv" else ""}}><a href="{{=URL('default','newcomplaint',args=request.args1)}}"> Individual Complaints </a></li>
+	<li role="presentation" class={{="active" if tab=="hostel" else ""}}><a href="{{=URL('default','newcomplaint',args=request.args2)}}"> Hostel Complaints </a></li>
+	<li role="presentation" class={{="active" if tab=="insti" else ""}}><a href="{{=URL('default','newcomplaint',args=request.args3)}}"> Institute Complaints </a></li>
+</ul>
+
+{{if tab=="indiv":}}
+<form role="form" action="/default/newcompl/indiv" method="get" target="_self">
+{{pass}}
+{{if tab=="hostel":}}
+<form role="form" action="/default/newcompl/hostel" method="get" target="_self">
+{{pass}}
+{{if tab=="insti":}}
+<form role="form" action="/default/newcompl/insti" method="get" target="_self">
+{{pass}}
+
+  <!-- <input type="hidden" name="redirect" value="/default" /> -->
+  <!-- Old Password: <input type="text" name="oldpwd"><br> -->
+  <!-- New Password: <input type="password" name="newpwd"><br> -->
+  <div class="form-group">
+    <label for="compTitle">Complaint Title:</label>
+    <input class="form-control" id="compTitle" name="complaint_content">
+  </div>
+  <div class="form-group">
+  <label for="comment">Extra Details:</label>
+  <textarea class="form-control" rows="5" id="comment" name="extra_info"></textarea>
+<div class="form-group">
+  <label for="sel1">Select Type:</label>
+  <select class="form-control" id="sel1" name="complaint_type">
+    {{for elem in categories:}}
+    	<option value="{{=elem['category_id']}}" > {{=elem["category_description"]}} </option>
+    {{pass}}
+   </select>
+</div>
+<div class="form-group">
+  <label for="sel1">Anonymous?</label>
+  <select class="form-control" id="sel1" name="anonymous">
+    	<option value="0" > Not Anonymous</option>
+
+    {{if not(tab=="indiv"):}}
+    	<option value="1" > Anonymous </option>
+    {{pass}}
+   </select>
+
+</div>
+  <button type="submit" class="btn btn-default" value="Submit"> Submit </button> 
+</form>

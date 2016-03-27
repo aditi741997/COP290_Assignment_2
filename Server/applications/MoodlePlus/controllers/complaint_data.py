@@ -29,32 +29,87 @@ def GetNewCompId(x):
 def add_complaint():
     if ("complaint_type" in request.vars and auth.is_logged_in() and "content" in request.vars ):
         # TODO: extend to insti and hostel
-        comptype = int(request.vars.complaint_type)
+        typecomp = request.vars.type
+        comptype = request.vars.complaint_type
+        comptype = db(db.complaint_category.category_description==comptype).select()[0]
         content = request.vars.content
-        anon = request.vars.anonymous
+        anon = int(request.vars.anonymous)
         usname = auth.user.username
+        extradet = ""
+        try:
+            extradet=request.vars.extra_info
+        except:
+            extradet=""
         hostelid = GetHostel(auth.user.username)
         # and (db.admin_info.hostel_id<0 or db.admin_info.hostel_id==GetHostel(auth.user.username()))
-        people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
-        if len(people)==0:
+        if (typecomp=="in"):
+            people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
+            if len(people)==0:
+                people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
+            if len(people)==0:
+                return dict(Success=False)
+            people=people[0]
+            peopleid = people["username"]
+            NewCompId=GetNewCompId(0)
+            db.indiv_complaints.insert(
+                complaint_id=NewCompId,
+                username=usname,
+                complaint_type=comptype,
+                complaint_content=content,
+                extra_info=extradet,
+                admin_id=peopleid)
+            db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=usname)
+            db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=peopleid)
+            db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=peopleid,description="New complaint!")
+            # pref = db(db.admin_info.complaint_area==comptype).select()
+            # required = people[0]
+            return dict(content=content,People=people, hostelid = hostelid,newid = NewCompId)            
+        elif (typecomp=="h"):
+            people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
+            if len(people)==0:
+                people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
+            if len(people)==0:
+                return dict(Success=False)
+            people=people[0]
+            peopleid = people["username"]
+            NewCompId=GetNewCompId(1)
+            db.hostel_complaints.insert(
+                complaint_id=NewCompId,
+                username=usname,
+                complaint_type=comptype,
+                complaint_content=content,
+                extra_info=extradet,
+                anonymous=anon,
+                hostel=hostelid,
+                admin_id=peopleid)
+            db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=usname)
+            db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=peopleid)
+            db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=peopleid,description="New complaint!")
+            # pref = db(db.admin_info.complaint_area==comptype).select()
+            # required = people[0]
+            return dict(content=content,People=people, hostelid = hostelid,newid = NewCompId)            
+        elif (typecomp=="i"):
+            # people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
+            # if len(people)==0:
             people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
-        if len(people)==0:
-            return dict(Success=False)
-        people=people[0]
-        peopleid = people["username"]
-        NewCompId=GetNewCompId(0)
-        db.indiv_complaints.insert(
-            complaint_id=NewCompId,
-            username=usname,
-            complaint_type=comptype,
-            complaint_content=content,
-            admin_id=peopleid)
-        db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=usname)
-        db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=peopleid)
-        db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=peopleid,description="New complaint!")
-        # pref = db(db.admin_info.complaint_area==comptype).select()
-        # required = people[0]
-        return dict(content=content,People=people, hostelid = hostelid,newid = NewCompId)            
+            if len(people)==0:
+                return dict(Success=False)
+            people=people[0]
+            peopleid = people["username"]
+            NewCompId=GetNewCompId(2)
+            db.indiv_complaints.insert(
+                complaint_id=NewCompId,
+                username=usname,
+                complaint_type=comptype,
+                complaint_content=content,
+                anonymous=anon,
+                extra_info=extradet,
+                admin_id=peopleid)
+            db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=usname)
+            db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=peopleid)
+            db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=peopleid,description="New complaint!")
+            # pref = db(db.admin_info.complaint_area==comptype).select()
+            # required = people[0]
     else:
         return dict(Success=False)
 

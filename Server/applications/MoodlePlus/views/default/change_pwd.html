@@ -4,8 +4,9 @@
 Change Password
 </h2>
 
-<form action="/change_pass.json" method="get" target="">
-  Old Password: <input type="text" name="oldpwd"><br>
-  New Password: <input type="text" name="newpwd"><br>
-  <input type="submit" value="Submit">
+<form role="form" action="/default/change_passwd1" method="get" target="_self">
+	<!-- <input type="hidden" name="redirect" value="/default" /> -->
+  <!-- Old Password: <input type="text" name="oldpwd"><br> -->
+  New Password: <input type="password" name="newpwd"><br>
+  <button type="submit" class="btn btn-default" value="Submit"> Submit </button> 
 </form>
