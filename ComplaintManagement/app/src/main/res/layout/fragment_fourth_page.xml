@@ -19,6 +19,11 @@
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true">    <!--tools:showIn="@layout/activity_login"-->
 
+        <!--<com.github.florent37.materialtextfield.MaterialTextField-->
+            <!--android:layout_width="300dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:mtf_image="@drawable/ic_mail_grey600_24dp"-->
+            <!-->-->
     <EditText
         android:layout_width="270dp"
         android:layout_height="30dp"
@@ -34,6 +39,7 @@
         android:hint="Username"
         android:textColorHint="#96093556"
         android:gravity="center" />
+        <!--</com.github.florent37.materialtextfield.MaterialTextField>-->
 
     <EditText
         android:layout_width="270dp"
