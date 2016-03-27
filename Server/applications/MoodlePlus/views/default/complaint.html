@@ -31,6 +31,9 @@
 <tr><td>Resolved Status </td> <td>{{="Yes" if complaint["resolved"] else "No"}}</td></tr>
 <tr><td>Administrator Comments</td><td>{{=complaint["comment_comp"]}}</td></tr>
 <tr><td>Previous Threads:</td><td><a href="{{=URL('default','complaint',complaint["complaint_id"] if complaint["prev_id"]=="" else complaint["prev_id"])}}">Complaint Hierarchy</a></td></tr>
+<tr><td>Number of Up-Votes</td><td>{{=complaint["num_up"]}}</td></tr>
+<tr><td>Number of Down-Votes</td><td>{{=complaint["num_down"]}}</td></tr>
+<tr><td>Number of Neutral-Votes</td><td>{{=complaint["num_neutr"]}}</td></tr>
 <tr><td>Administrator Alloted</td><td>{{=admindetails["name"]}}</td></tr>
 <tr><td>Administrator Contact Number </td><td>{{=admindetails["contact_number"]}}</td></tr>
 <tr><td>Administrator Email</td><td><a href="mailto:{{=admindetails['username']+'@iitd.ac.in'}}?Subject=Complaint Followup">Send Email</a></td></tr>
@@ -50,6 +53,9 @@
 <tr><td>Resolved Status </td> <td>{{="Yes" if complaint["resolved"] else "No"}}</td></tr>
 <tr><td>Administrator Comments</td><td>{{=complaint["comment_comp"]}}</td></tr>
 <tr><td>Previous Threads:</td><td><a href="{{=URL('default','complaint',complaint["complaint_id"] if complaint["prev_id"]=="" else complaint["prev_id"])}}">Complaint Hierarchy</a></td></tr>
+<tr><td>Number of Up-Votes</td><td>{{=complaint["num_up"]}}</td></tr>
+<tr><td>Number of Down-Votes</td><td>{{=complaint["num_down"]}}</td></tr>
+<tr><td>Number of Neutral-Votes</td><td>{{=complaint["num_neutr"]}}</td></tr>
 <tr><td>Administrator Alloted</td><td>{{=admindetails["name"]}}</td></tr>
 <tr><td>Administrator Contact Number </td><td>{{=admindetails["contact_number"]}}</td></tr>
 <tr><td>Administrator Email</td><td><a href="mailto:{{=admindetails['username']+'@iitd.ac.in'}}?Subject=Complaint Followup">Send Email</a></td></tr>
@@ -67,5 +73,13 @@
 </table>
 </div>
 
-{{if admin: }}
+{{if admin:}}
+<h2> Administrator Controls </h2>
+<div class="table-responsive">
+<table class="table table-striped">
+<tr><td>Complainant Name</td><td>{{=complainant["name"]}}</td></tr>
+<tr><td>Complainant Phone Number</td><td>{{=complainant["contact_number"]}}</td></tr>
+<tr><td>Complainant Email</td><td><a href="mailto:{{=complainant['username']+'@iitd.ac.in'}}?Subject=Complaint Followup">Send Email</a></td></tr>
+</table>
+</div>
 {{pass}}

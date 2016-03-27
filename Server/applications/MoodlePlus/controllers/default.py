@@ -80,6 +80,7 @@ def complaint():
     dummy="valid"
     comments=[]
     admindetails=None
+    complainant=None
     try:
         tab=str(request.args[0])
         if tab[:2]=="i_":
@@ -100,11 +101,12 @@ def complaint():
         if complaint:
             admin=(auth.user.username==complaint["admin_id"])
             admindetails = db(db.users.username==complaint["admin_id"]).select()[0]
+            complainant=db(db.users.username==complaint["username"]).select()[0]
         comments=db(db.comments_complaint.complaint_id==tab).select()
     except:
         y=5
         dummy="invalid"
-    return dict(complaint=complaint,comptype=comptype,admindetails=admindetails,admin=admin,comments=comments,dummy=dummy)
+    return dict(complaint=complaint,complainant=complainant,comptype=comptype,admindetails=admindetails,admin=admin,comments=comments,dummy=dummy)
 
 def managecomplaints():
     return dict(success=True)
@@ -217,8 +219,6 @@ def populate_db():
         hostel=2,
         password="ayush",
     )
-    
-
 
     db.users.insert(
         name="Nikhil",
@@ -236,6 +236,15 @@ def populate_db():
         contact_number="blah blah",
         hostel=-1,
         password="elec1"
+    )
+
+    db.users.insert(
+        name ="elec2",
+        user_type=1,
+        username="a12345",
+        contact_number="blah blah blah",
+        hostel=-1,
+        password="elec2"
     )
 
     db.admin_info.insert(

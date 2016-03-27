@@ -5,17 +5,19 @@ def GetIndivComplaints():
 	return []
 
 def GetHostelComplaints():
-	# TODO
-	return []
+	# TODO add preferences complaints
+	allcomp = db(db.hostel_complaints.username==auth.user.username).select()
+	return allcomp
 
 def GetInstiComplaints():
-	# TODO
-	return []
+	# TODO add preferences complaints
+	allcomp = db(db.insti_complaints.username==auth.user.username).select()
+	return allcomp
 
 def isadmin():
 	# TODO: remove comment
-	# return len(db(db.admin_info.username==auth.user.username).select())>0
-	return True
+	return len(db(db.admin_info.username==auth.user.username).select())>0
+	# return True
 
 def AllCategories():
 	a = db(db.complaint_category.category_id>=0).select()
@@ -32,8 +34,8 @@ def AllCategories():
 
 def isspecial():
 	# TODO: Remove comment
-	# return len(db(db.admin_info.username==auth.user.username and db.admin_info.admin_level==-1).select())>0
-	return True
+	return len(db(db.admin_info.username==auth.user.username and db.admin_info.admin_level==-1).select())>0
+	# return True
 
 def GetCategory(x):
 	# Takes in complaint as input and returns category in string
@@ -48,8 +50,8 @@ def GetCategory(x):
 
 def GetHostel(x):
 		# Takes in complaint as input and returns hostel in string
-	catid = x["hostel_id"]
-	value = db(db.hostel_mapping.hostel==catid).select()
+	catid = x["hostel"]
+	value = db(db.hostel_mapping.hostel_id==catid).select()
 	# value+=[{catid:"Unknown"}]
 	# return value[catid]
 	if value==[]:
