@@ -1,0 +1,20 @@
+{{extend 'layout.html'}}
+<h1>User Settings</h1>
+<br>
+<h2><a href="change_pwd"> Change Password </a>
+<br><br>
+<div class="table-responsive">
+<table class="table table-striped">
+	<tr> <th> Topic </th> <th>Hostel Preferences </th><th>Institute Preferences</th> <th>Other Preferences</th></tr>
+
+	{{x=AllCategories()}}
+		{{for elem in x:}}
+			<tr>
+				<td>{{=elem[0]}}</td>
+				<td>{{=elem[1]}}</td>
+				<td>{{=elem[2]}}</td>
+				<td>{{=elem[3]}}</td>
+			</tr>
+		{{pass}}
+</table>
+</div>

@@ -41,7 +41,75 @@ def logged_in():
     return dict(success=auth.is_logged_in(), user=auth.user)
 
 def logout():
-    return dict(success=True, loggedout=auth.logout())
+    if (auth.user):
+        return dict(success=True, loggedout=auth.logout())
+    else:
+        return dict(success="did not work")
+
+@auth.requires_login()
+def settings():
+    return dict(success= True)
+
+@auth.requires_login()
+def change_pwd():
+    return dict(success=True)
+
+@auth.requires_login()
+def newcomplaint():
+    return dict(success=True)
+
+@auth.requires_login()
+def AllComplaints():
+    tab="indiv"
+    # if len(request_args)<1:
+    try:
+        tab=str(request.args[0])
+    except:
+        tab="indiv"
+    return dict(success=True,tab=tab)
+
+@auth.requires_login()
+def addusers():
+    return dict(success=True)
+
+@auth.requires_login()
+def complaint():
+    complaint =None
+    comptype=-1
+    admin=0
+    dummy="valid"
+    comments=[]
+    admindetails=None
+    complainant=None
+    try:
+        tab=str(request.args[0])
+        if tab[:2]=="i_":
+            comps = db(db.indiv_complaints.complaint_id==tab).select()
+            if len(comps):
+                complaint=comps[0]
+                comptype=0
+        elif tab[:2]=="h_":
+            comps = db(db.hostel_complaints.complaint_id==tab).select()
+            if len(comps):
+                complaint=comps[0]
+                comptype=1
+        elif tab[:2]=="in":
+            comps = db(db.insti_complaints.complaint_id==tab).select()
+            if len(comps):
+                complaint=comps[0]
+                comptype=2
+        if complaint:
+            admin=(auth.user.username==complaint["admin_id"])
+            admindetails = db(db.users.username==complaint["admin_id"]).select()[0]
+            complainant=db(db.users.username==complaint["username"]).select()[0]
+        comments=db(db.comments_complaint.complaint_id==tab).select()
+    except:
+        y=5
+        dummy="invalid"
+    return dict(complaint=complaint,complainant=complainant,comptype=comptype,admindetails=admindetails,admin=admin,comments=comments,dummy=dummy)
+
+def managecomplaints():
+    return dict(success=True)
 
 def user():
     """
@@ -151,8 +219,6 @@ def populate_db():
         hostel=2,
         password="ayush",
     )
-    
-
 
     db.users.insert(
         name="Nikhil",
@@ -170,6 +236,15 @@ def populate_db():
         contact_number="blah blah",
         hostel=-1,
         password="elec1"
+    )
+
+    db.users.insert(
+        name ="elec2",
+        user_type=1,
+        username="a12345",
+        contact_number="blah blah blah",
+        hostel=-1,
+        password="elec2"
     )
 
     db.admin_info.insert(
@@ -256,6 +331,84 @@ def populate_db():
         description="Test notification 3 for complaint 3"
     )
 
+    db.indiv_complaints.insert(
+        complaint_id="i_1",
+        username="cs5140462",
+        complaint_type=1,
+        complaint_content="Complaint number 1",
+        extra_info="Extra info for comp 1",
+        admin_id="a1234"
+    )
+
+    db.indiv_complaints.insert(
+        complaint_id="i_2",
+        username="cs5140462",
+        complaint_type=1,
+        complaint_content="Complaint number 2",
+        extra_info="Extra info for comp 2",
+        admin_id="a1234"
+    )
+    db.indiv_complaints.insert(
+        complaint_id="i_3",
+        username="cs5140462",
+        complaint_type=1,
+        complaint_content="Complaint number 3",
+        extra_info="Extra info for comp 3",
+        admin_id="a1234"
+    )
+
+    db.complaint_user_mapping.insert(
+        complaint_id="i_1",
+        user_id="cs5140462"
+    )
+    db.complaint_user_mapping.insert(
+        complaint_id="i_2",
+        user_id="cs5140462"
+    )
+    db.complaint_user_mapping.insert(
+        complaint_id="i_3",
+        user_id="cs5140462"
+    )
+
+    db.hostel_complaints.insert(
+        complaint_id="h_1",
+        username="cs5140462",
+        complaint_content="Hostel complaint 1",
+        extra_info="Details of complaint",
+        complaint_type=2,
+        admin_id="a12345",
+        hostel='2'
+    )
+
+    db.complaint_user_mapping.insert(
+        complaint_id="h_1",
+        user_id="cs5140462"
+    )
+
+    db.complaint_user_mapping.insert(
+        complaint_id="h_1",
+        user_id="a12345"
+    )
+    
+    db.insti_complaints.insert(
+        complaint_id="in_1",
+        username="cs5140462",
+        complaint_content="Institute complaint 1",
+        extra_info="Details of complaint",
+        complaint_type=2,
+        admin_id="a12345",
+        anonymous=1,
+    )
+
+    db.complaint_user_mapping.insert(
+        complaint_id="in_1",
+        user_id="cs5140462"
+    )
+
+    db.complaint_user_mapping.insert(
+        complaint_id="in_1",
+        user_id="a12345"
+    )
 
     # ## create 7 courses
     # db.courses.insert(
