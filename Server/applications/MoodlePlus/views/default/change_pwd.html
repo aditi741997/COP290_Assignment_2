@@ -4,10 +4,8 @@
 Change Password
 </h2>
 
-<div class="container">
-    <div class="row">
-        <div id="web2py_user_form" class="col-lg-6">
-        	TODO
-        </div>
-    </div>
-</div>
+<form action="/change_pass.json" method="get" target="">
+  Old Password: <input type="text" name="oldpwd"><br>
+  New Password: <input type="text" name="newpwd"><br>
+  <input type="submit" value="Submit">
+</form>

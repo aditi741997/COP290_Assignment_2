@@ -4,9 +4,18 @@ def GetIndivComplaints():
 		return allcomp
 	return []
 
+def GetAdminIndivComplaints():
+	allcomp = db(db.indiv_complaints.admin_id==auth.user.username).select()
+	return allcomp
+
 def GetHostelComplaints():
 	# TODO add preferences complaints
 	allcomp = db(db.hostel_complaints.username==auth.user.username).select()
+	return allcomp
+
+def GetAdminHostelComplaints():
+	# TODO add preferences complaints
+	allcomp = db(db.hostel_complaints.admin_id==auth.user.username).select()
 	return allcomp
 
 def GetInstiComplaints():
@@ -14,10 +23,15 @@ def GetInstiComplaints():
 	allcomp = db(db.insti_complaints.username==auth.user.username).select()
 	return allcomp
 
+def GetAdminInstiComplaints():
+	# TODO add preferences complaints
+	allcomp = db(db.insti_complaints.admin_id==auth.user.username).select()
+	return allcomp
+
 def isadmin():
 	# TODO: remove comment
-	return len(db(db.admin_info.username==auth.user.username).select())>0
-	# return True
+	# return len(db(db.admin_info.username==auth.user.username).select())>0
+	return True
 
 def AllCategories():
 	a = db(db.complaint_category.category_id>=0).select()
@@ -34,8 +48,8 @@ def AllCategories():
 
 def isspecial():
 	# TODO: Remove comment
-	return len(db(db.admin_info.username==auth.user.username and db.admin_info.admin_level==-1).select())>0
-	# return True
+	# return len(db(db.admin_info.username==auth.user.username and db.admin_info.admin_level==-1).select())>0
+	return True
 
 def GetCategory(x):
 	# Takes in complaint as input and returns category in string

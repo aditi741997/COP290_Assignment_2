@@ -108,8 +108,14 @@ def complaint():
         dummy="invalid"
     return dict(complaint=complaint,complainant=complainant,comptype=comptype,admindetails=admindetails,admin=admin,comments=comments,dummy=dummy)
 
-def managecomplaints():
-    return dict(success=True)
+def managecomplaints():    
+    tab="indiv"
+    # if len(request_args)<1:
+    try:
+        tab=str(request.args[0])
+    except:
+        tab="indiv"
+    return dict(success=True,tab=tab)
 
 def user():
     """
@@ -173,14 +179,15 @@ def login():
     return dict(success=False if not user else True, Unique_Id=user["username"] if user else "",userid =userid,passwd =password)
 
 def change_pass():
-    # oldpassword = request.vars.oldpwd
+    oldpassword = request.vars.oldpwd
     newpassword = request.vars.newpwd
     table_user=auth.settings.table_user
     passfield = auth.settings.password_field
     s=db(table_user.id== auth.user_id)
     d={passfield: newpassword}
     temp = s.validate_and_update(**d)
-    return dict(success= temp)
+    response.flash = T("Password Changed Successfully")
+    return dict(success= temp,oldpwd=oldpassword,newpwd=newpassword)
 
 def clear_db():
     for table in db.tables():

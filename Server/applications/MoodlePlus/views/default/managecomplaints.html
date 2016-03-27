@@ -1,2 +1,75 @@
 {{extend 'layout.html'}}
-<h1> TODO: All complaints of admin in 3 categories, check for admin user</h1>
+<!-- <h1> TODO 3 sections, 1 each for indiv, hostel and insti</h1> -->
+
+{{request_args=request.args}}
+{{if (len(request_args)< 1): }}:
+	{{request_args.append("")}}
+{{pass}}
+{{request.args1 = list(request_args)}}
+{{request.args1[0]="indiv"}}
+{{request.args2 = list(request_args)}}
+{{request.args2[0]="hostel"}}
+{{request.args3 = list(request_args)}}
+{{request.args3[0]="insti"}}
+
+<ul class="nav nav-tabs nav-justified">
+	<li role="presentation" class={{="active" if tab=="indiv" else ""}}><a href="{{=URL('default','managecomplaints',args=request.args1)}}"> Individual Complaints </a></li>
+	<li role="presentation" class={{="active" if tab=="hostel" else ""}}><a href="{{=URL('default','managecomplaints',args=request.args2)}}"> Hostel Complaints </a></li>
+	<li role="presentation" class={{="active" if tab=="insti" else ""}}><a href="{{=URL('default','managecomplaints',args=request.args3)}}"> Institute Complaints </a></li>
+</ul>
+<br>
+<!-- TODO: Use contextual classes for tables -->
+
+{{if tab=="indiv" :}}
+	{{x=GetAdminIndivComplaints()}}
+		<div class="table-responsive">
+		<table class="table table-striped">
+		{{for i in xrange (len(x)) :}}
+			{{elem=x[i]}}
+			<tr> 
+				<td> {{=i+1}}</td>
+				<td>{{=elem["complaint_content"]}}</td> 
+				<td>{{="Resolved" if elem["resolved"] else "Not Resolved"}}</td>
+				<td>{{=timeHuman(elem["time_stamp"])}}</td>
+				<td><a href="{{=URL('default','complaint',elem['complaint_id'])}}">More Info</a> </td>
+			</tr>
+		{{pass}}
+		</table>
+		</div>
+{{pass}}
+
+{{if tab=="hostel" :}}
+	{{x=GetAdminHostelComplaints()}}
+		<div class="table-responsive">
+		<table class="table table-striped">
+		{{for i in xrange (len(x)) :}}
+			{{elem=x[i]}}
+			<tr> 
+				<td> {{=i+1}}</td>
+				<td>{{=elem["complaint_content"]}}</td> 
+				<td>{{="Resolved" if elem["resolved"] else "Not Resolved"}}</td>
+				<td>{{=timeHuman(elem["time_stamp"])}}</td>
+				<td><a href="{{=URL('default','complaint',elem['complaint_id'])}}">More Info</a> </td>
+			</tr>
+		{{pass}}
+		</table>
+		</div>
+{{pass}}
+
+{{if tab=="insti" :}}
+	{{x=GetAdminInstiComplaints()}}
+		<div class="table-responsive">
+		<table class="table table-striped">
+		{{for i in xrange (len(x)) :}}
+			{{elem=x[i]}}
+			<tr> 
+				<td> {{=i+1}}</td>
+				<td>{{=elem["complaint_content"]}}</td> 
+				<td>{{="Resolved" if elem["resolved"] else "Not Resolved"}}</td>
+				<td>{{=timeHuman(elem["time_stamp"])}}</td>
+				<td><a href="{{=URL('default','complaint',elem['complaint_id'])}}">More Info</a> </td>
+			</tr>
+		{{pass}}
+		</table>
+		</div>
+{{pass}}
