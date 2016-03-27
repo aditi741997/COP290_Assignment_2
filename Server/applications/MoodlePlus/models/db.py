@@ -158,7 +158,7 @@ db.define_table(
     Field('user_id','string'),
     Field('description','string'),
     Field('time_stamp','datetime'),
-    Field('anonymous','integer'),
+    Field('anonymous','integer',default=0),
 )
 
 db.define_table(

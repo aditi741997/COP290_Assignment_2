@@ -46,15 +46,19 @@ def logout():
     else:
         return dict(success="did not work")
 
+@auth.requires_login()
 def settings():
     return dict(success= True)
 
+@auth.requires_login()
 def change_pwd():
     return dict(success=True)
 
+@auth.requires_login()
 def newcomplaint():
     return dict(success=True)
 
+@auth.requires_login()
 def AllComplaints():
     tab="indiv"
     # if len(request_args)<1:
@@ -64,15 +68,18 @@ def AllComplaints():
         tab="indiv"
     return dict(success=True,tab=tab)
 
+@auth.requires_login()
 def addusers():
     return dict(success=True)
 
+@auth.requires_login()
 def complaint():
     complaint =None
     comptype=-1
     admin=0
     dummy="valid"
     comments=[]
+    admindetails=None
     try:
         tab=str(request.args[0])
         if tab[:2]=="i_":
@@ -92,12 +99,12 @@ def complaint():
                 comptype=2
         if complaint:
             admin=(auth.user.username==complaint["admin_id"])
-        # TODO: Sanitize anon
+            admindetails = db(db.users.username==complaint["admin_id"]).select()[0]
         comments=db(db.comments_complaint.complaint_id==tab).select()
     except:
         y=5
         dummy="invalid"
-    return dict(complaint=complaint,comptype=comptype,admin=admin,comments=comments,dummy=dummy)
+    return dict(complaint=complaint,comptype=comptype,admindetails=admindetails,admin=admin,comments=comments,dummy=dummy)
 
 def managecomplaints():
     return dict(success=True)

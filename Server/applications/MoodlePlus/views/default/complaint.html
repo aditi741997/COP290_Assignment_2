@@ -3,26 +3,69 @@
 {{if comptype==0 :}}
 <div class="table-resposive">
 <table class="table table-striped">
-<tr><td>Complaint Id: </td> <td>{{=complaint["complaint_id"]}}</td></tr>
-<tr><td>Complaint Type</td><td>TODO: Mapped category</td></tr>
-<tr><td>Content</td><td>{{=complaint["complaint_id"]}}</td></tr>
+<tr><td>Complaint Id </td> <td>{{=complaint["complaint_id"]}}</td></tr>
+<tr><td>Complaint Type</td><td>{{=GetCategory(complaint)}}</td></tr>
+<tr><td>Content</td><td>{{=complaint["complaint_content"]}}</td></tr>
 <tr><td>Extra Details</td><td>{{=complaint["extra_info"]}}</td></tr>
-<tr><td>Time Elapsed</td><td>TODO</td></tr>
-<tr><td>Resolved ? </td> <td>TODO</td></tr>
-<tr><td>Admin Comments</td><td>TODO</td></tr>
-<tr><td>Previous Threads:</td><td>TODO</td></tr>
+<tr><td>Time Elapsed</td><td>{{=timeHuman(complaint["time_stamp"])}}</td></tr>
+<tr><td>Resolved Status </td> <td>{{="Yes" if complaint["resolved"] else "No"}}</td></tr>
+<tr><td>Administrator Comments</td><td>{{=complaint["comment_comp"]}}</td></tr>
+<tr><td>Previous Threads:</td><td><a href="{{=URL('default','complaint',complaint["complaint_id"] if complaint["prev_id"]=="" else complaint["prev_id"])}}">Complaint Hierarchy</a></td></tr>
+<tr><td>Administrator Alloted</td><td>{{=admindetails["name"]}}</td></tr>
+<tr><td>Administrator Contact Number </td><td>{{=admindetails["contact_number"]}}</td></tr>
+<tr><td>Administrator Email</td><td><a href="mailto:{{=admindetails['username']+'@iitd.ac.in'}}?Subject=Complaint Followup">Send Email</a></td></tr>
 </table>
 </div>
 {{pass}}
 
 {{if comptype==1: }}
-
+<!-- Hostel Complaint -->
+<div class="table-resposive">
+<table class="table table-striped">
+<tr><td>Complaint Id </td> <td>{{=complaint["complaint_id"]}}</td></tr>
+<tr><td>Hostel</td><td>{{=GetHostel(complaint)}}</td></tr>
+<tr><td>Complaint Type</td><td>{{=GetCategory(complaint)}}</td></tr>
+<tr><td>Content</td><td>{{=complaint["complaint_content"]}}</td></tr>
+<tr><td>Extra Details</td><td>{{=complaint["extra_info"]}}</td></tr>
+<tr><td>Time Elapsed</td><td>{{=timeHuman(complaint["time_stamp"])}}</td></tr>
+<tr><td>Resolved Status </td> <td>{{="Yes" if complaint["resolved"] else "No"}}</td></tr>
+<tr><td>Administrator Comments</td><td>{{=complaint["comment_comp"]}}</td></tr>
+<tr><td>Previous Threads:</td><td><a href="{{=URL('default','complaint',complaint["complaint_id"] if complaint["prev_id"]=="" else complaint["prev_id"])}}">Complaint Hierarchy</a></td></tr>
+<tr><td>Administrator Alloted</td><td>{{=admindetails["name"]}}</td></tr>
+<tr><td>Administrator Contact Number </td><td>{{=admindetails["contact_number"]}}</td></tr>
+<tr><td>Administrator Email</td><td><a href="mailto:{{=admindetails['username']+'@iitd.ac.in'}}?Subject=Complaint Followup">Send Email</a></td></tr>
+</table>
+</div>
 {{pass}}
 
 {{if comptype==2 :}}
-
+<!-- Insti complaint -->
+<div class="table-resposive">
+<table class="table table-striped">
+<tr><td>Complaint Id </td> <td>{{=complaint["complaint_id"]}}</td></tr>
+<tr><td>Complaint Type</td><td>{{=GetCategory(complaint)}}</td></tr>
+<tr><td>Content</td><td>{{=complaint["complaint_content"]}}</td></tr>
+<tr><td>Extra Details</td><td>{{=complaint["extra_info"]}}</td></tr>
+<tr><td>Time Elapsed</td><td>{{=timeHuman(complaint["time_stamp"])}}</td></tr>
+<tr><td>Resolved Status </td> <td>{{="Yes" if complaint["resolved"] else "No"}}</td></tr>
+<tr><td>Administrator Comments</td><td>{{=complaint["comment_comp"]}}</td></tr>
+<tr><td>Previous Threads:</td><td><a href="{{=URL('default','complaint',complaint["complaint_id"] if complaint["prev_id"]=="" else complaint["prev_id"])}}">Complaint Hierarchy</a></td></tr>
+<tr><td>Administrator Alloted</td><td>{{=admindetails["name"]}}</td></tr>
+<tr><td>Administrator Contact Number </td><td>{{=admindetails["contact_number"]}}</td></tr>
+<tr><td>Administrator Email</td><td><a href="mailto:{{=admindetails['username']+'@iitd.ac.in'}}?Subject=Complaint Followup">Send Email</a></td></tr>
+</table>
+</div>
 {{pass}}
 
-{{if admin: }}
+<h2> Comments </h2>
+<div class="table-responsive">
+<table class="table table-striped">
+	<tr><th>User</th><th>Description</th><th>Time</th></tr>
+{{for elem in comments:}}
+	<tr><td>{{=elem["user_id"] if elem["anonymous"]==0 else "Anonymous"}}</td><td>{{=elem["description"]}}</td><td>{{=timeHuman(elem["time_stamp"])}}</td></tr>
+{{pass}}
+</table>
+</div>
 
+{{if admin: }}
 {{pass}}

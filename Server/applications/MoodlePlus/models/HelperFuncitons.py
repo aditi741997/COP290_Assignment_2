@@ -34,3 +34,26 @@ def isspecial():
 	# TODO: Remove comment
 	# return len(db(db.admin_info.username==auth.user.username and db.admin_info.admin_level==-1).select())>0
 	return True
+
+def GetCategory(x):
+	# Takes in complaint as input and returns category in string
+	catid = x["complaint_type"]
+	value = db(db.complaint_category.category_id==catid).select()
+	# value+=[{catid:"Unknown"}]
+	# return value[catid]
+	if value==[]:
+		return "Unknown"
+	else:
+		return value[0]["category_description"]
+
+def GetHostel(x):
+		# Takes in complaint as input and returns hostel in string
+	catid = x["hostel_id"]
+	value = db(db.hostel_mapping.hostel==catid).select()
+	# value+=[{catid:"Unknown"}]
+	# return value[catid]
+	if value==[]:
+		return "Unknown"
+	else:
+		return value[0]["hostel_name"]
+
