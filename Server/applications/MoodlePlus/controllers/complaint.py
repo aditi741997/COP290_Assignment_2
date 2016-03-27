@@ -54,6 +54,7 @@ def get_comments():
 
 
 def post_comments():
+    # TODO: Insertions in notifs table.
     if ("complain_id" in request.vars and "comment" in request.vars and auth.is_logged_in()):
         complain_id = request.vars.complain_id
         comment = request.vars.comment

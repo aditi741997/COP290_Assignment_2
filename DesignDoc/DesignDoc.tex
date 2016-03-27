@@ -577,7 +577,7 @@
 						Returns:  JSON object containing all the comments on the thread to a complain\\
 						Request: GET
 					\item \textbf{Post Comment} \\
-						URL: \url{/complaint/post_comments.json?complain_id=<id>}\\
+						URL: \url{/complaint/post_comments.json?complain_id=<id>&comment=<comment>}\\
 						Returns: JSON Success Response on posting a comment on the thread to a complain\\
 						Request: GET
 					\item \textbf{Get Notification} \\
@@ -585,7 +585,7 @@
 						Returns: JSON object containing the set of notifications concerning the user\\
 						Request: GET
 					\item \textbf{Set Notification Status} \\
-						URL: \url{/notification/set_noti_status.json??compliant_id=<complain_id>}\\
+						URL: \url{/notification/set_noti_status.json?compliant_id=<complain_id>}\\
 						Returns: JSON object with Success/Failure.Sets the seen/unseen status of the user\\
 						Request: GET
 % We can change the controller for the following API's but i m putting it in the complaint controller only
