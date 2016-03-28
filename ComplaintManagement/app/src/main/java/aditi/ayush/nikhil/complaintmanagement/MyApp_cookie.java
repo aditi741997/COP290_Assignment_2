@@ -18,6 +18,8 @@ CookieManager cookieManage;
 //    public static HashMap<Integer,String> course_code=new HashMap<Integer,String>();
     public static  String Username;
     public  static  String Pswd;
+    public static boolean isSpecial;
+    public  static  boolean isAdmin;
 
     public void onCreate() {
         cookieManage= new CookieManager();

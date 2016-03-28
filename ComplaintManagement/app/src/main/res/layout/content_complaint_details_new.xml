@@ -10,12 +10,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="aditi.ayush.nikhil.complaintmanagement.NewComplaint"
+    android:background="#FFFFFF"
     tools:showIn="@layout/activity_complaint_details">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
+        android:textColor="@color/colorPrimary"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Complaint Details"
         android:id="@+id/details"
@@ -26,62 +27,67 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
         android:id="@+id/upVote"
         android:text="Upvotes:"
         android:layout_below="@+id/details"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
         android:id="@+id/downVote"
         android:text="Downvotes:"
         android:layout_below="@+id/upVote"
-        android:layout_marginLeft="80dp"/>
+        android:layout_marginLeft="50dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/neutVote"
-        android:text="Neutral Votes:"
-        android:layout_below="@+id/downVote"
-        android:layout_marginLeft="80dp"/>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
         android:layout_alignParentEnd="false"
         android:layout_alignParentBottom="true"
+        android:textColor="@color/colorPrimary"
         android:layout_marginBottom="35dp"
         android:id="@+id/linearLayout">
 
         <Button
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Call Admin"
+            android:layout_height="70dp"
+            android:text="Get previous threads"
             android:id="@+id/call_adm"
-            android:layout_weight="1.0" />
-
+            android:layout_weight="1.0"
+            android:layout_gravity="center"/>
         <Button
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Mail Admin"
+            android:layout_height="70dp"
+            android:text="Take to Higher Authority"
+            android:id="@+id/takeHigher"
+            android:layout_weight="1.0"
+            android:layout_gravity="center"/>
+        <!-- take to higher authority-->
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:text="Contact Admin"
             android:id="@+id/mail_Adm"
-            android:layout_weight="1.0"/>
+            android:layout_weight="1.0"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/neutVote"
+        android:layout_below="@+id/downVote"
         android:layout_above="@+id/linearLayout"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        >
+        android:id="@+id/scrollView">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -101,13 +107,14 @@
             android:id="@+id/hostelRow"
             android:layout_marginTop="12dp"
             android:layout_marginLeft="12dp"
-            android:layout_below="@+id/neutVote">
+            android:layout_below="@+id/downVote">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Hostel"
+                android:textColor="@color/colorPrimary"
                 android:layout_weight="0.50" />
 
             <TextView
@@ -115,6 +122,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Large Text"
+                android:textColor="@color/colorPrimary"
                 android:id="@+id/Hostel"
                 android:layout_weight="0.60" />
 
@@ -128,6 +136,7 @@
             android:layout_alignParentStart="true"
             android:weightSum="1"
             android:layout_marginLeft="12dp"
+            android:textColor="@color/colorPrimary"
             android:id="@+id/compType"
             android:layout_marginTop="12dp"
             android:layout_below="@+id/hostelRow">
@@ -137,6 +146,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Complaint Type"
+                android:textColor="@color/colorPrimary"
                 android:layout_weight="0.30" />
 
             <TextView
@@ -144,6 +154,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Large Text"
+                android:textColor="@color/colorPrimary"
                 android:id="@+id/comp_type"
                 android:layout_weight="0.60" />
 
@@ -166,6 +177,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Time elapsed :"
+                android:textColor="@color/colorPrimary"
                 android:layout_weight="0.30" />
 
             <TextView
@@ -174,6 +186,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Large Text"
                 android:id="@+id/time_elap"
+                android:textColor="@color/colorPrimary"
                 android:layout_weight="0.60" />
 
         </TableRow>
@@ -195,6 +208,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Resolved Status :"
+                android:textColor="@color/colorPrimary"
                 android:layout_weight="0.25" />
 
             <TextView
@@ -202,6 +216,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Large Text"
+                android:textColor="@color/colorPrimary"
                 android:id="@+id/resolved"
                 android:layout_weight="0.60" />
 
@@ -224,6 +239,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Admin alloted :"
+                android:textColor="@color/colorPrimary"
                 android:layout_weight="0.25" />
 
             <TextView
@@ -231,6 +247,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Large Text"
+                android:textColor="@color/colorPrimary"
                 android:id="@+id/adminID"
                 android:layout_weight="0.60" />
 
@@ -243,6 +260,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Content :"
             android:id="@+id/cont_text"
+            android:textColor="@color/colorPrimary"
             android:layout_marginLeft="12dp"
             android:layout_below="@+id/adminRow"
             android:layout_marginTop="12dp"/>
@@ -254,6 +272,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Large Text"
             android:id="@+id/content"
+            android:textColor="@color/colorPrimary"
             android:layout_below="@+id/cont_text"
             android:layout_marginTop="6dp"/>
 
@@ -261,6 +280,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Extra Details :"
+            android:textColor="@color/colorPrimary"
             android:id="@+id/extra"
             android:layout_below="@+id/content"
             android:layout_marginLeft="12dp"
@@ -273,6 +293,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Large Text"
             android:id="@+id/det_extra"
+            android:textColor="@color/colorPrimary"
             android:layout_below="@+id/extra"
             android:layout_marginTop="6dp"/>
 
@@ -281,6 +302,7 @@
             android:layout_height="wrap_content"
             android:text="Admin Comments :"
             android:id="@+id/admin"
+            android:textColor="@color/colorPrimary"
             android:layout_below="@+id/det_extra"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"
@@ -293,6 +315,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Large Text"
             android:id="@+id/admin_com"
+            android:textColor="@color/colorPrimary"
             android:layout_below="@+id/admin"
             android:layout_marginTop="6dp"/>
 
@@ -302,6 +325,7 @@
             android:text="Comments"
             android:layout_below="@+id/admin_com"
             android:id="@+id/com"
+            android:textColor="@color/colorPrimary"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"/>
 
@@ -309,6 +333,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/colorPrimary"
             android:layout_below="@+id/com"
             android:id="@+id/commentList">
 
@@ -334,39 +359,36 @@
             android:onClick="addComment"/>
 
 
-        <!-- take to higher authority-->
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Take to Higher authority"
-            android:layout_below="@+id/addcomment"
-            android:layout_marginTop="12dp"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/takeHigher"
-            android:layout_marginBottom="10dp"/>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="16dp"
-            android:id="@+id/linearLayout">
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Call Admin"
-                android:id="@+id/call_adm"
-                android:layout_weight="1.0"
-                android:onClick="call_admin"/>
 </LinearLayout>
     </ScrollView>
 
-    </RelativeLayout>
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/imageButton"
+        android:layout_alignTop="@+id/upVote"
+        android:layout_alignRight="@+id/scrollView"
+        android:layout_alignEnd="@+id/scrollView"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/reddislike"/>
+
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/imageButton2"
+        android:layout_alignTop="@+id/imageButton"
+        android:layout_toLeftOf="@+id/imageButton"
+        android:layout_toStartOf="@+id/imageButton"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/greenlike"
+        android:layout_marginRight="20dp"/>
+
+
+</RelativeLayout>
 
 
 
