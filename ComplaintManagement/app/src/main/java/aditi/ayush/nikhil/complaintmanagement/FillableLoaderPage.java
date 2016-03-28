@@ -176,18 +176,21 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
                                                     Toast.LENGTH_LONG).show();
                                             Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
                                             Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
-                                            i.putExtra("UserType", Username);
+                                            if (cookie.isSpecial)
+                                                i.putExtra("UserType","Special");
+                                            else
+                                                i.putExtra("UserType", Username);
                                             startActivity(i);
                                         }
                                         else
                                         {
                                             Toast.makeText(getActivity().getApplicationContext(),
-                                                    "Login not success" + success + "\t" +s1 + "\t" +s2,
+                                                    "Login not success" + success + "\t" +s1 + "\t",
                                                     Toast.LENGTH_LONG).show();
-                                            Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
-                                            Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
-                                            i.putExtra("UserType", Username);
-                                            startActivity(i);
+//                                            Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
+//                                            Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
+//                                            i.putExtra("UserType", Username);
+//                                            startActivity(i);
                                         }
 
                                     } catch (JSONException e) {
