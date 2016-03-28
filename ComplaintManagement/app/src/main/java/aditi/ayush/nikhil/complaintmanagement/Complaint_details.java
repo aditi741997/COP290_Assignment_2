@@ -185,6 +185,7 @@ public class Complaint_details extends AppCompatActivity {
     public  void populateComments()
     {
         String comments = getResources().getString(R.string.IP) + "/complaint/get_comments.json?complain_id=" + c_id;
+        final Helpers hh = new Helpers();
 
         JsonObjectRequest comment_json = new JsonObjectRequest (Request.Method.GET, comments,null,
                 new Response.Listener<JSONObject>()
@@ -206,7 +207,7 @@ public class Complaint_details extends AppCompatActivity {
 
                             for(int i=0;i<comments.length();i++)
                             {    JSONObject comment= comments.getJSONObject(i);
-                                comment_text.add(comment.getString("description"));
+                                comment_text.add(hh.ScoreToSpace(comment.getString("description")));
                                 comm_time.add(comment.getString("time_stamp"));
                                 int anony = comment.getInt("anonymous");
                                 if (anony == 1)
@@ -246,9 +247,10 @@ public class Complaint_details extends AppCompatActivity {
 //        call api
         final EditText comm = (EditText) findViewById(R.id.comment_add);
         String comment = comm.getText().toString();
+        Helpers h = new Helpers();
         if (comment != "" || comment != " ")
         {
-            String addcomm = getResources().getString(R.string.IP) + "/complaint/post_comments.json?complain_id=" + c_id + "&comment=" + comment;
+            String addcomm = getResources().getString(R.string.IP) + "/complaint/post_comments.json?complain_id=" + c_id + "&comment=" + h.SpaceToScore(comment);
 
             JsonObjectRequest jsoncomm = new JsonObjectRequest(Request.Method.GET,
                     addcomm, null, new Response.Listener<JSONObject>() {

@@ -1,5 +1,6 @@
 package aditi.ayush.nikhil.complaintmanagement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,5 +18,17 @@ public class ChangePassword extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
     }
+
+    public  void BackHome(View view)
+    {
+        Intent home = new Intent(this,);
+    }
+
+    public  void ChangePass(View view)
+    {
+
+    }
+
+
 
 }
