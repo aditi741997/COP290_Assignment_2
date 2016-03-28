@@ -82,12 +82,13 @@ def add_complaint():
                 anonymous=anon,
                 hostel=hostelid,
                 admin_id=peopleid)
-            db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=usname)
+            db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=usname) 
             db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=peopleid)
             db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=peopleid,description="New complaint!")
             # pref = db(db.admin_info.complaint_area==comptype).select()
             # required = people[0]
             return dict(Success=True,content=content,People=people, hostelid = hostelid,newid = NewCompId)            
+        
         elif (typecomp=="in"):
             # people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
             # if len(people)==0:
@@ -97,7 +98,7 @@ def add_complaint():
             people=people[0]
             peopleid = people["username"]
             NewCompId=GetNewCompId(2)
-            db.indiv_complaints.insert(
+            db.insti_complaints.insert(
                 complaint_id=NewCompId,
                 username=usname,
                 complaint_type=comptype,
@@ -117,10 +118,13 @@ def add_complaint():
 def edit_complaint():
     # if ("complaint_id" in request.vars and auth.is_logged_in()):
     # TODO: Work out later
-    return dict(Success=false)
+    return dict(Success=True)
 
 def get_all():
     if (auth.is_logged_in()):
+        hostelpref = db(db.users.user_id == auth.user.username).select()[0]["hostel_pref"]
+        instipref = db(db.users.user_id == auth.user.username).select()[0]["insti_pref"]
+        # TODO: show all complaints of preferences, rather than all those mapped.
         allcomp = db(db.complaint_user_mapping.user_id==auth.user.username).select()
         IndivComp = []
         HostelComp = []
@@ -136,6 +140,7 @@ def get_all():
             elif compid[:2]=="in":
                 complaint = db(db.insti_complaints.complaint_id==compid).select()[0]
                 InstiComp.append(complaint)
+        allHostel = db(db.hostel_complaints)
         return dict(Individual=IndivComp, Hostel = HostelComp, Institute = InstiComp)
     return dict(Complaints=[])
 
@@ -168,5 +173,11 @@ def get_complaint_details():
                 hostel = db(db.hostel_mapping.hostel_id == pref[0]["hostel"]).select()[0]["hostel_name"]
             else:
                 hostel = ""
-        return dict(Details=pref[0],category=category,timest=timeHuman(pref[0]["time_stamp"]),hostelname=hostel)
+                # send admin no, admin email
+        admin_No = ""
+        if pref == []:
+            pref = [[]]
+        else:
+            admin_No = db(db.users.username == pref[0]["admin_id"]).select()[0]["contact_number"]
+        return dict(Details=pref[0],category=category,timest=timeHuman(pref[0]["time_stamp"]),hostelname=hostel, adminNo=admin_No)
     return dict(Details=[])
