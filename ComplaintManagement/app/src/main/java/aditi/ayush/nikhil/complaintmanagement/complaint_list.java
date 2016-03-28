@@ -1,11 +1,13 @@
 package aditi.ayush.nikhil.complaintmanagement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
@@ -77,10 +79,10 @@ public class complaint_list extends Fragment
 
                             int i=0;
 
-                            listDataHeader.add("Individual");//course code + Assignment naINme
+                            listDataHeader.add("Institute");//course code + Assignment naINme
                             List<String> expand1 = new ArrayList<String>();
                             no_assign[0] =inst.length();
-                            for(;i<no_assign[0];i++)
+                            for(i = 0;i<inst.length();i++)
                             {   JSONObject notification =inst.getJSONObject(i);
                                 String content = notification.getString("complaint_content");
 
@@ -88,26 +90,26 @@ public class complaint_list extends Fragment
                                 expand1.add(content);
 
                             }
-                            listDataChild.put("Individual", expand1);
+                            listDataChild.put("Institute", expand1);
 
-                            listDataHeader.add("Individual");//course code + Assignment naINme
+                            listDataHeader.add("Hostel");//course code + Assignment naINme
                             List<String> expand2 = new ArrayList<String>();
-                            no_assign[0] =host.length();
-                            for(;i<no_assign[0];i++)
-                            {   JSONObject notification =host.getJSONObject(i);
+//                            no_assign[0] =host.length();
+                            for(int h = 0;h<host.length();h++)
+                            {   JSONObject notification =host.getJSONObject(h);
                                 String content = notification.getString("complaint_content");
 
 
                                 expand2.add(content);
 
                             }
-                            listDataChild.put("Individual", expand2);
+                            listDataChild.put("Hostel", expand2);
 
                             listDataHeader.add("Individual");//course code + Assignment naINme
                             List<String> expand3 = new ArrayList<String>();
-                            no_assign[0] =indv.length();
-                            for(;i<no_assign[0];i++)
-                            {   JSONObject notification =indv.getJSONObject(i);
+//                            no_assign[0] =indv.length();
+                            for(int j = 0;j<indv.length();j++)
+                            {   JSONObject notification =indv.getJSONObject(j);
                                 String content = notification.getString("complaint_content");
 
 
@@ -163,6 +165,18 @@ public class complaint_list extends Fragment
 
         expListView = (ExpandableListView) rootView.findViewById(R.id.cmpExp);
 
+        Button addnew = (Button) rootView.findViewById(R.id.addnew);
+
+        addnew.setOnClickListener(new View.OnClickListener(){
+            @Override
+        public void onClick(View v)
+            {
+                Intent add_comp = new Intent(getActivity(), NewComplaint.class);
+                getActivity().startActivity(add_comp);
+            }
+
+        });
+
         prepareListData();
 
         listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
@@ -216,5 +230,10 @@ public class complaint_list extends Fragment
         return rootView;
     }
 
+//        public void AddNewComp(View view)
+//        {
+//            Intent add_comp = new Intent(getActivity(), NewComplaint.class);
+//            getActivity().startActivity(add_comp);
+//        }
 
 }

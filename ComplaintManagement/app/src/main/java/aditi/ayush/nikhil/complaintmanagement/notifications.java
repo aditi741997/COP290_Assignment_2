@@ -63,7 +63,7 @@ public class notifications extends Fragment
         listDataChild = new HashMap<String, List<String>>();
         mRequestStartTime = System.currentTimeMillis();
         String url1="http://10.192.38.23:8000/notification/get_noti.json";
-        String url="http://10.192.38.23:8000/default/logout.json";
+        String url= R.string.IP + "/default/logout.json";
         Log.i("yo", " Fetching JSON");
         StringRequest json_ob = new StringRequest (Request.Method.GET, url1,
                 new Response.Listener<String>()
@@ -93,15 +93,15 @@ public class notifications extends Fragment
                                 String dest_user_id = notification.getString("dest_user_id");
                                 String complaint_id = notification.getString("complaint_id");
                                 String src_user_id = notification.getString("src_user_id");
-                                String id =  notification.getString("id");
+                                String post_time = notification.getString("time_stamp");
+//                                String id =  notification.getString("id");
                                 listDataHeader.add(complaint_id);//course code + Assignment name
                                 List<String> expand = new ArrayList<String>();
                                 expand.add("Source User:    "+ src_user_id);
-                                expand.add("Destination User:    "+ dest_user_id);
-                                expand.add("Notification ID:    "+ id);
                                 expand.add("Description:    "+ description);
+                                expand.add("Time:   " + post_time);
                                 listDataChild.put(complaint_id, expand);
-                                System.out.println("finallhfhfy"+ complaint_id);
+                                System.out.println("notif json working"+ complaint_id);
                             }
                             long totalRequestTime = System.currentTimeMillis() - mRequestStartTime;
                             System.out.println("Response time for one is=="+ totalRequestTime );

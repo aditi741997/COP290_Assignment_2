@@ -31,7 +31,7 @@ def set_user_response():
         return dict(Success=False)
 
 def get_desc():
-    if ("category_id" in request.vars):
+    if (auth.is_logged_in() and "category_id" in request.vars):
         category_id = int(request.vars.category_id)
         pref=None
         if category_id>=0:

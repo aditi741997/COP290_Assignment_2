@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/Nikhil/AndroidStudioProjects/COP290_Assignment_2/ComplaintManagement/volley/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/Users/Nikhil/AndroidStudioProjects/COP290_Assignment_2/ComplaintManagement/volley/src/debug/jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\Sem4\COP\Assgt3\COP290_Assignment_2\ComplaintManagement\volley\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="D:\Sem4\COP\Assgt3\COP290_Assignment_2\ComplaintManagement\volley\src\debug\jniLibs"/></dataSet></merger>
