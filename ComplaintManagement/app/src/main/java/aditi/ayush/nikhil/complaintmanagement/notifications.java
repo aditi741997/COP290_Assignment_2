@@ -1,12 +1,6 @@
 package aditi.ayush.nikhil.complaintmanagement;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -19,15 +13,12 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +33,7 @@ public class notifications extends Fragment
         MyApp_cookie app_list=new MyApp_cookie();
         private long mRequestStartTime;
 
-
+        public String [] Comp_id={};
 
         public notifications() {
         // Required empty public constructor
@@ -100,6 +91,7 @@ public class notifications extends Fragment
                                 expand.add("Source User:    "+ src_user_id);
                                 expand.add("Description:    "+ description);
                                 expand.add("Time:   " + post_time);
+                                Comp_id[i]=complaint_id;
                                 listDataChild.put(complaint_id, expand);
                                 System.out.println("notif json working"+ complaint_id);
                             }
@@ -195,8 +187,14 @@ public class notifications extends Fragment
         {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
+                                        int groupPosition, int childPosition, long id)
+            {
                 //        Toast.makeText(getActivity().getApplicationContext(), listDataHeader.get(groupPosition) + " : " + listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
+                String ide =Comp_id[groupPosition];
+                Intent intent=new Intent(getActivity(),Complaint_details.class);
+                intent.putExtra("ID",ide);
+                startActivity(intent);
+
                 return false;
             }
         });
