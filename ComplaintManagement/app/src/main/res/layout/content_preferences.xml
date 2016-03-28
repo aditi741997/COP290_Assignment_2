@@ -12,41 +12,41 @@
     tools:context="aditi.ayush.nikhil.complaintmanagement.Preferences"
     tools:showIn="@layout/activity_preferences">
 
-    <TextView
-        android:layout_width="wrap_content"
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:text="User Preferences"
+    android:id="@+id/textView2"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="22dp" />
+
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="false"
+    android:layout_alignParentEnd="false"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="35dp"
+    android:id="@+id/linearLayout">
+
+    <Button
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="User Preferences"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp" />
+        android:text="Back to Home"
+        android:id="@+id/button3"
+        android:layout_weight="1.0" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="35dp"
-        android:id="@+id/linearLayout">
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Back to Home"
-            android:id="@+id/button3"
-            android:layout_weight="1.0" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Save "
-            android:id="@+id/button2"
-            android:layout_weight="1.0"/>
-    </LinearLayout>
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Save "
+        android:id="@+id/button2"
+        android:layout_weight="1.0"/>
+</LinearLayout>
 
 
 
@@ -78,49 +78,138 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Sports"
             android:id="@+id/checkBox1"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"
             android:layout_below="@+id/textView3"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:checked="false" />
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Electricity"
             android:id="@+id/checkBox2"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"
             android:layout_below="@+id/checkBox1"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:checked="false" />
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Water"
             android:id="@+id/checkBox3"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"
             android:layout_below="@+id/checkBox2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:checked="false" />
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="MessFood"
             android:id="@+id/checkBox4"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"
             android:layout_below="@+id/checkBox3"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:checked="false" />
 
 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Infrastructure"
+            android:id="@+id/checkBox15"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_below="@+id/checkBox4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:checked="false" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Laundary"
+            android:id="@+id/checkBox16"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_below="@+id/checkBox4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:checked="false" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BSW Related"
+            android:id="@+id/checkBox17"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_below="@+id/checkBox4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:checked="false" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dance"
+            android:id="@+id/checkBox18"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_below="@+id/checkBox4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:checked="false" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Music"
+            android:id="@+id/checkBox19"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_below="@+id/checkBox4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:checked="false" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Debating"
+            android:id="@+id/checkBox20"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_below="@+id/checkBox4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:checked="false" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quizing"
+            android:id="@+id/checkBox21"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_below="@+id/checkBox4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:checked="false" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -135,73 +224,138 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
-            android:id="@+id/checkBox5"
+            android:text="Sports"
+            android:id="@+id/checkBox31"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"
-            android:layout_below="@+id/textView4"
+            android:layout_below="@+id/textView3"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:checked="false" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Electricity"
+            android:id="@+id/checkBox32"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_below="@+id/checkBox1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:checked="false" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Water"
+            android:id="@+id/checkBox33"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_below="@+id/checkBox2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:checked="false" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MessFood"
+            android:id="@+id/checkBox34"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_below="@+id/checkBox3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:checked="false" />
+
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
-            android:id="@+id/checkBox6"
+            android:text="Infrastructure"
+            android:id="@+id/checkBox35"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"
-            android:layout_below="@+id/checkBox5"
+            android:layout_below="@+id/checkBox4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:checked="false" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
-            android:id="@+id/checkBox7"
+            android:text="Laundary"
+            android:id="@+id/checkBox36"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"
-            android:layout_below="@+id/checkBox6"
+            android:layout_below="@+id/checkBox4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"/>
-
+            android:layout_marginTop="5dp"
+            android:checked="false" />
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
-            android:id="@+id/checkBox8"
+            android:text="BSW Related"
+            android:id="@+id/checkBox37"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"
-            android:layout_below="@+id/checkBox7"
+            android:layout_below="@+id/checkBox4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"/>
-
+            android:layout_marginTop="5dp"
+            android:checked="false" />
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
-            android:id="@+id/checkBox9"
+            android:text="Dance"
+            android:id="@+id/checkBox38"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"
-            android:layout_below="@+id/checkBox8"
+            android:layout_below="@+id/checkBox4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:checked="false" />
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
-            android:id="@+id/checkBox10"
+            android:text="Music"
+            android:id="@+id/checkBox39"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"
-            android:layout_below="@+id/checkBox9"
+            android:layout_below="@+id/checkBox4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:checked="false" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Debating"
+            android:id="@+id/checkBox40"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_below="@+id/checkBox4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:checked="false" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quizing"
+            android:id="@+id/checkBox41"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_below="@+id/checkBox4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:checked="false" />
 
     </LinearLayout>
 </ScrollView>
