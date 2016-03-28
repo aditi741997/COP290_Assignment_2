@@ -81,4 +81,5 @@
     <string name="title_activity_new_complaint">NewComplaint</string>
     <string name="IP">http://10.192.62.5:8000</string>
     <string name="title_activity_complaint_details">Complaint_details</string>
+    <string name="title_activity_change_password">ChangePassword</string>
 </resources>
