@@ -159,5 +159,14 @@ def get_complaint_details():
             pref=[[]]
         else:
             category=db(db.complaint_category.category_id==pref[0]["complaint_type"]).select()[0]["category_description"]
-        return dict(Details=pref[0],category=category,timest=timeHuman(pref[0]["time_stamp"]))
+
+        hostel = ""
+        if pref == []:
+            pref=[[]]
+        else:
+            if not compid[:2] == "i_":
+                hostel = db(db.hostel_mapping.hostel_id == pref[0]["hostel"]).select()[0]["hostel_name"]
+            else:
+                hostel = ""
+        return dict(Details=pref[0],category=category,timest=timeHuman(pref[0]["time_stamp"]),hostelname=hostel)
     return dict(Details=[])

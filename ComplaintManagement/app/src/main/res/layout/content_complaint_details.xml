@@ -262,8 +262,48 @@
             android:layout_height="wrap_content"
             android:text="Comments"
             android:layout_below="@+id/admin_com"
+            android:id="@+id/com"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"/>
+
+        <!-- list of comments-->
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/com"
+            android:id="@+id/commentList">
+
+        </ListView>
+        <!-- add new comment-->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/comment_add"
+            android:hint="Post comment..."
+            android:layout_below="@id/commentList"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addcomment"
+            android:layout_below="@+id/comment_add"
+            android:layout_marginTop="12dp"
+            android:layout_centerHorizontal="true"
+            android:onClick="addComment"/>
+
+
+        <!-- take to higher authority-->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take to Higher authority"
+            android:layout_below="@+id/addcomment"
+            android:layout_marginTop="12dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/takeHigher"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -281,14 +321,16 @@
                 android:layout_height="wrap_content"
                 android:text="Call Admin"
                 android:id="@+id/call_adm"
-                android:layout_weight="1.0" />
+                android:layout_weight="1.0"
+                android:onClick="call_admin"/>
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Mail Admin"
                 android:id="@+id/mail_Adm"
-                android:layout_weight="1.0"/>
+                android:layout_weight="1.0"
+                android:onClick="mail_admin"/>
         </LinearLayout>
 
     </RelativeLayout>
