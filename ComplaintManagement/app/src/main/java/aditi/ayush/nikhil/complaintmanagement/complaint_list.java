@@ -74,6 +74,8 @@ public class complaint_list extends Fragment
                             String data2 = json_data.getString("Hostel");
                             String data3 = json_data.getString("Individual");
 
+                            System.out.println("blah " + data1 + " 2:" + data2);
+
                             JSONArray inst = new JSONArray(data1);
                             JSONArray host = new JSONArray(data2);
                             JSONArray indv = new JSONArray(data3);

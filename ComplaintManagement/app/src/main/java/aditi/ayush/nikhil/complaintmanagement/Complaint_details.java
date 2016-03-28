@@ -1,6 +1,8 @@
 package aditi.ayush.nikhil.complaintmanagement;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,6 +34,8 @@ import java.util.ArrayList;
 
 public class Complaint_details extends AppCompatActivity {
     String c_id;
+    String admin_email;
+    String admin_no;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +84,10 @@ public class Complaint_details extends AppCompatActivity {
 
             hostel.setVisibility(View.INVISIBLE);
         }
-
+//TODO: visibility of call/mail admin depends upon if user is admin or no.
         String comp_details = getResources().getString(R.string.IP) + "/complaint_data/get_complaint_details.json?complaint_id=" + c_id;
+
+//  area, level, hostel id
 
         StringRequest compData = new StringRequest (Request.Method.GET, comp_details,
                 new Response.Listener<String>()
@@ -96,10 +102,15 @@ public class Complaint_details extends AppCompatActivity {
 //                                Toast.LENGTH_LONG).show();
                         try
                         {
+//                            save admin no, email (call another api)
                             JSONObject json_data = new JSONObject(response);
                             System.out.println(json_data);
 
+                            admin_no = json_data.getString("adminNo");
+
                             JSONObject details = json_data.getJSONObject("Details");
+                            admin_email = details.getString("admin_id") + "@iitd.ac.in";
+
 
                             String comptype = json_data.getString("category");
                             TextView comp_Type = (TextView) findViewById(R.id.comp_type);
@@ -327,11 +338,34 @@ public class Complaint_details extends AppCompatActivity {
     public  void call_admin(View view)
     {
 //TODO
+        if (admin_no != "")
+        {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:" + admin_no));
+            startActivity(callIntent);
+
+        }
     }
 
     public  void mail_admin(View view)
     {
 //   TODO
+        if (admin_email != "")
+        {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setData(Uri.parse("mailto:"));
+            emailIntent.setType("text/plain");
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, admin_email);
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Mail regarding Complaint ID: " + c_id);
+
+            try {
+                startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+//                finish();
+                Log.i("Finished sending email", "");
+            }
+            catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 
