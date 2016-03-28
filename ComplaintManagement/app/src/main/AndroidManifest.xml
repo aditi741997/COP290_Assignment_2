@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,27 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/FullScreen" />
-        <activity
-            android:name=".ComplaintPage"
-            android:label="@string/title_activity_complaint_page"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Preferences"
-            android:label="@string/title_activity_preferences"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".NewComplaint"
-            android:label="@string/title_activity_new_complaint"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Complaint_details"
-            android:label="@string/title_activity_complaint_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".ChangePassword"
-            android:label="@string/title_activity_change_password"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,9 +22,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Admin_complaints"
-            android:label="@string/title_activity_admin_complaints"
-            android:theme="@style/AppTheme"></activity>
+            android:name=".ComplaintPage"
+            android:label="@string/title_activity_complaint_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Preferences"
+            android:label="@string/title_activity_preferences"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".NewComplaint"
+            android:label="@string/title_activity_new_complaint"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".Complaint_details"
+            android:label="@string/title_activity_complaint_details"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".ChangePassword"
+            android:label="@string/title_activity_change_password"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
     </application>
 
 </manifest>
