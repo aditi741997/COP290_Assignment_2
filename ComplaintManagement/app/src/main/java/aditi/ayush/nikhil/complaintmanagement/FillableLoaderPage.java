@@ -146,8 +146,8 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
                     CookieHandler.setDefault(manager);
                     final String Username = username.getText().toString();
                     final String Password = password.getText().toString();
-                    String url = "http://10.192.38.23:8000/default/login.json";
-                    String url1 = "http://10.192.38.23:8000/default/login.json?userid="+Username+"&password="+Password;
+//                    String url = "http://10.192.38.23:8000/default/login.json";
+                    String url1 = getResources().getString(R.string.IP) + "/default/login.json?userid="+Username+"&password="+Password;
 
                     JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url1, null,
                             new Response.Listener<JSONObject>() {
