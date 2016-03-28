@@ -73,6 +73,15 @@
 </table>
 </div>
 
+<form role="form" action="{{=complaint['complaint_id']+'/comment'}}" method="get" target="_self">
+<div class="form-group">
+    <label for="compTitle">Comment:</label>
+    <input class="form-control" id="compTitle" name="comment">
+</div>
+<button type="submit" class="btn btn-default" value="Submit"> Submit </button> 
+</form>
+  
+
 {{if admin:}}
 <h2> Administrator Controls </h2>
 <div class="table-responsive">

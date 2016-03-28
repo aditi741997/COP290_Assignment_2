@@ -102,9 +102,9 @@ db.define_table(
     Field('contact_number',length=128,default=''),
     Field('hostel','integer'),
     Field('other_details',length=1024,default=''),
-    Field('hostel_pref',length=100,default='00'),
-    Field('insti_pref',length=100,default='01'),
-    Field('extra_pref',length=100,default='00'),
+    Field('hostel_pref',length=100,default='1'*100),
+    Field('insti_pref',length=100,default='1'*100),
+    Field('extra_pref',length=100,default='1'*100),
     Field('password', 'password', length=512, readable=False, label='Password'),
     Field('registration_key', length=512, writable=False, readable=False, default=''),
     Field('reset_password_key', length=512, writable=False, readable=False, default=''),
@@ -157,7 +157,7 @@ db.define_table(
     Field('complaint_id','string'),
     Field('user_id','string'),
     Field('description','string'),
-    Field('time_stamp','datetime'),
+    Field('time_stamp','datetime',default=datetime.now),
     Field('anonymous','integer',default=0),
 )
 
