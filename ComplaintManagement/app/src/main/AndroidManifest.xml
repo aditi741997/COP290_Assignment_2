@@ -12,9 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/FullScreen">
-
-        </activity>
+            android:theme="@style/FullScreen"></activity>
         <activity
             android:name=".ComplaintPage"
             android:label="@string/title_activity_complaint_page"
@@ -22,18 +20,20 @@
         <activity
             android:name=".Preferences"
             android:label="@string/title_activity_preferences"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".NewComplaint"
             android:label="@string/title_activity_new_complaint"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Complaint_details"
+            android:label="@string/title_activity_complaint_details"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
-            android:name=".Complaint_details"
-            android:label="@string/title_activity_complaint_details"
+            android:name=".ChangePassword"
+            android:label="@string/title_activity_change_password"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
