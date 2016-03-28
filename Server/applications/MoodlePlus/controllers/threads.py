@@ -64,21 +64,21 @@
 # 	return dict(comments=comments, comment_users=comment_users, times_readable=times_readable )
 
 # @auth.requires_login()
-# def post_comment():
-# 	if "description" not in request.vars:
-# 		raise HTTP(404)
-# 	try:
-# 		tid = int(request.vars["thread_id"])
-# 	except Exception, e:
-# 		raise e
-
-# 	try:
-# 		description = str(request.vars["description"]).strip()	
-# 	except Exception, e:
-# 		raise e
-# 	if db(db.threads.id==tid).count()<1:
-# 		return dict(success=False, err_msg="Invalid Thread Id")
-# 	comment_id = db.comments.insert(thread_id=tid, user_id=auth.user.id, description=description)
-# 	comment = db(db.comments.id==comment_id).select().first()
-# 	return dict(success=True, comment=comment, user_name=(auth.user.first_name+" "+auth.user.last_name).title(), time_readable=timeHuman(comment.created_at), user=auth.user)
+def post_comment():
+	if "description" not in request.vars:
+		raise HTTP(404)
+	try:
+		tid = int(request.vars["thread_id"])
+	except Exception, e:
+		raise e
+	try:
+		description = str(request.vars.description)	
+		return dict(description= description)
+	except Exception, e:
+		raise e
+	if db(db.threads.id==tid).count()<1:
+		return dict(success=False, err_msg="Invalid Thread Id")
+	comment_id = db.comments.insert(thread_id=tid, user_id=auth.user.id, description=description)
+	comment = db(db.comments.id==comment_id).select().first()
+	return dict(success=True, comment=comment, user_name=(auth.user.first_name+" "+auth.user.last_name).title(), time_readable=timeHuman(comment.created_at), user=auth.user)
 

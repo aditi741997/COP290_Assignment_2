@@ -76,9 +76,9 @@ def newcompl():
     if t1=="indiv":
         hostelid = GetHostelID(auth.user.username)
         # and (db.admin_info.hostel_id<0 or db.admin_info.hostel_id==GetHostel(auth.user.username()))
-        people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
+        people = db((db.admin_info.complaint_area==comptype) & (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
         if len(people)==0:
-            people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
+            people = db((db.admin_info.complaint_area==comptype) & (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
         if len(people)==0:
             return dict(success=False,complaint_content="no admin found")
         people=people[0]
@@ -98,9 +98,9 @@ def newcompl():
     elif t1=="hostel":
         hostelid = GetHostelID(auth.user.username)
         # and (db.admin_info.hostel_id<0 or db.admin_info.hostel_id==GetHostel(auth.user.username()))
-        people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
+        people = db((db.admin_info.complaint_area==comptype) & (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
         if len(people)==0:
-            people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
+            people = db((db.admin_info.complaint_area==comptype) & (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
         if len(people)==0:
             return dict(success=False,complaint_content="no admin found")
         people=people[0]
@@ -123,9 +123,7 @@ def newcompl():
     elif t1=="insti":
         hostelid = GetHostelID(auth.user.username)
         # and (db.admin_info.hostel_id<0 or db.admin_info.hostel_id==GetHostel(auth.user.username()))
-        people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
-        if len(people)==0:
-            people = db(db.admin_info.complaint_area==comptype and (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
+        people = db((db.admin_info.complaint_area==comptype) & (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
         if len(people)==0:
             return dict(success=False,complaint_content="no admin found")
         people=people[0]
@@ -277,7 +275,9 @@ def login():
     userid = request.vars.userid
     password = request.vars.password
     user = auth.login_bare(userid,password)
-    return dict(success=False if not user else True, Unique_Id=user["username"] if user else "",userid =userid,passwd =password)
+    admin = db(db.admin_info.username==userid).select()
+    special = db(db.admin_info.username==userid and db.admin_info.admin_level<0).select()
+    return dict(success=False if not user else True, special=(len(special)>0),admin=(len(admin)>0),Unique_Id=user["username"] if user else "",userid =userid,passwd =password)
 
 def change_pass():
     # oldpassword = request.vars.oldpwd
