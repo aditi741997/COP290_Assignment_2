@@ -11,8 +11,8 @@ def get_all_complaints():
 		ind_comp = db(db.indiv_complaints.admin_id == auth.user.username).select()
 		host_comp = db(db.hostel_complaints.admin_id == auth.user.username).select()
 		inst_comp = db(db.insti_complaints.admin_id == auth.user.username).select()
-		return dict(Individual=ind_comp,Hostel=host_comp,Institute=inst_comp)
-	return dict(Complaints=[])
+		return dict(Success=True,Individual=ind_comp,Hostel=host_comp,Institute=inst_comp)
+	return dict(Success=False,Complaints=[])
 
 	
 def get_complainant():
@@ -74,7 +74,7 @@ def add_comment():
 		for elems in mapped_users:
 			# add a notif.
 			if not (elems["user_id"] == auth.user.username):
-			db.notifications.insert(complaint_id = comp_id,src_user_id=auth.user.username,dest_user_id=elems["user_id"],description = "Admin " + auth.user.username + " added a comment on complaint " + comp_id,time_stamp = datetime.now,seen = 0)
+				db.notifications.insert(complaint_id = comp_id,src_user_id=auth.user.username,dest_user_id=elems["user_id"],description = "Admin " + auth.user.username + " added a comment on complaint " + comp_id,time_stamp = datetime.now,seen = 0)
 		return dict(Success = True)
 	return dict(Success = False)
 
