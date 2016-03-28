@@ -1,56 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="aditi.ayush.nikhil.complaintmanagement.NewComplaint"
+    tools:showIn="@layout/activity_complaint_details">
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true"
-    android:scrollbars = "vertical"
-    android:scrollbarStyle="insideOverlay"
-    android:background="#000000"
-    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Complaint Details"
+        android:id="@+id/details"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/upVote"
+        android:text="Upvotes:"
+        android:layout_below="@+id/details"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/downVote"
+        android:text="Downvotes:"
+        android:layout_below="@+id/upVote"
+        android:layout_marginLeft="80dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/neutVote"
+        android:text="Neutral Votes:"
+        android:layout_below="@+id/downVote"
+        android:layout_marginLeft="80dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="35dp"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Call Admin"
+            android:id="@+id/call_adm"
+            android:layout_weight="1.0" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Mail Admin"
+            android:id="@+id/mail_Adm"
+            android:layout_weight="1.0"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/neutVote"
+        android:layout_above="@+id/linearLayout"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        >
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="Notifications"
-        android:background="#003fff"
-        android:layout_marginBottom="58dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Complaint Details"
-            android:id="@+id/details"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/upVote"
-            android:text="Upvotes:"
-            android:layout_below="@+id/details"
-            android:layout_marginLeft="100dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/downVote"
-            android:text="Downvotes:"
-            android:layout_below="@+id/upVote"
-            android:layout_marginLeft="100dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/neutVote"
-            android:text="Neutral Votes:"
-            android:layout_below="@+id/downVote"
-            android:layout_marginLeft="100dp"/>
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/neutVote"
+        android:layout_marginTop="10dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -197,26 +236,26 @@
 
         </TableRow>
 
-<!--time elapsed, resolved status, admin alloted : table row.-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Content :"
-                android:id="@+id/cont_text"
-                android:layout_marginLeft="12dp"
-                android:layout_below="@+id/adminRow"
-                android:layout_marginTop="12dp"/>
+        <!--time elapsed, resolved status, admin alloted : table row.-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Content :"
+            android:id="@+id/cont_text"
+            android:layout_marginLeft="12dp"
+            android:layout_below="@+id/adminRow"
+            android:layout_marginTop="12dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Large Text"
-                android:id="@+id/content"
-                android:layout_below="@+id/cont_text"
-                android:layout_marginTop="6dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Large Text"
+            android:id="@+id/content"
+            android:layout_below="@+id/cont_text"
+            android:layout_marginTop="6dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -303,7 +342,8 @@
             android:layout_below="@+id/addcomment"
             android:layout_marginTop="12dp"
             android:layout_centerHorizontal="true"
-            android:id="@+id/takeHigher"/>
+            android:id="@+id/takeHigher"
+            android:layout_marginBottom="10dp"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -323,32 +363,10 @@
                 android:id="@+id/call_adm"
                 android:layout_weight="1.0"
                 android:onClick="call_admin"/>
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Mail Admin"
-                android:id="@+id/mail_Adm"
-                android:layout_weight="1.0"
-                android:onClick="mail_admin"/>
-        </LinearLayout>
+</LinearLayout>
+    </ScrollView>
 
     </RelativeLayout>
-</ScrollView>
 
 
 
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
-    <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
-    <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
-    <!--android:paddingTop="@dimen/activity_vertical_margin"-->
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-    <!--tools:context="aditi.ayush.nikhil.complaintmanagement.Complaint_details"-->
-    <!--tools:showIn="@layout/activity_complaint_details">-->
-
-<!--</RelativeLayout>-->

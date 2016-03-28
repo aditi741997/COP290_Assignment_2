@@ -24,13 +24,13 @@
         android:id="@+id/IHI"
         android:layout_below="@+id/type"
         android:layout_marginTop="8dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/type" />
 
-<TextView android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Choose complaint category:"
-    android:layout_below="@+id/IHI"
-    android:id="@+id/categ"/>
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose complaint category:"
+        android:layout_below="@+id/IHI"
+        android:id="@+id/categ"/>
 
     <Spinner
         android:layout_width="wrap_content"
@@ -38,19 +38,19 @@
         android:id="@+id/TypeSpinner"
         android:layout_below="@+id/categ"
         android:layout_marginTop="8dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/categ" />
 
     <EditText android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Complaint content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/TypeSpinner"
         android:id="@+id/content"/>
 
     <EditText android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Extra details"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/content"
         android:id="@+id/extradet"/>
 
@@ -67,8 +67,9 @@
         android:text="Add complaint"
         android:layout_below="@+id/anony"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="30dp"
         android:onClick="addComplaint"
+        android:background="@drawable/buttonshape2"
         />
 
 
