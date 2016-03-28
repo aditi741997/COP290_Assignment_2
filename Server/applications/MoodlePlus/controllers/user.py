@@ -10,13 +10,15 @@ def preferences():
     hostpref = prefs["hostel_pref"]
     instipref = prefs["insti_pref"]
     otherpref = prefs["extra_pref"]
-    # TODO: Add description
-    return dict(hostel_prefs = hostpref, insti_pref = instipref, extra_pref = otherpref)
+    categories =db(db.complaint_category.category_id>=0).select()
+    return dict(hostel_prefs = hostpref, insti_pref = instipref, extra_pref = otherpref,categories=categories)
 
 def update_preferences():
-    hostelpref = request.vars.hostel
-    instipref = request.vars.institute
+    hostelpref = (request.vars.hostel)
+    instipref = (request.vars.institute)
     extrapref = request.vars.extra
+    if not(len(hostelpref)==10) or not(len(instipref)==10) or not(len(extrapref)==10):
+        return dict(success=False)
     db(db.users.username==auth.user.username).update(hostel_pref=hostelpref)
     db(db.users.username==auth.user.username).update(insti_pref=instipref)
     db(db.users.username==auth.user.username).update(extra_pref=extrapref)
@@ -24,7 +26,5 @@ def update_preferences():
     hostpref = prefs["hostel_pref"]
     instipref = prefs["insti_pref"]
     otherpref = prefs["extra_pref"]
-    # db(db.notifications.dest_user_id==auth.user.username).update(seen=1)
-    # return dict(hos = prefs)
-    return dict(hostel_prefs = hostpref, insti_pref = instipref, extra_pref = otherpref)
+    return dict(success=True,hostelprefs = hostpref, instipref = instipref, extrapref = otherpref)
 
