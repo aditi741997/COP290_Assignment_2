@@ -301,10 +301,55 @@
             android:layout_height="wrap_content"
             android:text="Comments"
             android:layout_below="@+id/admin_com"
+            android:id="@+id/com"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"/>
 
-    </LinearLayout>
+        <!-- list of comments-->
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/com"
+            android:id="@+id/commentList">
+
+        </ListView>
+        <!-- add new comment-->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/comment_add"
+            android:hint="Post comment..."
+            android:layout_below="@id/commentList"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addcomment"
+            android:layout_below="@+id/comment_add"
+            android:layout_marginTop="12dp"
+            android:layout_centerHorizontal="true"
+            android:onClick="addComment"/>
+
+
+        <!-- take to higher authority-->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take to Higher authority"
+            android:layout_below="@+id/addcomment"
+            android:layout_marginTop="12dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/takeHigher"
+            android:layout_marginBottom="10dp"/>
+
+</LinearLayout>
     </ScrollView>
 
-</RelativeLayout>
+
+    </RelativeLayout>
+
+
+

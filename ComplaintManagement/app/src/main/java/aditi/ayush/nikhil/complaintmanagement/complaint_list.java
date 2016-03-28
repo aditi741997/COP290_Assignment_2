@@ -30,6 +30,7 @@ public class complaint_list extends Fragment
         public static ExpandableListView expListView;
         public static List<String> listDataHeader;
         HashMap<String, List<String>> listDataChild;
+        HashMap<String,List<String>> compID;
         MyApp_cookie app_list=new MyApp_cookie();
         private long mRequestStartTime;
 
@@ -51,8 +52,8 @@ public class complaint_list extends Fragment
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
         mRequestStartTime = System.currentTimeMillis();
-        String url1="http://10.192.38.23:8000/complaint_data/get_all.json";
-        String url="http://10.192.38.23:8000/default/logout.json";
+        String url1= getResources().getString(R.string.IP) + "/complaint_data/get_all.json";
+//        String url="http://10.192.38.23:8000/default/logout.json";
         Log.i("yo", " Fetching JSON");
         StringRequest json_ob = new StringRequest (Request.Method.GET, url1,
                 new Response.Listener<String>()
@@ -81,19 +82,31 @@ public class complaint_list extends Fragment
 
                             listDataHeader.add("Institute");//course code + Assignment naINme
                             List<String> expand1 = new ArrayList<String>();
+
+                            List<String> ID_insti = new ArrayList<String>();
                             no_assign[0] =inst.length();
                             for(i = 0;i<inst.length();i++)
                             {   JSONObject notification =inst.getJSONObject(i);
+
+                                System.out.println(notification);
                                 String content = notification.getString("complaint_content");
 
 
                                 expand1.add(content);
 
+                                String c_id = notification.getString("complaint_id");
+
+                                ID_insti.add(c_id);
+
                             }
                             listDataChild.put("Institute", expand1);
 
+                            compID.put("Institute",ID_insti);
+
                             listDataHeader.add("Hostel");//course code + Assignment naINme
                             List<String> expand2 = new ArrayList<String>();
+
+                            List<String> ID_host = new ArrayList<String>();
 //                            no_assign[0] =host.length();
                             for(int h = 0;h<host.length();h++)
                             {   JSONObject notification =host.getJSONObject(h);
@@ -102,11 +115,19 @@ public class complaint_list extends Fragment
 
                                 expand2.add(content);
 
+                                String c_id = notification.getString("complaint_id");
+
+                                ID_host.add(c_id);
+
                             }
                             listDataChild.put("Hostel", expand2);
 
+                            compID.put("Hostel",ID_host);
+
                             listDataHeader.add("Individual");//course code + Assignment naINme
                             List<String> expand3 = new ArrayList<String>();
+
+                            List<String> ID_indiv = new ArrayList<String>();
 //                            no_assign[0] =indv.length();
                             for(int j = 0;j<indv.length();j++)
                             {   JSONObject notification =indv.getJSONObject(j);
@@ -115,8 +136,14 @@ public class complaint_list extends Fragment
 
                                 expand3.add(content);
 
+                                String c_id = notification.getString("complaint_id");
+
+                                ID_indiv.add(c_id);
+
                             }
                             listDataChild.put("Individual", expand3);
+
+                            compID.put("Individual", ID_indiv);
 
                             long totalRequestTime = System.currentTimeMillis() - mRequestStartTime;
                             System.out.println("Response time for one is=="+ totalRequestTime );
@@ -224,6 +251,13 @@ public class complaint_list extends Fragment
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 //        Toast.makeText(getActivity().getApplicationContext(), listDataHeader.get(groupPosition) + " : " + listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
+
+//                new page -> complaint details.
+                String head = listDataHeader.get(groupPosition);
+                List<String> IDs = compID.get(head);
+                Intent add_comp = new Intent(getActivity(), Complaint_details.class);
+                add_comp.putExtra("ID",IDs.get(childPosition));
+                getActivity().startActivity(add_comp);
                 return false;
             }
         });

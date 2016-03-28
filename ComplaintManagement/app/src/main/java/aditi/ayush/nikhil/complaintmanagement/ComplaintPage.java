@@ -293,7 +293,7 @@ public class ComplaintPage extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout)
-        {   String url="http://127.0.0.1/default/logout.json";
+        {   String url= getResources().getString(R.string.IP) + "/default/logout.json";
             JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
                         @Override

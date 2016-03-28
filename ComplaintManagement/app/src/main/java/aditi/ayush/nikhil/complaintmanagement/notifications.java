@@ -62,7 +62,7 @@ public class notifications extends Fragment
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
         mRequestStartTime = System.currentTimeMillis();
-        String url1="http://10.192.38.23:8000/notification/get_noti.json";
+        String url1=getResources().getString(R.string.IP)+ "/notification/get_noti.json";
         String url= R.string.IP + "/default/logout.json";
         Log.i("yo", " Fetching JSON");
         StringRequest json_ob = new StringRequest (Request.Method.GET, url1,
