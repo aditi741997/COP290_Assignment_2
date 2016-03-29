@@ -1,5 +1,6 @@
 package aditi.ayush.nikhil.complaintmanagement;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -300,6 +301,13 @@ public class Complaint_details extends AppCompatActivity {
 
         Volley.newRequestQueue(this).add(comment_json);
 
+    }
+
+    public void dialogbox(View view){
+        Dialog dialog = new Dialog(Complaint_details.this);
+        dialog.setTitle("Contact Admin");
+        dialog.setContentView(R.layout.admin_dialog);
+        dialog.show();
     }
 
     public  void addComment(View view)
