@@ -53,7 +53,8 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
     private int pageNum;
     MyApp_cookie cookie = new MyApp_cookie();
 
-    public static FillableLoaderPage newInstance(int pageNum) {
+    public static FillableLoaderPage newInstance(int pageNum)
+    {
         FillableLoaderPage page = new FillableLoaderPage();
         Bundle bundle = new Bundle();
         bundle.putInt("pageNum", pageNum);
@@ -211,10 +212,10 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     Toast.makeText(getActivity().getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
-                                    Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
-                                    Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
-                                    i.putExtra("UserType", Username);
-                                    startActivity(i);
+//                                    Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
+//                                    Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
+//                                    i.putExtra("UserType", Username);
+//                                    startActivity(i);
                                 }
                             }) {   //@Override
                         protected Map<String, String> getParams() {

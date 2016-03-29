@@ -321,10 +321,14 @@ public class ComplaintPage extends AppCompatActivity
 
             return true;
         }
-        if (id == R.id.action_Change_pass)
+        else if (id == R.id.action_Change_pass)
         {//TODO: direct to a new activity or we can use popup dialog box
+            Intent i=new Intent(ComplaintPage.this,ChangePassword.class);
+            startActivity(i);
+
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -334,20 +338,40 @@ public class ComplaintPage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.complaints) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.Notifications)
+        {
 
         }
+        else if (id == R.id.action_Change_pass)
+        { Intent i=new Intent(ComplaintPage.this,ChangePassword.class);
+            startActivity(i);
+        } else if (id == R.id.Set_Preferences)
+        {Intent i =new Intent(ComplaintPage.this,Preferences.class);
+            startActivity(i);
+        } else if (id == R.id.action_logout)
+        { String url= getResources().getString(R.string.IP) + "/default/logout.json";
+            JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response)
+                        {Intent i=new Intent(ComplaintPage.this,MainActivity.class);
+                            Toast.makeText(ComplaintPage.this,"",Toast.LENGTH_SHORT).show();
+                            startActivity(i);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(ComplaintPage.this, error.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    });
 
+            Volley.newRequestQueue(this).add(stringRequest);
+
+
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

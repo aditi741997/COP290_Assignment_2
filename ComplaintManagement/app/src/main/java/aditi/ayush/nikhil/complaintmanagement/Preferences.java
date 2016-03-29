@@ -1,5 +1,6 @@
 package aditi.ayush.nikhil.complaintmanagement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,7 +20,7 @@ import org.json.JSONObject;
 
 public class Preferences extends AppCompatActivity {
     public  String hostel_preferences="",insti_preferences="";
-
+    MyApp_cookie cook = new MyApp_cookie();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,26 +42,10 @@ public void Check_set()
                 public void onResponse(JSONObject response)
                 {
                     try {
-                        hostel_preferences=response.getString("hostel_prefs");
-                        insti_preferences=response.getString("insti_prefs");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    //,insti_prefs
+                        hostel_preferences=response.getString("hostel_pref");
+                        insti_preferences=response.getString("insti_pref");
 
-                }
-            },
-            new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error)
-                {
-                    Log.i("yo", "why this not working");
-                    //  Toast.makeText(getActivity().getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
-                }
-            });
-    Volley.newRequestQueue(getApplicationContext()).add(cpass);
-
-
+    System.out.println(hostel_preferences+"adsada   "+insti_preferences);
 
     CheckBox checkBox1=(CheckBox) findViewById(R.id.checkBox1);
     CheckBox checkBox2=(CheckBox) findViewById(R.id.checkBox2);
@@ -103,6 +88,22 @@ public void Check_set()
     if(insti_preferences.charAt(7)=='1') checkBox18.setChecked(true); else checkBox18.setChecked(false) ;
     if(insti_preferences.charAt(8)=='1') checkBox19.setChecked(true); else checkBox19.setChecked(false) ;
     if(insti_preferences.charAt(9)=='1') checkBox20.setChecked(true); else checkBox20.setChecked(false) ;
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //,insti_prefs
+
+                }
+            },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error)
+                {
+                    Log.i("yo", "why this not working");
+                    //  Toast.makeText(getActivity().getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+    Volley.newRequestQueue(getApplicationContext()).add(cpass);
 
 
 }
@@ -187,4 +188,17 @@ String hostel_pre="";
     Volley.newRequestQueue(getApplicationContext()).add(cpass);
 
 }
+    public  void back(View view)
+    {
+        Intent home = new Intent(this,ComplaintPage.class);
+        if (cook.isSpecial)
+            home.putExtra("UserType","Special");
+        else
+            home.putExtra("UserType",cook.Username);
+
+        startActivity(home);
+        finish();
+
+    }
+
 }
