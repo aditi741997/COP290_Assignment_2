@@ -12,7 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="50dp"
         android:id="@+id/linearLayout"
         android:layout_gravity="center_horizontal|bottom">
 
@@ -24,7 +24,8 @@
             android:id="@+id/call_adm"
             android:textColor="@color/textColorPrimary"
             android:layout_weight="1.0"
-            android:layout_marginRight="0.2dp"/>
+            android:layout_marginRight="0.2dp"
+            android:onClick="address_comp" />
 
         <Button
             android:layout_width="fill_parent"

@@ -158,12 +158,19 @@ System.out.println(bund);
                                         int groupPosition, int childPosition, long id) {
                 //        Toast.makeText(getActivity().getApplicationContext(), listDataHeader.get(groupPosition) + " : " + listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
 ///todo: add the below code again
-//                new page -> complaint details.
-//                String head = listDataHeader.get(groupPosition);
-//                List<String> IDs = compID.get(head);
-//                Intent add_comp = new Intent(getActivity(), Complaint_details.class);
-//                add_comp.putExtra("ID",IDs.get(childPosition));
-//                getActivity().startActivity(add_comp);
+                String id_comp="";
+                switch(groupPosition)
+                {
+                    case 0: id_comp=ind.get(childPosition);
+                        break;
+                    case 1: id_comp=hostel.get(childPosition);
+                        break;
+                    case 2:id_comp=insti.get(childPosition);
+                        break;
+                }
+            Intent i=new Intent(getActivity(),Complaint_details.class);
+            i.putExtra("ID",id_comp);
+            startActivity(i);
                 return false;
 //                TODO: open complaint details page. Intent+ putExtra = ID.
             }
