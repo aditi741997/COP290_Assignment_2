@@ -76,6 +76,7 @@ public class resolved extends Fragment{
         else
         {
             expand3.add(res_content.get(i));
+            insti.put(insti.size(),res_id.get(i));
         }
 
         }
@@ -166,5 +167,6 @@ public class resolved extends Fragment{
             }
         });
         return rootView;
+
     }
 }

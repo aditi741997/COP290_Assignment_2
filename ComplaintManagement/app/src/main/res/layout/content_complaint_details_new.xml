@@ -81,6 +81,7 @@
             android:layout_weight="1.0"
             android:layout_gravity="bottom"
             android:textColor="#FFFFFF"
+            android:onClick="dialogbox"
             android:background="@drawable/plainbutton"/>
     </LinearLayout>
 

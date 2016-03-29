@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:id="@+id/call">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageView1"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/ic_menu_phone"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Call Admin"
+            android:background="@color/colorPrimary"
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/button1"
+            style="?android:attr/borderlessButtonStyle"
+            />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:id="@+id/mail"
+        android:layout_marginTop="0.1dp"
+        >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageView3"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/ic_menu_mail"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mail Admin"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:id="@+id/button4"
+            style="?android:attr/borderlessButtonStyle"
+            />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/colorPrimary"
+        android:id="@+id/cancel"
+        android:layout_marginTop="0.1dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textColor="#FFFFFF"
+            android:background="@color/colorPrimary"
+            android:id="@+id/button2"/>
+
+    </TableRow>
+</LinearLayout>
