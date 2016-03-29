@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true"
+        android:layout_height="10dp"
+        android:layout_width="10dp"
+        android:drawable="@drawable/bluelike"
+        android:state_focused="false">
+    </item>
+    <item android:state_checked="true"
+        android:layout_height="10dp"
+        android:layout_width="10dp"
+        android:drawable="@drawable/greenlike"
+        android:state_focused="true">
+    </item>
+    <item android:state_checked="false"
+        android:layout_height="10dp"
+        android:layout_width="10dp"
+        android:drawable="@drawable/bluedislike"
+        android:state_focused="false">
+    </item>
+    <item android:state_checked="false"
+        android:layout_height="10dp"
+        android:layout_width="10dp"
+        android:drawable="@drawable/reddislike"
+        android:state_focused="true">
+    </item>
+</selector>
