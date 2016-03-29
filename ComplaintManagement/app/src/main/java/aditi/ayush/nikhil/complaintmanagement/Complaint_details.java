@@ -1,16 +1,20 @@
 package aditi.ayush.nikhil.complaintmanagement;
 
 import android.app.Dialog;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -69,6 +73,7 @@ public class Complaint_details extends AppCompatActivity {
         StringRequest compData = new StringRequest (Request.Method.GET, getResp,
                 new Response.Listener<String>()
                 {
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onResponse(String response)
                     {
@@ -90,11 +95,17 @@ public class Complaint_details extends AppCompatActivity {
                             {
                                 up =true;
                                 down = false;
+                                ImageButton downB = (ImageButton) findViewById(R.id.imageButton);
+                                if (downB != null)
+                                    downB.setBackground(getResources().getDrawable(R.drawable.bluedislike));
                             }
                             else if (resp == -1)
                             {
                                 down = true;
                                 up = false;
+                                ImageButton upB = (ImageButton) findViewById(R.id.imageButton2);
+                                if (upB != null)
+                                    upB.setBackground(getResources().getDrawable(R.drawable.bluelike));
                             }
 
 
@@ -132,14 +143,27 @@ public class Complaint_details extends AppCompatActivity {
     {
 //        c_id = "i_7";
         final TextView up = (TextView) findViewById(R.id.upVote);
+        final ImageButton upV = (ImageButton) findViewById(R.id.imageButton2);
         final TextView down = (TextView) findViewById(R.id.downVote);
+        final ImageButton downV = (ImageButton) findViewById(R.id.imageButton);
         TableRow hostel = (TableRow) findViewById(R.id.hostelRow);
+
+        if (cook.isAdmin)
+        {
+            Button x = (Button) findViewById(R.id.addcomment);
+            x.setText("Add Admin comment");
+//            TODO: checkbox, complainant details section.
+            CheckBox cb = (CheckBox) findViewById(R.id.check_comp);
+            cb.setText("Mark as resolved");
+        }
 
         if (c_id.substring(0,2).equals("i_"))
         {
             up.setVisibility(View.INVISIBLE);
+//            upV.setVisibility(View.INVISIBLE);
 
             down.setVisibility(View.INVISIBLE);
+//            downV.setVisibility(View.INVISIBLE);
 
             Button higher = (Button) findViewById(R.id.takeHigher);
             higher.setVisibility(View.INVISIBLE);
@@ -189,7 +213,12 @@ public class Complaint_details extends AppCompatActivity {
                                 resol.setText("Yes");
                             }
                             else
+                            {
                                 resol.setText("No");
+                                CheckBox cb = (CheckBox) findViewById(R.id.check_comp);
+                                cb.setVisibility(View.INVISIBLE);
+//                                checkbox is shown only if complaint has been marked as resolved.
+                            }
 
                             String adminID = details.getString("admin_id");
                             TextView admin = (TextView) findViewById(R.id.adminID);
@@ -242,6 +271,7 @@ public class Complaint_details extends AppCompatActivity {
                 });
         Volley.newRequestQueue(getApplicationContext()).add(compData);
     }
+
 
     public  void populateComments()
     {
@@ -316,12 +346,109 @@ public class Complaint_details extends AppCompatActivity {
         final EditText comm = (EditText) findViewById(R.id.comment_add);
         String comment = comm.getText().toString();
         Helpers h = new Helpers();
-        if (comment != "" || comment != " ")
+        if (cook.isAdmin)
         {
-            String addcomm = getResources().getString(R.string.IP) + "/complaint/post_comments.json?complain_id=" + c_id + "&comment=" + h.SpaceToScore(comment);
+            if (comment != "" || comment != " ") {
+                String addcomm = getResources().getString(R.string.IP) + "/admin_complaint/add_comment.json?complaint_id=" + c_id + "&desc=" + h.SpaceToScore(comment);
+
+                JsonObjectRequest jsoncomm = new JsonObjectRequest(Request.Method.GET,
+                        addcomm, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //Log.d(TAG, response.toString());
+
+                        try {
+                            // Parsing json object response
+                            // response will be a json object
+                            boolean success = response.getBoolean("Success");
+                            //  String email = response.getString("email");
+                            if (success) {
+                                Toast.makeText(getApplicationContext(), "Admin Comment posted successfully!", Toast.LENGTH_SHORT).show();
+                            }
+
+                            comm.setText("");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d("Tag", "Error: " + error.getMessage());
+                        Toast.makeText(getApplicationContext(),
+                                error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                Volley.newRequestQueue(getApplicationContext()).add(jsoncomm);
+//                populateComments();
+                populateData();
+            }
+        }
+        else
+        {
+            if (comment != "" || comment != " ")
+            {
+                String addcomm = getResources().getString(R.string.IP) + "/complaint/post_comments.json?complain_id=" + c_id + "&comment=" + h.SpaceToScore(comment);
+
+                JsonObjectRequest jsoncomm = new JsonObjectRequest(Request.Method.GET,
+                        addcomm, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //Log.d(TAG, response.toString());
+
+                        try {
+                            // Parsing json object response
+                            // response will be a json object
+                            boolean success = response.getBoolean("Success");
+                            //  String email = response.getString("email");
+                            if(success)
+                            {
+                                Toast.makeText(getApplicationContext(),"Comment posted successfully!",Toast.LENGTH_SHORT).show();
+                            }
+
+                            comm.setText("");
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d("Tag", "Error: " + error.getMessage());
+                        Toast.makeText(getApplicationContext(),
+                                error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                Volley.newRequestQueue(getApplicationContext()).add(jsoncomm);
+                populateComments();
+        }
+
+        }
+    }
+
+    public void checkClick(View view)
+    {
+//        admin -> mark for resolved
+//        user -> satisfied.
+        CheckBox cb = (CheckBox) findViewById(R.id.check_comp);
+        if (cook.isAdmin)
+        {
+//            mark for resolution hai.
+            final boolean bool_resp = cb.isChecked();
+            String admin_res = getResources().getString(R.string.IP) + "/admin_complaint/mark_resolved.json?complaint_id=" + c_id + "&boolean_resolve=" + bool_resp;
 
             JsonObjectRequest jsoncomm = new JsonObjectRequest(Request.Method.GET,
-                    addcomm, null, new Response.Listener<JSONObject>() {
+                    admin_res, null, new Response.Listener<JSONObject>() {
 
                 @Override
                 public void onResponse(JSONObject response) {
@@ -334,10 +461,15 @@ public class Complaint_details extends AppCompatActivity {
                         //  String email = response.getString("email");
                         if(success)
                         {
-                            Toast.makeText(getApplicationContext(),"Comment posted successfully!",Toast.LENGTH_SHORT).show();
+                            if (bool_resp)
+                                Toast.makeText(getApplicationContext(),"Complaint marked as resolved successfully!",Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(getApplicationContext(),"Complaint marked as unresolved successfully!",Toast.LENGTH_SHORT).show();
                         }
-
-                        comm.setText("");
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(),"Complaint couldnt be marked.",Toast.LENGTH_SHORT).show();
+                        }
                     }
                     catch (JSONException e)
                     {
@@ -356,9 +488,20 @@ public class Complaint_details extends AppCompatActivity {
             });
 
             Volley.newRequestQueue(getApplicationContext()).add(jsoncomm);
-            populateComments();
+        }
+        else
+        {
+//            mark for satisfaction.
+            int resp = 0;
+            if (cb.isChecked())
+                resp = 1;
+            else
+                resp = 0;
+            String user_sat = getResources().getString(R.string.IP) + "/complaint/put_user_status.json?complaint_id=" + c_id + "&response=" + resp;
+//            TODO: request.
         }
     }
+
 
     public  void takeHigher(View view)
     {
@@ -450,10 +593,11 @@ public class Complaint_details extends AppCompatActivity {
             down = false;
 //            TODO: Make downVote bttn blue.
 //            API
-            String upVote = getResources().getString(R.string.IP) + "/complaint/put_user_status.json?complaint_id=" + c_id + "&response=" + "1";
+            String upVote = getResources().getString(R.string.IP) + "/complaint/set_user_response.json?complain_id=" + c_id + "&response=" + "1";
             JsonObjectRequest jsoncomm = new JsonObjectRequest(Request.Method.GET,
                     upVote, null, new Response.Listener<JSONObject>() {
 
+                @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                 @Override
                 public void onResponse(JSONObject response) {
                     //Log.d(TAG, response.toString());
@@ -465,7 +609,13 @@ public class Complaint_details extends AppCompatActivity {
                         //  String email = response.getString("email");
                         if(success)
                         {
-                            Toast.makeText(getApplicationContext(),"You upvoted this complaint!",Toast.LENGTH_SHORT).show();
+                            ImageButton downB = (ImageButton) findViewById(R.id.imageButton);
+                            if (downB != null)
+                                downB.setBackground(getResources().getDrawable(R.drawable.bluedislike));
+
+                            ImageButton upB = (ImageButton) findViewById(R.id.imageButton2);
+                            if (upB != null)
+                                upB.setBackground(getResources().getDrawable(R.drawable.greenlike));                            Toast.makeText(getApplicationContext(),"You upvoted this complaint!",Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -504,10 +654,11 @@ public class Complaint_details extends AppCompatActivity {
             up = false;
             //            TODO: Make upVote bttn blue.
 //            API
-            String downvote = getResources().getString(R.string.IP) + "/complaint/put_user_status.json?complaint_id=" + c_id + "&response=" + "-1";
+            String downvote = getResources().getString(R.string.IP) + "/complaint/set_user_response.json?complain_id=" + c_id + "&response=" + "-1";
             JsonObjectRequest jsoncomm = new JsonObjectRequest(Request.Method.GET,
                     downvote, null, new Response.Listener<JSONObject>() {
 
+                @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                 @Override
                 public void onResponse(JSONObject response) {
                     //Log.d(TAG, response.toString());
@@ -519,6 +670,13 @@ public class Complaint_details extends AppCompatActivity {
                         //  String email = response.getString("email");
                         if(success)
                         {
+                            ImageButton upB = (ImageButton) findViewById(R.id.imageButton2);
+                            if (upB != null)
+                                upB.setBackground(getResources().getDrawable(R.drawable.bluelike));
+
+                            ImageButton downB = (ImageButton) findViewById(R.id.imageButton);
+                            if (downB != null)
+                                downB.setBackground(getResources().getDrawable(R.drawable.reddislike));
                             Toast.makeText(getApplicationContext(),"You downvoted this complaint!",Toast.LENGTH_SHORT).show();
                         }
                         else

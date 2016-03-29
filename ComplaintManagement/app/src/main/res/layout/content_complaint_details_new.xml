@@ -340,6 +340,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/colorPrimary"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
             android:layout_below="@+id/com"
             android:id="@+id/commentList">
 
@@ -349,6 +351,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/comment_add"
+            android:textColor="#000000"
             android:hint="Post comment..."
             android:layout_below="@id/commentList"
             android:layout_marginLeft="12dp"
@@ -365,6 +368,16 @@
             android:layout_marginLeft="125dp"
             android:layout_centerHorizontal="true"
             android:onClick="addComment"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:id="@+id/check_comp"
+            android:onClick="checkClick"
+            android:text="Are you satisfied with the resolution?"
+            />
 
 
 

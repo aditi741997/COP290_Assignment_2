@@ -14,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -22,11 +23,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -96,8 +99,171 @@ public class Admin_complaints extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        String url=getResources().getString(R.string.IP)+"/admin_complaint/get_all_complaints.json";
+
+
+
+        final ArrayList<String> res_content=new ArrayList<String>();
+        final ArrayList<String> unres_content=new ArrayList<String>();
+        final ArrayList<String> markedforres_content=new ArrayList<String>();
+        final ArrayList<String> res_id=new ArrayList<String>();
+        final ArrayList<String> unres_id=new ArrayList<String>();
+        final ArrayList<String> markedforres_id=new ArrayList<String>();
+        final ArrayList<String> res_type=new ArrayList<String>();
+        final ArrayList<String> unres_type=new ArrayList<String>();
+        final ArrayList<String> markedforres_type=new ArrayList<String>();
 
         //TODO: Call the api's to get concerned complaint list and notifications and populate in this only
+        StringRequest cpass = new StringRequest (Request.Method.GET, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        Log.i("yo", "why this ... working" + response);
+///                        System.out.println(response.toString());
+//                        Toast.makeText(getActivity().getApplicationContext(),
+//                                "Logout ",
+//                                Toast.LENGTH_LONG).show();
+                        try
+                        { System.out.println("finally yup");
+                            JSONObject json_data = new JSONObject(response);
+                            boolean succ = json_data.getBoolean("success");
+                            if (succ)
+                            {
+                                JSONArray array_ind=json_data.getJSONArray("Individual");
+                                JSONArray array_hos=json_data.getJSONArray("Hostel");
+                                JSONArray array_insti=json_data.getJSONArray("inst_comp");
+
+                                for(int i=0;i<array_ind.length();i++)
+                                {
+                                JSONObject json_ob=array_ind.getJSONObject(i);
+                                String content=json_ob.getString("compaint_content");
+                                String id=json_ob.getString("complaint_id");
+                                int i_res=json_ob.getInt("resolved");
+                                    int i_unres=json_ob.getInt("unresolved");
+                                    int i_markres=json_ob.getInt("mark_for_resolution");
+                                if(i_res==1)
+                                {
+                                    res_content.add(content);
+                                    res_id.add(id);
+                                    res_type.add("1");
+                                }
+                                else if(i_unres==1)
+                                {
+                                    unres_content.add(content);
+                                    unres_id.add(id);
+                                    unres_type.add("1");
+                                }
+                                else {
+                                    markedforres_content.add(content);
+                                    markedforres_id.add(id);
+                                    markedforres_type.add("1");
+                                }
+                                }
+                                for(int i=0;i<array_hos.length();i++)
+                                {JSONObject json_ob=array_hos.getJSONObject(i);
+                                    String content=json_ob.getString("compaint_content");
+                                    String id=json_ob.getString("complaint_id");
+                                    int i_res=json_ob.getInt("resolved");
+                                    int i_unres=json_ob.getInt("unresolved");
+                                    int i_markres=json_ob.getInt("mark_for_resolution");
+                                    if(i_res==1)
+                                    {
+                                        res_content.add(content);
+                                        res_id.add(id);
+                                        res_type.add("2");
+                                    }
+                                    else if(i_unres==1)
+                                    {
+                                        unres_content.add(content);
+                                        unres_id.add(id);
+                                        unres_type.add("2");
+                                    }
+                                    else {
+                                        markedforres_content.add(content);
+                                        markedforres_id.add(id);
+                                        markedforres_type.add("2");
+                                    }
+
+                                }
+                                for(int i=0;i<array_insti.length();i++)
+                                {
+                                    JSONObject json_ob=array_insti.getJSONObject(i);
+                                    String content=json_ob.getString("compaint_content");
+                                    String id=json_ob.getString("complaint_id");
+                                    int i_res=json_ob.getInt("resolved");
+                                    int i_unres=json_ob.getInt("unresolved");
+                                    int i_markres=json_ob.getInt("mark_for_resolution");
+                                    if(i_res==1)
+                                    {
+                                        res_content.add(content);
+                                        res_id.add(id);
+                                        res_type.add("3");
+                                    }
+                                    else if(i_unres==1)
+                                    {
+                                        unres_content.add(content);
+                                        unres_id.add(id);
+                                        unres_type.add("3");
+                                    }
+                                    else {
+                                        markedforres_content.add(content);
+                                        markedforres_id.add(id);
+                                        markedforres_type.add("3");
+                                    }
+
+                                }
+
+
+                            }
+
+
+                        } catch (Exception e)
+                        {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),
+                                    "Error: " + e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("yo", "why this not working");
+                        //  Toast.makeText(getActivity().getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+        Volley.newRequestQueue(getApplicationContext()).add(cpass);
+
+
+
+        Bundle bund1=new Bundle();
+       bund1.putStringArrayList("content",res_content);
+       bund1.putStringArrayList("id",res_id);
+       bund1.putStringArrayList("type",res_type);
+
+       resolved.setArguments(bund1);
+        Bundle bund2=new Bundle();
+        bund1.putStringArrayList("content",unres_content);
+        bund1.putStringArrayList("id",unres_id);
+        bund1.putStringArrayList("type",unres_type);
+
+        unresolved.setArguments(bund2);
+        Bundle bund3=new Bundle();
+        bund1.putStringArrayList("content",markedforres_content);
+        bund1.putStringArrayList("id",markedforres_id);
+        bund1.putStringArrayList("type",markedforres_type);
+        for_res.setArguments(bund3);
+
+
+
+
+
+
+
+
 //        pop_complaint_list();//These function can be shifted to their respective fragments as well
 //        pop_noti_list();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
