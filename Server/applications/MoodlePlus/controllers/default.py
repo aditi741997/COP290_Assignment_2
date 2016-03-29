@@ -372,25 +372,35 @@ def populate_db():
 		name="Aditi",
 		user_type=0,
 		username="cs1140205",
-		contact_number="dhinchak",
+		contact_number="9876543210",
 		hostel=1,
 		password="aditi",
 	)
 
 	db.users.insert(
-		name="mamidalla",
-		user_type=-1,
-		username="mummydala",
-		contact_number="abra_kadabra",
-		hostel=7,
-		password="special")
+		name="Aayan",
+		user_type=0,
+		username="cs1140201",
+		contact_number="9876543210",
+		hostel=2,
+		password="aayan",
+	)
+
+	db.users.insert(
+		name="Bhagee",
+		user_type=0,
+		username="cs5140297",
+		contact_number="9876543210",
+		hostel=3,
+		password="bhagee",
+	)
 	
 	db.users.insert(
 		name="Ayush",
 		user_type=0,
 		username="cs1140091",
 		contact_number="blah blah",
-		hostel=2,
+		hostel=1,
 		password="ayush",
 	)
 
@@ -404,37 +414,223 @@ def populate_db():
 	)
 
 	db.users.insert(
-		name ="elec1",
-		user_type=1,
-		username="a1234",
-		contact_number="blah blah",
+		name="Electrician 1",
+		user_type=0,
+		username="a001",
+		contact_number="1234567899",
 		hostel=-1,
-		password="elec1"
+		password="a001")
+	db.users.insert(
+		name="Electrician 11",
+		user_type=0,
+		username="a0011",
+		contact_number="1234567899",
+		hostel=-1,
+		password="a0011")
+	db.users.insert(
+		name="Electrician 12",
+		user_type=0,
+		username="a0012",
+		contact_number="1234567899",
+		hostel=-1,
+		password="a0012")
+	db.users.insert(
+		name="Electrician 13",
+		user_type=0,
+		username="a0013",
+		contact_number="1234567899",
+		hostel=-1,
+		password="a0013")
+
+
+	db.users.insert(
+		name ="Head Electrician",
+		user_type=0,
+		username="a002",
+		contact_number="1234432112",
+		hostel=-1,
+		password="a002"
 	)
 
 	db.users.insert(
-		name ="elec2",
-		user_type=1,
-		username="a12345",
-		contact_number="blah blah blah",
+		name ="Plumber 1",
+		user_type=0,
+		username="a003",
+		contact_number="9988776655",
 		hostel=-1,
-		password="elec2"
+		password="a003"
+	)
+	db.users.insert(
+		name ="Plumber 12",
+		user_type=0,
+		username="a0031",
+		contact_number="9988776655",
+		hostel=-1,
+		password="a0031"
+	)
+	db.users.insert(
+		name ="Plumber 13",
+		user_type=0,
+		username="a0032",
+		contact_number="9988776655",
+		hostel=-1,
+		password="a0032"
+	)
+	db.users.insert(
+		name ="Plumber 14",
+		user_type=0,
+		username="a0033",
+		contact_number="9988776655",
+		hostel=-1,
+		password="a0033"
+	)
+	
+	db.users.insert(
+		name ="Head Plumber",
+		user_type=0,
+		username="a004",
+		contact_number="9988776655",
+		hostel=-1,
+		password="a004"
+	)
+
+
+	db.admin_info.insert(
+		username="a001",
+		complaint_area=1,
+		admin_level=2,
+		description='Electrician for all hostels',
+		hostel_id=0,
 	)
 
 	db.admin_info.insert(
-		username="a1234",
-		complaint_area=0,
+		username="a0011",
+		complaint_area=1,
 		admin_level=2,
-		description='Electriction for all hostels',
+		description='Electrician for all hostels',
 		hostel_id=1,
 	)
+	db.admin_info.insert(
+		username="a0012",
+		complaint_area=1,
+		admin_level=2,
+		description='Electrician for all hostels',
+		hostel_id=2,
+	)
+	db.admin_info.insert(
+		username="a0013",
+		complaint_area=1,
+		admin_level=2,
+		description='Electrician for all hostels',
+		hostel_id=3,
+	)
+	
 	
 	db.admin_info.insert(
-		username="a12345",
-		complaint_area=0,
+		username="a002",
+		complaint_area=1,
 		admin_level=1,
-		description='Senior Electriction for all hostels',
+		description='Head Electrician for all hostels',
+		hostel_id=0,
+	)
+
+	# db.admin_info.insert(
+	# 	username="a002",
+	# 	complaint_area=1,
+	# 	admin_level=1,
+	# 	description='Head Electrician for all hostels',
+	# 	hostel_id=1,
+	# )
+
+	# db.admin_info.insert(
+	# 	username="a002",
+	# 	complaint_area=1,
+	# 	admin_level=1,
+	# 	description='Head Electrician for all hostels',
+	# 	hostel_id=2,
+	# )
+
+	# db.admin_info.insert(
+	# 	username="a002",
+	# 	complaint_area=1,
+	# 	admin_level=1,
+	# 	description='Head Electrician for all hostels',
+	# 	hostel_id=3,
+	# )
+	
+	db.admin_info.insert(
+		username="a003",
+		complaint_area=2,
+		admin_level=2,
+		description='Plumber for all hostels',
+		hostel_id=0,
+	)
+	db.admin_info.insert(
+		username="a0031",
+		complaint_area=2,
+		admin_level=2,
+		description='Plumber for all hostels',
 		hostel_id=1,
+	)
+	db.admin_info.insert(
+		username="a0032",
+		complaint_area=2,
+		admin_level=2,
+		description='Plumber for all hostels',
+		hostel_id=2,
+	)
+	db.admin_info.insert(
+		username="a0033",
+		complaint_area=2,
+		admin_level=2,
+		description='Plumber for all hostels',
+		hostel_id=3,
+	)
+	
+	
+	db.admin_info.insert(
+		username="a004",
+		complaint_area=2,
+		admin_level=1,
+		description='Head Plumber for all hostels',
+		hostel_id=0,
+	)
+	# db.admin_info.insert(
+	# 	username="a004",
+	# 	complaint_area=2,
+	# 	admin_level=1,
+	# 	description='Head Plumber for all hostels',
+	# 	hostel_id=1,
+	# )
+	# db.admin_info.insert(
+	# 	username="a004",
+	# 	complaint_area=2,
+	# 	admin_level=1,
+	# 	description='Head Plumber for all hostels',
+	# 	hostel_id=2,
+	# )
+	# db.admin_info.insert(
+	# 	username="a004",
+	# 	complaint_area=2,
+	# 	admin_level=1,
+	# 	description='Head Plumber for all hostels',
+	# 	hostel_id=3,
+	# )
+	
+	db.admin_info.insert(
+		username="cs1140205",
+		complaint_area=6,
+		admin_level=2,
+		description="BSW Rep for all hostels",
+		hostel_id=-1,
+	)
+
+	db.admin_info.insert(
+		username="cs1140201",
+		complaint_area=6,
+		admin_level=1,
+		description="BSW GSec for all hostels",
+		hostel_id=-1,
 	)
 
 	db.complaint_category.insert(
@@ -552,113 +748,113 @@ def populate_db():
 		hostel_name="Shivalik"
 	)
 
-	db.notifications.insert(
-		complaint_id="i_123",
-		src_user_id="a1234",
-		dest_user_id="cs1140205",
-		description="time pass",  
-	)
+	# db.notifications.insert(
+	# 	complaint_id="i_123",
+	# 	src_user_id="a1234",
+	# 	dest_user_id="cs1140205",
+	# 	description="time pass",  
+	# )
 
-	db.notifications.insert(
-		complaint_id="i_1",
-		src_user_id="cs1130231",
-		dest_user_id="cs5140462",
-		description="Test notification 1"
-	)
+	# db.notifications.insert(
+	# 	complaint_id="i_1",
+	# 	src_user_id="cs1130231",
+	# 	dest_user_id="cs5140462",
+	# 	description="Test notification 1"
+	# )
 	
-	db.notifications.insert(
-		complaint_id="i_2",
-		src_user_id="cs5140462",
-		dest_user_id="cs5140462",
-		description="Test notification 2 for complaint 2"
-	)
+	# db.notifications.insert(
+	# 	complaint_id="i_2",
+	# 	src_user_id="cs5140462",
+	# 	dest_user_id="cs5140462",
+	# 	description="Test notification 2 for complaint 2"
+	# )
 	
-	db.notifications.insert(
-		complaint_id="i_3",
-		src_user_id="cs1140205",
-		dest_user_id="cs5140462",
-		description="Test notification 3 for complaint 3"
-	)
+	# db.notifications.insert(
+	# 	complaint_id="i_3",
+	# 	src_user_id="cs1140205",
+	# 	dest_user_id="cs5140462",
+	# 	description="Test notification 3 for complaint 3"
+	# )
 
-	db.indiv_complaints.insert(
-		complaint_id="i_1",
-		username="cs5140462",
-		complaint_type=1,
-		complaint_content="Complaint number 1",
-		extra_info="Extra info for comp 1",
-		admin_id="a1234"
-	)
+	# db.indiv_complaints.insert(
+	# 	complaint_id="i_1",
+	# 	username="cs5140462",
+	# 	complaint_type=1,
+	# 	complaint_content="Complaint number 1",
+	# 	extra_info="Extra info for comp 1",
+	# 	admin_id="a1234"
+	# )
 
-	db.indiv_complaints.insert(
-		complaint_id="i_2",
-		username="cs5140462",
-		complaint_type=1,
-		complaint_content="Complaint number 2",
-		extra_info="Extra info for comp 2",
-		admin_id="a1234"
-	)
+	# db.indiv_complaints.insert(
+	# 	complaint_id="i_2",
+	# 	username="cs5140462",
+	# 	complaint_type=1,
+	# 	complaint_content="Complaint number 2",
+	# 	extra_info="Extra info for comp 2",
+	# 	admin_id="a1234"
+	# )
 
-	db.indiv_complaints.insert(
-		complaint_id="i_3",
-		username="cs5140462",
-		complaint_type=1,
-		complaint_content="Complaint number 3",
-		extra_info="Extra info for comp 3",
-		admin_id="a1234"
-	)
+	# db.indiv_complaints.insert(
+	# 	complaint_id="i_3",
+	# 	username="cs5140462",
+	# 	complaint_type=1,
+	# 	complaint_content="Complaint number 3",
+	# 	extra_info="Extra info for comp 3",
+	# 	admin_id="a1234"
+	# )
 
-	db.complaint_user_mapping.insert(
-		complaint_id="i_1",
-		user_id="cs5140462"
-	)
-	db.complaint_user_mapping.insert(
-		complaint_id="i_2",
-		user_id="cs5140462"
-	)
-	db.complaint_user_mapping.insert(
-		complaint_id="i_3",
-		user_id="cs5140462"
-	)
+	# db.complaint_user_mapping.insert(
+	# 	complaint_id="i_1",
+	# 	user_id="cs5140462"
+	# )
+	# db.complaint_user_mapping.insert(
+	# 	complaint_id="i_2",
+	# 	user_id="cs5140462"
+	# )
+	# db.complaint_user_mapping.insert(
+	# 	complaint_id="i_3",
+	# 	user_id="cs5140462"
+	# )
 
-	db.hostel_complaints.insert(
-		complaint_id="h_1",
-		username="cs5140462",
-		complaint_content="Hostel complaint 1",
-		extra_info="Details of complaint",
-		complaint_type=2,
-		admin_id="a12345",
-		hostel='2'
-	)
+	# db.hostel_complaints.insert(
+	# 	complaint_id="h_1",
+	# 	username="cs5140462",
+	# 	complaint_content="Hostel complaint 1",
+	# 	extra_info="Details of complaint",
+	# 	complaint_type=2,
+	# 	admin_id="a12345",
+	# 	hostel='2'
+	# )
 
-	db.complaint_user_mapping.insert(
-		complaint_id="h_1",
-		user_id="cs5140462"
-	)
+	# db.complaint_user_mapping.insert(
+	# 	complaint_id="h_1",
+	# 	user_id="cs5140462"
+	# )
 
-	db.complaint_user_mapping.insert(
-		complaint_id="h_1",
-		user_id="a12345"
-	)
+	# db.complaint_user_mapping.insert(
+	# 	complaint_id="h_1",
+	# 	user_id="a12345"
+	# )
 	
-	db.insti_complaints.insert(
-		complaint_id="in_1",
-		username="cs5140462",
-		complaint_content="Institute complaint 1",
-		extra_info="Details of complaint",
-		complaint_type=2,
-		admin_id="a12345",
-		anonymous=1,
-	)
+	# db.insti_complaints.insert(
+	# 	complaint_id="in_1",
+	# 	username="cs5140462",
+	# 	complaint_content="Institute complaint 1",
+	# 	extra_info="Details of complaint",
+	# 	complaint_type=2,
+	# 	admin_id="a12345",
+	# 	anonymous=1,
+	# )
 
-	db.complaint_user_mapping.insert(
-		complaint_id="in_1",
-		user_id="cs5140462"
-	)
+	# db.complaint_user_mapping.insert(
+	# 	complaint_id="in_1",
+	# 	user_id="cs5140462"
+	# )
 
-	db.complaint_user_mapping.insert(
-		complaint_id="in_1",
-		user_id="a12345"
-	)
+	# db.complaint_user_mapping.insert(
+	# 	complaint_id="in_1",
+	# 	user_id="a12345"
+	# )
 
 	# ## create 7 courses
 	# db.courses.insert(

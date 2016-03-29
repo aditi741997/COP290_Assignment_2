@@ -126,11 +126,11 @@ auth.define_tables(username=False)    #Creating the table
 
 db.define_table(
     'admin_info',
-    Field('username','string'),
-    Field('complaint_area','integer'),
-    Field('admin_level','integer'),
-    Field('description','string'),
-    Field('hostel_id','integer'),
+    Field('username','string',unique=False),
+    Field('complaint_area','integer',unique=False),
+    Field('admin_level','integer',unique=False),
+    Field('description','string',unique=False),
+    Field('hostel_id','integer',unique=False),
 )
 
 db.define_table(
