@@ -13,8 +13,14 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/FullScreen">
+            android:theme="@style/FullScreen"
 
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ComplaintPage"
@@ -33,11 +39,7 @@
             android:name=".Complaint_details"
             android:label="@string/title_activity_complaint_details"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ChangePassword"
@@ -57,6 +59,6 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-    </application>
+       </application>
 
 </manifest>

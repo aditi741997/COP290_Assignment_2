@@ -176,7 +176,7 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
                                                     Toast.LENGTH_LONG).show();
                                             Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
                                             Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
-                                            if (cookie.isSpecial)
+                                            if (cookie.isAdmin || cookie.isSpecial)
                                                 i.putExtra("UserType","Special");
                                             else
                                                 i.putExtra("UserType", Username);
@@ -198,10 +198,10 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
                                         Toast.makeText(getActivity().getApplicationContext(),
                                                 "Error: " + e.getMessage(),
                                                 Toast.LENGTH_LONG).show();
-                                        Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
-                                        Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
-                                        i.putExtra("UserType", Username);
-                                        startActivity(i);
+//                                        Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
+//                                        Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
+//                                        i.putExtra("UserType", Username);
+//                                        startActivity(i);
                                     }
 
 

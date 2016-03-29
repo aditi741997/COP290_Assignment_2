@@ -76,6 +76,7 @@ public class resolved extends Fragment{
         else
         {
             expand3.add(res_content.get(i));
+            insti.put(insti.size(),res_id.get(i));
         }
 
         }
@@ -92,18 +93,20 @@ public class resolved extends Fragment{
 
         expListView = (ExpandableListView) rootView.findViewById(R.id.cmpExp);
 
-        Button addnew = (Button) rootView.findViewById(R.id.addnew);
-
-        addnew.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
-                Intent add_comp = new Intent(getActivity(), NewComplaint.class);
-                getActivity().startActivity(add_comp);
-            }
-
-        });
+//        Button addnew = (Button) rootView.findViewById(R.id.addnew);
+//
+//        addnew.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent add_comp = new Intent(getActivity(), NewComplaint.class);
+//                getActivity().startActivity(add_comp);
+//            }
+//
+//        });
         Bundle bund=this.getArguments();
+        if(bund == null ) return null;
+System.out.println(bund);
         res_content=bund.getStringArrayList("content");
         res_id=bund.getStringArrayList("id");
         res_type=bund.getStringArrayList("type");
@@ -155,15 +158,24 @@ public class resolved extends Fragment{
                                         int groupPosition, int childPosition, long id) {
                 //        Toast.makeText(getActivity().getApplicationContext(), listDataHeader.get(groupPosition) + " : " + listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
 ///todo: add the below code again
-//                new page -> complaint details.
-//                String head = listDataHeader.get(groupPosition);
-//                List<String> IDs = compID.get(head);
-//                Intent add_comp = new Intent(getActivity(), Complaint_details.class);
-//                add_comp.putExtra("ID",IDs.get(childPosition));
-//                getActivity().startActivity(add_comp);
+                String id_comp="";
+                switch(groupPosition)
+                {
+                    case 0: id_comp=ind.get(childPosition);
+                        break;
+                    case 1: id_comp=hostel.get(childPosition);
+                        break;
+                    case 2:id_comp=insti.get(childPosition);
+                        break;
+                }
+            Intent i=new Intent(getActivity(),Complaint_details.class);
+            i.putExtra("ID",id_comp);
+            startActivity(i);
                 return false;
+//                TODO: open complaint details page. Intent+ putExtra = ID.
             }
         });
         return rootView;
+
     }
 }

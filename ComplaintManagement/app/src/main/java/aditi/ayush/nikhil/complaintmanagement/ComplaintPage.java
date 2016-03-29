@@ -194,6 +194,12 @@ public class ComplaintPage extends AppCompatActivity
 //
 //        Volley.newRequestQueue(this).add(stringRequest);
 //    }
+
+    public void address_comp(View view)
+    {
+        Intent i=new Intent(ComplaintPage.this,Admin_complaints.class);
+        startActivity(i);
+    }
     @Override
     public void onStart() {
         super.onStart();
