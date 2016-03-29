@@ -312,6 +312,19 @@ def clear_db():
         except Exception, e:
             print "Couldn't clear",table
 
+def add_user():
+	if (auth.is_logged_in()):
+		usertype = int(db(db.users.username == auth.user.username).select()[0]["user_type"])
+		bool_admin=false
+		if usertype<0:
+			name=request.vars.name
+			user_type=request.vars.user_type
+			username=request.vars.username
+			contact_number=request.vars.contact_number
+			hostel=request.vars.hostel
+			password=request.vars.password
+			bool_admin=true
+	return dict(success=False if not bool_admin else True,Name=name, Unique_Id=username,userid =user_type,contact_number=contact_number,hostel=hostel,passwd =password)		
 def populate_db():
     ## Populate DB Script
 

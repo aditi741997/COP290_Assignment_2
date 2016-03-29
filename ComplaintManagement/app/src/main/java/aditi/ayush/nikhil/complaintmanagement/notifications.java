@@ -192,7 +192,6 @@ public class notifications extends Fragment
             {
                 //        Toast.makeText(getActivity().getApplicationContext(), listDataHeader.get(groupPosition) + " : " + listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
                 String ide =Comp_id[groupPosition];
-                System.out.println("dsdsd");
                 Intent intent=new Intent(getActivity(),Complaint_details.class);
                 intent.putExtra("ID",ide);
                 startActivity(intent);
