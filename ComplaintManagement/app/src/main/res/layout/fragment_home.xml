@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -37,33 +37,116 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textView10"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/Welcome"
+        android:id="@+id/UnresolvedLayout">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textView11"/>
+        android:text="Unresolved Complaints"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/Welcome"
+        android:paddingLeft="20dp"
+        android:layout_weight="1.0"
+        android:layout_gravity="center"
+        android:id="@+id/Unresolved"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:layout_gravity="center"
+            android:layout_weight="1.5"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/countUnresolved" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/UnresolvedLayout"
+        android:id="@+id/AwaitingLayout">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Awaiting Confirmation"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/Welcome"
+        android:paddingLeft="20dp"
+        android:layout_weight="1.0"
+        android:layout_gravity="center"
+        android:id="@+id/Awaiting"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:layout_gravity="center"
+            android:layout_weight="1.5"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/countAwaiting" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/AwaitingLayout"
+        android:id="@+id/resolvedLayout">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Resolved Complaints"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/Welcome"
+        android:paddingLeft="20dp"
+        android:layout_weight="1.0"
+        android:layout_gravity="center"
+        android:id="@+id/Resolved"/>
+
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:id="@+id/textView12"/>
+        android:layout_gravity="center"
+        android:layout_weight="1.5"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/countResolved" />
+
+
+</LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView13"
-        android:layout_gravity="center_horizontal|top" />
+        android:text="Welcome User"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/Welcome"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
 
-</FrameLayout>
+</RelativeLayout>
