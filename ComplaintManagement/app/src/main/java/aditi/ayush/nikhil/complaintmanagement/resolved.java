@@ -165,6 +165,7 @@ System.out.println(bund);
 //                add_comp.putExtra("ID",IDs.get(childPosition));
 //                getActivity().startActivity(add_comp);
                 return false;
+//                TODO: open complaint details page. Intent+ putExtra = ID.
             }
         });
         return rootView;

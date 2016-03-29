@@ -141,7 +141,7 @@ public class Admin_complaints extends AppCompatActivity
                                 String content=json_ob.getString("compaint_content");
                                 String id=json_ob.getString("complaint_id");
                                 int i_res=json_ob.getInt("resolved");
-                                    int i_unres=json_ob.getInt("unresolved");
+
                                     int i_markres=json_ob.getInt("mark_for_resolution");
                                 if(i_res==1)
                                 {
@@ -149,13 +149,14 @@ public class Admin_complaints extends AppCompatActivity
                                     res_id.add(id);
                                     res_type.add("1");
                                 }
-                                else if(i_unres==1)
+                                else if(i_res==0 && i_markres == 0)
                                 {
                                     unres_content.add(content);
                                     unres_id.add(id);
                                     unres_type.add("1");
                                 }
-                                else {
+                                else  {
+//                                    ires = 0, marked = 1
                                     markedforres_content.add(content);
                                     markedforres_id.add(id);
                                     markedforres_type.add("1");
@@ -166,7 +167,6 @@ public class Admin_complaints extends AppCompatActivity
                                     String content=json_ob.getString("compaint_content");
                                     String id=json_ob.getString("complaint_id");
                                     int i_res=json_ob.getInt("resolved");
-                                    int i_unres=json_ob.getInt("unresolved");
                                     int i_markres=json_ob.getInt("mark_for_resolution");
                                     if(i_res==1)
                                     {
@@ -174,7 +174,7 @@ public class Admin_complaints extends AppCompatActivity
                                         res_id.add(id);
                                         res_type.add("2");
                                     }
-                                    else if(i_unres==1)
+                                    else if(i_res==0 && i_markres == 0)
                                     {
                                         unres_content.add(content);
                                         unres_id.add(id);
@@ -193,7 +193,6 @@ public class Admin_complaints extends AppCompatActivity
                                     String content=json_ob.getString("compaint_content");
                                     String id=json_ob.getString("complaint_id");
                                     int i_res=json_ob.getInt("resolved");
-                                    int i_unres=json_ob.getInt("unresolved");
                                     int i_markres=json_ob.getInt("mark_for_resolution");
                                     if(i_res==1)
                                     {
@@ -201,7 +200,7 @@ public class Admin_complaints extends AppCompatActivity
                                         res_id.add(id);
                                         res_type.add("3");
                                     }
-                                    else if(i_unres==1)
+                                    else if(i_res==0 && i_markres == 0)
                                     {
                                         unres_content.add(content);
                                         unres_id.add(id);
