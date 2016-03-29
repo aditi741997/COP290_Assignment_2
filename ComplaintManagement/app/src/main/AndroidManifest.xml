@@ -45,6 +45,14 @@
             android:label="@string/title_activity_change_password"
             android:theme="@style/AppTheme.NoActionBar">
 
+
+        </activity>
+        <activity
+            android:name=".Admin_complaints"
+            android:label="@string/title_activity_admin_complaints"
+            android:theme="@style/AppTheme">
+
+
         </activity>
 
     </application>

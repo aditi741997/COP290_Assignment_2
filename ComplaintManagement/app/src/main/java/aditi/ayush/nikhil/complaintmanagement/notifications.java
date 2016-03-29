@@ -42,6 +42,7 @@ public class notifications extends Fragment
         @Override
         public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+            //where is the prepare list called
 
 
 
@@ -191,7 +192,7 @@ public class notifications extends Fragment
             {
                 //        Toast.makeText(getActivity().getApplicationContext(), listDataHeader.get(groupPosition) + " : " + listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
                 String ide =Comp_id[groupPosition];
-                Intent intent=new Intent(getActivity().getApplicationContext(),Complaint_details.class);
+                Intent intent=new Intent(getActivity(),Complaint_details.class);
                 intent.putExtra("ID",ide);
                 startActivity(intent);
 
