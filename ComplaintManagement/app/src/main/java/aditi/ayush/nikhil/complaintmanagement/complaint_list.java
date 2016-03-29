@@ -30,7 +30,7 @@ public class complaint_list extends Fragment
         public static ExpandableListView expListView;
         public static List<String> listDataHeader;
         HashMap<String, List<String>> listDataChild;
-        HashMap<String,List<String>> compID;
+        HashMap<String,List<String>> compID=new HashMap<String,List<String>>();
         MyApp_cookie app_list=new MyApp_cookie();
         private long mRequestStartTime;
 
@@ -256,6 +256,7 @@ public class complaint_list extends Fragment
 
 //                new page -> complaint details.
                 String head = listDataHeader.get(groupPosition);
+                if(compID ==null) return false;
                 List<String> IDs = compID.get(head);
                 Intent add_comp = new Intent(getActivity(), Complaint_details.class);
                 add_comp.putExtra("ID",IDs.get(childPosition));

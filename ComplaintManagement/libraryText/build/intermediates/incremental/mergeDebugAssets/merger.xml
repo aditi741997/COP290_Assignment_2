@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< Updated upstream
 <merger version="3"><dataSet config="main"><source path="D:\Sem4\COP\Assgt3\COP290_Assignment_2\ComplaintManagement\libraryText\src\main\assets"/></dataSet><dataSet config="debug"><source path="D:\Sem4\COP\Assgt3\COP290_Assignment_2\ComplaintManagement\libraryText\src\debug\assets"/></dataSet></merger>
+=======
+<merger version="3"><dataSet config="main"><source path="/Users/kartikeyagupta/Desktop/Aditi/COP290_Assignment_2/ComplaintManagement/libraryText/src/main/assets"/></dataSet><dataSet config="debug"><source path="/Users/kartikeyagupta/Desktop/Aditi/COP290_Assignment_2/ComplaintManagement/libraryText/src/debug/assets"/></dataSet></merger>
+>>>>>>> Stashed changes

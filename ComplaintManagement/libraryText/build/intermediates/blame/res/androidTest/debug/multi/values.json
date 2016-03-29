@@ -1,10 +1,18 @@
 [
     {
+<<<<<<< Updated upstream
         "outputFile": "D:\\Users\\Nikhil\\AndroidStudioProjects\\Ass 2\\COP290_Assignment_2\\ComplaintManagement\\libraryText\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
         "map": []
     },
     {
         "outputFile": "D:\\Sem4\\COP\\Assgt3\\COP290_Assignment_2\\ComplaintManagement\\libraryText\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
+=======
+        "outputFile": "/Users/kartikeyagupta/Desktop/Aditi/COP290_Assignment_2/ComplaintManagement/libraryText/build/intermediates/res/merged/androidTest/debug/values/values.xml",
+        "map": []
+    },
+    {
+        "outputFile": "/Users/Nikhil/AndroidStudioProjects/Ass 2/COP290_Assignment_2/ComplaintManagement/libraryText/build/intermediates/res/merged/androidTest/debug/values/values.xml",
+>>>>>>> Stashed changes
         "map": []
     }
 ]

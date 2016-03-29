@@ -214,6 +214,26 @@ public class Admin_complaints extends AppCompatActivity
 
                                 }
 
+                                Bundle bund1=new Bundle();
+                                bund1.putStringArrayList("content",res_content);
+                                bund1.putStringArrayList("id",res_id);
+                                bund1.putStringArrayList("type",res_type);
+                                // bund1.p
+
+                                resolved.setArguments(bund1);
+                                Bundle bund2=new Bundle();
+                                bund1.putStringArrayList("content",unres_content);
+                                bund1.putStringArrayList("id",unres_id);
+                                bund1.putStringArrayList("type",unres_type);
+
+                                unresolved.setArguments(bund2);
+                                Bundle bund3=new Bundle();
+                                bund1.putStringArrayList("content",markedforres_content);
+                                bund1.putStringArrayList("id",markedforres_id);
+                                bund1.putStringArrayList("type",markedforres_type);
+                                for_res.setArguments(bund3);
+
+
 
                             }
 
@@ -237,11 +257,13 @@ public class Admin_complaints extends AppCompatActivity
         Volley.newRequestQueue(getApplicationContext()).add(cpass);
 
 
+/*
 
         Bundle bund1=new Bundle();
        bund1.putStringArrayList("content",res_content);
        bund1.putStringArrayList("id",res_id);
        bund1.putStringArrayList("type",res_type);
+       // bund1.p
 
        resolved.setArguments(bund1);
         Bundle bund2=new Bundle();
@@ -255,6 +277,7 @@ public class Admin_complaints extends AppCompatActivity
         bund1.putStringArrayList("id",markedforres_id);
         bund1.putStringArrayList("type",markedforres_type);
         for_res.setArguments(bund3);
+*/
 
 
 

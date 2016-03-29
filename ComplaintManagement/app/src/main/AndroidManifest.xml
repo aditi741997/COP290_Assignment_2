@@ -14,12 +14,13 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/FullScreen"
-            >
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ComplaintPage"
@@ -33,45 +34,31 @@
             android:name=".NewComplaint"
             android:label="@string/title_activity_new_complaint"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".Complaint_details"
             android:label="@string/title_activity_complaint_details"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ChangePassword"
             android:label="@string/title_activity_change_password"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity
             android:name=".Admin_complaints"
             android:label="@string/title_activity_admin_complaints"
-<<<<<<< HEAD
-=======
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
             android:name=".AddUser"
             android:label="@string/title_activity_add_user"
->>>>>>> 5aec7f2bca320fc2d68851d72202e23910735f46
-            android:theme="@style/AppTheme.NoActionBar">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
-        <activity
-            android:name=".AddUser"
-            android:label="@string/title_activity_add_user"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-    </application>
+       </application>
 
 </manifest>
