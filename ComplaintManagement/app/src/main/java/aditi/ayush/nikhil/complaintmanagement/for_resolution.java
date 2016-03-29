@@ -25,12 +25,12 @@ public class for_resolution extends Fragment{
     HashMap<String,List<String>> compID;
     MyApp_cookie app_list=new MyApp_cookie();
     private long mRequestStartTime;
-    ArrayList<String> res_content=new ArrayList<String>();
-    ArrayList<String> res_id=new ArrayList<String>();
-    ArrayList<String> res_type=new ArrayList<String>();
-    HashMap<Integer,String> ind=new HashMap<Integer, String>();
-    HashMap<Integer,String> hostel=new HashMap<Integer, String>();
-    HashMap<Integer,String> insti=new HashMap<Integer, String>();
+   public ArrayList<String> markedforres_content=new ArrayList<String>();
+    public ArrayList<String> markedforres_id=new ArrayList<String>();
+    public ArrayList<String> markedforres_type=new ArrayList<String>();
+    public HashMap<Integer,String> ind=new HashMap<Integer, String>();
+    public HashMap<Integer,String> hostel=new HashMap<Integer, String>();
+    public HashMap<Integer,String> insti=new HashMap<Integer, String>();
 
 
     public for_resolution()
@@ -63,20 +63,20 @@ public class for_resolution extends Fragment{
         List<String> expand1 = new ArrayList<String>();
         List<String> expand2 = new ArrayList<String>();
         List<String> expand3 = new ArrayList<String>();
-        for(int i=0;i<res_content.size();i++)
-        {if(res_type.get(i)=="1") {
-            expand1.add(res_content.get(i));
-            ind.put(ind.size(),res_id.get(i));
+        for(int i=0;i<markedforres_content.size();i++)
+        {if(markedforres_type.get(i)=="1") {
+            expand1.add(markedforres_content.get(i));
+            ind.put(ind.size(),markedforres_id.get(i));
         }
-        else if(res_type.get(i)=="2")
+        else if(markedforres_type.get(i)=="2")
         {
-            expand2.add(res_content.get(i));
-            hostel.put(hostel.size(),res_id.get(i));
+            expand2.add(markedforres_content.get(i));
+            hostel.put(hostel.size(),markedforres_id.get(i));
         }
         else
         {
-            expand3.add(res_content.get(i));
-            insti.put(insti.size(),res_id.get(i));
+            expand3.add(markedforres_content.get(i));
+            insti.put(insti.size(),markedforres_id.get(i));
         }
 
         }
@@ -93,21 +93,26 @@ public class for_resolution extends Fragment{
 
         expListView = (ExpandableListView) rootView.findViewById(R.id.cmpExp);
 
-        Button addnew = (Button) rootView.findViewById(R.id.addnew);
-
-        addnew.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
-                Intent add_comp = new Intent(getActivity(), NewComplaint.class);
-                getActivity().startActivity(add_comp);
-            }
-
-        });
+//        Button addnew = (Button) rootView.findViewById(R.id.addnew);
+//
+//        addnew.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent add_comp = new Intent(getActivity(), NewComplaint.class);
+//                getActivity().startActivity(add_comp);
+//            }
+//
+//        });
         Bundle bund=this.getArguments();
-        res_content=bund.getStringArrayList("content");
-        res_id=bund.getStringArrayList("id");
-        res_type=bund.getStringArrayList("type");
+        if(bund==null)
+        {
+            return null;
+        }
+        System.out.println(bund);
+        markedforres_content=bund.getStringArrayList("content");
+        markedforres_id=bund.getStringArrayList("id");
+        markedforres_type=bund.getStringArrayList("type");
         prepareListData();
 
         listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);

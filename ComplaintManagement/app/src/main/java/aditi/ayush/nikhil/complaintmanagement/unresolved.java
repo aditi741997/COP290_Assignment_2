@@ -93,18 +93,19 @@ public class unresolved extends Fragment{
 
         expListView = (ExpandableListView) rootView.findViewById(R.id.cmpExp);
 
-        Button addnew = (Button) rootView.findViewById(R.id.addnew);
-
-        addnew.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
-                Intent add_comp = new Intent(getActivity(), NewComplaint.class);
-                getActivity().startActivity(add_comp);
-            }
-
-        });
+//        Button addnew = (Button) rootView.findViewById(R.id.addnew);
+//
+//        addnew.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent add_comp = new Intent(getActivity(), NewComplaint.class);
+//                getActivity().startActivity(add_comp);
+//            }
+//
+//        });
         Bundle bund=this.getArguments();
+        if(bund == null ) return null;
         unres_content=bund.getStringArrayList("content");
         unres_id=bund.getStringArrayList("id");
         unres_type=bund.getStringArrayList("type");

@@ -37,11 +37,7 @@
             android:name=".Complaint_details"
             android:label="@string/title_activity_complaint_details"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ChangePassword"
@@ -51,7 +47,11 @@
             android:name=".Admin_complaints"
             android:label="@string/title_activity_admin_complaints"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".AddUser"
