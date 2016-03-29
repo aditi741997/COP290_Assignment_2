@@ -41,6 +41,7 @@ public class Complaint_details extends AppCompatActivity {
     MyApp_cookie cook = new MyApp_cookie();
     boolean up = false;
     boolean down = false;
+    String prev_compID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +89,7 @@ public class Complaint_details extends AppCompatActivity {
                             JSONObject json_data = new JSONObject(response);
                             System.out.println(json_data);
 
-                            int resp = json_data.getInt("response");
+                            int resp = json_data.getInt("resp");
 
 //                                TODO: Color of vote be blue
                             if (resp == 1)
@@ -165,10 +166,14 @@ public class Complaint_details extends AppCompatActivity {
             down.setVisibility(View.INVISIBLE);
             downV.setVisibility(View.INVISIBLE);
 
-            Button higher = (Button) findViewById(R.id.takeHigher);
-            higher.setVisibility(View.INVISIBLE);
+
 
             hostel.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            Button higher = (Button) findViewById(R.id.takeHigher);
+            higher.setVisibility(View.INVISIBLE);
         }
 //TODO: visibility of call/mail admin depends upon if user is admin or no.
         String comp_details = getResources().getString(R.string.IP) + "/complaint_data/get_complaint_details.json?complaint_id=" + c_id;
@@ -228,7 +233,7 @@ public class Complaint_details extends AppCompatActivity {
                             TextView cont = (TextView) findViewById(R.id.content);
                             cont.setText(content);
 
-                            String extra = details.getString("");
+                            String extra = details.getString("extra_info");
                             TextView det = (TextView) findViewById(R.id.det_extra);
                             det.setText(extra);
 
@@ -236,13 +241,15 @@ public class Complaint_details extends AppCompatActivity {
                             TextView admincom = (TextView) findViewById(R.id.admin_com);
                             admincom.setText(admin_co);
 
+                            prev_compID = details.getString("prev_id");
+
                             if (!(c_id.substring(0,2).equals("i_")))
                             {
 //                                populate hostel, up,down,neut. TODO
                                 int upV = details.getInt("num_up");
                                 int downV = details.getInt("num_down");
-                                int neutV = details.getInt("num_neutr");
-
+//                                int neutV = details.getInt("num_neutr");
+                                System.out.println("DHINCHAK " + upV + ", down:" + downV);
                                 up.setText("Upvotes : " + upV);
                                 down.setText("Downvotes : " + downV);
 
@@ -505,12 +512,28 @@ public class Complaint_details extends AppCompatActivity {
     }
 
 
+    public  void prevThread(View view)
+    {
+        if (prev_compID == "")
+        {
+            Toast.makeText(getApplicationContext(),"No previous complaint!", Toast.LENGTH_SHORT).show();
+        }
+        else
+
+        {
+            Intent prev = new Intent(getApplicationContext(),Complaint_details.class);
+            prev.putExtra("ID",prev_compID);
+            startActivity(prev);
+        }
+    }
+
 
     public  void takeHigher(View view)
     {
         if (c_id.substring(0,2).equals("i_"))
         {
-            String higher_user = getResources().getString(R.string.IP) + "/complaint/hig_auth.json?complaint_id=" + c_id;
+            System.out.println("Taking to higher. DHINCHAK");
+            String higher_user = getResources().getString(R.string.IP) + "/complaint/high_auth.json?complaint_id=" + c_id;
             JsonObjectRequest jsoncomm = new JsonObjectRequest(Request.Method.GET,
                     higher_user, null, new Response.Listener<JSONObject>() {
 
