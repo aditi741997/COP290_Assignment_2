@@ -193,7 +193,7 @@ def high_auth():
         compid = request.vars.complaint_id
         compdetails = db(db.indiv_complaints.complaint_id==compid).select()
         if compdetails==[]:
-            return dict(success=False,description="Invalid complaint id")
+            return dict(Success=False,description="Invalid complaint id")
         else:
             compdetails=compdetails[0]
             if (compdetails["username"]==auth.user.username) and (complaint_id[:2]=="in"):

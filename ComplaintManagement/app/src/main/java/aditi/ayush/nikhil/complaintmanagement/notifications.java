@@ -33,7 +33,7 @@ public class notifications extends Fragment
         MyApp_cookie app_list=new MyApp_cookie();
         private long mRequestStartTime;
 
-        public String [] Comp_id={};
+        public ArrayList<String> Comp_id= new ArrayList<String>();
 
         public notifications() {
         // Required empty public constructor
@@ -92,7 +92,7 @@ public class notifications extends Fragment
                                 expand.add("Source User:    "+ src_user_id);
                                 expand.add("Description:    "+ description);
                                 expand.add("Time:   " + post_time);
-                                Comp_id[i]=complaint_id;
+                                Comp_id.add(complaint_id);
                                 listDataChild.put(complaint_id, expand);
                                 System.out.println("notif json working"+ complaint_id);
                             }
@@ -191,7 +191,7 @@ public class notifications extends Fragment
                                         int groupPosition, int childPosition, long id)
             {
                 //        Toast.makeText(getActivity().getApplicationContext(), listDataHeader.get(groupPosition) + " : " + listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
-                String ide =Comp_id[groupPosition];
+                String ide =Comp_id.get(groupPosition);
                 Intent intent=new Intent(getActivity(),Complaint_details.class);
                 intent.putExtra("ID",ide);
                 startActivity(intent);
