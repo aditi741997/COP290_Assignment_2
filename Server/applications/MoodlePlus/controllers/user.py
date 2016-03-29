@@ -11,7 +11,7 @@ def preferences():
     instipref = prefs["insti_pref"]
     otherpref = prefs["extra_pref"]
     categories =db(db.complaint_category.category_id>=0).select()
-    return dict(hostel_prefs = hostpref, insti_pref = instipref, extra_pref = otherpref,categories=categories)
+    return dict(hostel_pref = hostpref, insti_pref = instipref, extra_pref = otherpref,categories=categories)
 
 def update_preferences():
     hostelpref = (request.vars.hostel)
@@ -26,5 +26,5 @@ def update_preferences():
     hostpref = prefs["hostel_pref"]
     instipref = prefs["insti_pref"]
     otherpref = prefs["extra_pref"]
-    return dict(success=True,hostelprefs = hostpref, instipref = instipref, extrapref = otherpref)
+    return dict(success=True,hostelpref = hostpref, instipref = instipref, extrapref = otherpref)
 

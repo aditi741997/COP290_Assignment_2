@@ -38,7 +38,8 @@
         android:layout_height="wrap_content"
         android:text="Back to Home"
         android:id="@+id/button3"
-        android:layout_weight="1.0" />
+        android:layout_weight="1.0"
+        android:onClick="back" />
 
     <Button
         android:layout_width="fill_parent"
@@ -154,7 +155,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BSW Related"
+            android:text="BSW_Related"
             android:id="@+id/checkBox7"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"
@@ -289,7 +290,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BSW Related"
+            android:text="BSW_Related"
             android:id="@+id/checkBox17"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"

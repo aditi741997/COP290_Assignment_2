@@ -160,10 +160,10 @@ public class Complaint_details extends AppCompatActivity {
         if (c_id.substring(0,2).equals("i_"))
         {
             up.setVisibility(View.INVISIBLE);
-//            upV.setVisibility(View.INVISIBLE);
+            upV.setVisibility(View.INVISIBLE);
 
             down.setVisibility(View.INVISIBLE);
-//            downV.setVisibility(View.INVISIBLE);
+            downV.setVisibility(View.INVISIBLE);
 
             Button higher = (Button) findViewById(R.id.takeHigher);
             higher.setVisibility(View.INVISIBLE);
@@ -337,6 +337,7 @@ public class Complaint_details extends AppCompatActivity {
         Dialog dialog = new Dialog(Complaint_details.this);
         dialog.setTitle("Contact Admin");
         dialog.setContentView(R.layout.admin_dialog);
+        dialog.setCanceledOnTouchOutside(true);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
     }
@@ -504,6 +505,7 @@ public class Complaint_details extends AppCompatActivity {
     }
 
 
+
     public  void takeHigher(View view)
     {
         if (c_id.substring(0,2).equals("i_"))
@@ -560,7 +562,6 @@ public class Complaint_details extends AppCompatActivity {
         {
             Intent callIntent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:" + admin_no));
             startActivity(callIntent);
-
         }
     }
 
@@ -574,6 +575,7 @@ public class Complaint_details extends AppCompatActivity {
             emailIntent.setType("text/plain");
             emailIntent.putExtra(Intent.EXTRA_EMAIL, admin_email);
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Mail regarding Complaint ID: " + c_id);
+            startActivity(emailIntent);
 
             try {
                 startActivity(Intent.createChooser(emailIntent, "Send mail..."));

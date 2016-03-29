@@ -25,6 +25,7 @@
             android:text="Call Admin"
             android:background="@color/colorPrimary"
             android:textSize="18dp"
+            android:onClick="call_admin"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
             android:textColor="#FFFFFF"
@@ -56,6 +57,7 @@
             android:background="@color/colorPrimary"
             android:textColor="#FFFFFF"
             android:paddingLeft="10dp"
+            android:onClick="mail_admin"
             android:textSize="18dp"
             android:id="@+id/button4"
             style="?android:attr/borderlessButtonStyle"
@@ -68,13 +70,6 @@
         android:id="@+id/cancel"
         android:layout_marginTop="0.1dp">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cancel"
-            android:textColor="#FFFFFF"
-            android:background="@color/colorPrimary"
-            android:id="@+id/button2"/>
 
     </TableRow>
 </LinearLayout>

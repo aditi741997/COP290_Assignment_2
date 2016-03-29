@@ -28,6 +28,7 @@ CookieManager cookieManage;
         CookieHandler.setDefault(cookieManage);
         super.onCreate();
         Hostels = new ArrayList<String>();
+        Hostels.add("None");
         Hostels.add("Himadri");
         Hostels.add("Kailash");
         Hostels.add("Satpura");
@@ -39,8 +40,8 @@ CookieManager cookieManage;
         Hostels.add("Kumaon");
         Hostels.add("Nilgiri");
         Hostels.add("Vindhyachal");
-        Hostels.add("");
-        Hostels.add("");
+        Hostels.add("Aravali");
+        Hostels.add("Shivalik");
 
 //        courses=new ArrayList<>();
         //urls=new String[10];

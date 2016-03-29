@@ -59,8 +59,9 @@ public class AddUser extends AppCompatActivity {
         String details = pass.getText().toString();
 
         Spinner host = (Spinner) findViewById(R.id.spinner);
-        int hostel = host.getSelectedItemPosition();
+        int hostel = host.getSelectedItemPosition() - 1;
 //        hostel
+//        separate page to add admin.
 //        admin or no?
 //        if yes, then : 1. category 2. level(-1 denotes special user)
     }

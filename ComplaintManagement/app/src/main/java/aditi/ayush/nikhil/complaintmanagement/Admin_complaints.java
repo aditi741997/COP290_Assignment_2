@@ -517,17 +517,38 @@ public class Admin_complaints extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.complaints) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.Notifications)
+        {
 
-        } else if (id == R.id.nav_slideshow) {
+        }
+        else if (id == R.id.action_Change_pass)
+        { Intent i=new Intent(Admin_complaints.this,ChangePassword.class);
+            startActivity(i);
+        } else if (id == R.id.Set_Preferences)
+        {Intent i =new Intent(Admin_complaints.this,Preferences.class);
+            startActivity(i);
+        } else if (id == R.id.action_logout)
+        { String url= getResources().getString(R.string.IP) + "/default/logout.json";
+            JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response)
+                        {Intent i=new Intent(Admin_complaints.this,MainActivity.class);
+                            Toast.makeText(Admin_complaints.this,"",Toast.LENGTH_SHORT).show();
+                            startActivity(i);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(Admin_complaints.this, error.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    });
 
-        } else if (id == R.id.nav_manage) {
+            Volley.newRequestQueue(this).add(stringRequest);
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 
