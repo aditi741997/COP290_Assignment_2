@@ -191,6 +191,9 @@ def high_auth():
     if ("complaint_id" in request.vars and auth.is_logged_in()):
         # For indiv complaints only
         compid = request.vars.complaint_id
+        complaint_id = compid
+        if not(compid[:2]=="i_"):
+            return dict(Success=False,description="Not an individual complaint")
         compdetails = db(db.indiv_complaints.complaint_id==compid).select()
         if compdetails==[]:
             return dict(Success=False,description="Invalid complaint id")
@@ -235,6 +238,7 @@ def high_auth():
                     db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=compdetails["admin_id"],description="Complaint Taken to higher authority!")
                     return dict(Sucess=True)
             return dict(Success=False,description="Complaint not resolved yet")
+    return dict(Success=False,descriptiong="User not logged in or complaint id not given")
 
 
 

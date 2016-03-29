@@ -264,6 +264,16 @@ def api():
 		else:
 			raise HTTP(parser.status,parser.error)
 	def POST(table_name,**vars):
+		if not(table_name=="login_post"):
+			raise HTTP(400)
+		else:
+			userid = request.vars.userid
+			password = request.vars.password
+			user = auth.login_bare(userid,password)
+			admin = db(db.admin_info.username==userid).select()
+			special = db((db.users.username==userid)&(db.users.user_type<0)).select()
+			return dict(success=False if not user else True, special=(len(special)>0),admin=(len(admin)>0),Unique_Id=user["username"] if user else "",userid =userid,passwd =password)
+			# return dict(variables=list(vars),var2=request.vars)
 		return db[table_name].validate_and_insert(**vars)
 	def PUT(table_name,record_id,**vars):
 		return db(db[table_name]._id==record_id).update(**vars)
@@ -860,41 +870,41 @@ def populate_db():
 	#     int_value=2,
 	#     string_value="2"
 	# )
-def api():
-	return """
-Moodle Plus API (ver 1.0)
--------------------------
+# def api():
+# 	return """
+# Moodle Plus API (ver 1.0)
+# -------------------------
 
-Url: /default/login.json
-Input params:
-	userid: (string)
-	password: (string)
-Output params:
-	success: (boolean) True if login success and False otherwise
-	user: (json) User details if login is successful otherwise False
-
-
-Url: /default/logout.json
-Input params:
-Output params:
-	success: (boolean) True if logout successful and False otherwise
+# Url: /default/login.json
+# Input params:
+# 	userid: (string)
+# 	password: (string)
+# Output params:
+# 	success: (boolean) True if login success and False otherwise
+# 	user: (json) User details if login is successful otherwise False
 
 
-Url: /courses/list.json
-Input params:
-Output params:
-	current_year: (int)
-	current_sem: (int) 0 for summer, 1 break, 2 winter
-	courses: (List) list of courses
-	user: (dictionary) user details
+# Url: /default/logout.json
+# Input params:
+# Output params:
+# 	success: (boolean) True if logout successful and False otherwise
 
-Url: /threads/new.json
-Input params:
-	title: (string) can't be empty
-	description: (string) can't be empty
-	course_code: (string) must be a registered courses
-Output params:
-	success: (bool) True or False depending on whether thread was posted
-	thread_id: (bool) id of new thread created
 
-	"""
+# Url: /courses/list.json
+# Input params:
+# Output params:
+# 	current_year: (int)
+# 	current_sem: (int) 0 for summer, 1 break, 2 winter
+# 	courses: (List) list of courses
+# 	user: (dictionary) user details
+
+# Url: /threads/new.json
+# Input params:
+# 	title: (string) can't be empty
+# 	description: (string) can't be empty
+# 	course_code: (string) must be a registered courses
+# Output params:
+# 	success: (bool) True or False depending on whether thread was posted
+# 	thread_id: (bool) id of new thread created
+
+# 	"""
