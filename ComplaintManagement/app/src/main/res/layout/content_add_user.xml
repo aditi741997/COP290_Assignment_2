@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:float="http://schemas.android.com/apk/res-auto"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="aditi.ayush.nikhil.complaintmanagement.AddUser"
     tools:showIn="@layout/activity_add_user"
@@ -44,10 +43,27 @@
             android:layout_gravity="bottom"/>
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentTop="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout2">
+
     <com.wrapp.floatlabelededittext.FloatLabeledEditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         float:fletTextAppearance="@style/floatlabelededittext"
         android:id="@+id/CoolUser">
     <EditText
@@ -57,6 +73,7 @@
         android:backgroundTintMode="add"
         android:hint="Username"
         android:textColorHint="#BBBBBB"
+        android:layout_marginTop="10dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
@@ -66,7 +83,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/CoolUser"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         float:fletTextAppearance="@style/floatlabelededittext"
         android:id="@+id/CoolPassword">
     <EditText
@@ -77,14 +94,15 @@
         android:hint="Password"
         android:textColorHint="#BBBBBB"
         android:layout_below="@+id/CoolUser"
-        android:layout_centerHorizontal="true" />
+        android:layout_gravity="center_horizontal"
+        />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
     <com.wrapp.floatlabelededittext.FloatLabeledEditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/CoolPassword"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         float:fletTextAppearance="@style/floatlabelededittext"
         android:id="@+id/CoolReEnter">
     <EditText
@@ -104,15 +122,17 @@
         android:id="@+id/spinner"
         android:paddingLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_below="@+id/CoolReEnter"
-        android:layout_centerHorizontal="true" />
+        android:layout_gravity="center_horizontal"
+        />
 
 
     <com.wrapp.floatlabelededittext.FloatLabeledEditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinner"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         float:fletTextAppearance="@style/floatlabelededittext"
         android:id="@+id/CoolPhone">
     <EditText
@@ -130,7 +150,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/CoolPhone"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         float:fletTextAppearance="@style/floatlabelededittext"
         android:id="@+id/CoolDetails">
     <EditText
@@ -144,4 +164,174 @@
         android:layout_centerHorizontal="true" />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add as Admin"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/checkBox"
+        android:buttonTint="#BBBBBB"
+        android:layout_below="@+id/CoolDetails"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Category"
+            android:id="@+id/textView11"
+            android:textSize="18dp"
+            android:textColor="#888888"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="55dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sports"
+                android:textColor="@color/colorPrimary"
+                android:buttonTint="#BBBBBB"
+                android:id="@+id/radioButton1"
+                android:layout_marginRight="100dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Electricity"
+                android:textColor="@color/colorPrimary"
+                android:buttonTint="#BBBBBB"
+                android:id="@+id/radioButton2"
+                android:layout_marginRight="100dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Water"
+                android:textColor="@color/colorPrimary"
+                android:buttonTint="#BBBBBB"
+                android:id="@+id/radioButton3"
+                android:layout_marginRight="100dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MessFood"
+                android:textColor="@color/colorPrimary"
+                android:buttonTint="#BBBBBB"
+                android:id="@+id/radioButton4"
+                android:layout_marginRight="100dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Infrastructure"
+                android:textColor="@color/colorPrimary"
+                android:buttonTint="#BBBBBB"
+                android:id="@+id/radioButton5"
+                android:layout_marginRight="100dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Laundry"
+                android:textColor="@color/colorPrimary"
+                android:buttonTint="#BBBBBB"
+                android:id="@+id/radioButton6"
+                android:layout_marginRight="100dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BSW_Related"
+                android:textColor="@color/colorPrimary"
+                android:buttonTint="#BBBBBB"
+                android:id="@+id/radioButton7"
+                android:layout_marginRight="100dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dance"
+                android:textColor="@color/colorPrimary"
+                android:buttonTint="#BBBBBB"
+                android:id="@+id/radioButton8"
+                android:layout_marginRight="100dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Music"
+                android:textColor="@color/colorPrimary"
+                android:buttonTint="#BBBBBB"
+                android:id="@+id/radioButton9"
+                android:layout_marginRight="100dp"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Debating"
+                android:textColor="@color/colorPrimary"
+                android:buttonTint="#BBBBBB"
+                android:id="@+id/radioButton10"
+                android:layout_marginRight="100dp"
+                />
+
+        </RadioGroup>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textColor="#888888"
+                android:text="Admin Level"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:id="@+id/textView10" />
+
+            <NumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/numberPicker"
+                android:background="@color/white"
+                android:layout_marginLeft="70dp"/>
+        </TableRow>
+
+        <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBox"
+        android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+        float:fletTextAppearance="@style/floatlabelededittext"
+        android:id="@+id/CoolAdminDetails">
+        <EditText
+            android:layout_width="300dp"
+            android:backgroundTintMode="add"
+            android:layout_height="wrap_content"
+            android:id="@+id/AdminDetails"
+            android:layout_below="@+id/Phone"
+            android:textColorHint="#BBBBBB"
+            android:hint="Admin Details"
+            android:layout_centerHorizontal="true" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

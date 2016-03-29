@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< Updated upstream
-<merger version="3"><dataSet config="main"><source path="D:\Sem4\COP\Assgt3\COP290_Assignment_2\ComplaintManagement\volley\src\main\assets"/></dataSet><dataSet config="debug"><source path="D:\Sem4\COP\Assgt3\COP290_Assignment_2\ComplaintManagement\volley\src\debug\assets"/></dataSet></merger>
-=======
-<merger version="3"><dataSet config="main"><source path="/Users/kartikeyagupta/Desktop/Aditi/COP290_Assignment_2/ComplaintManagement/volley/src/main/assets"/></dataSet><dataSet config="debug"><source path="/Users/kartikeyagupta/Desktop/Aditi/COP290_Assignment_2/ComplaintManagement/volley/src/debug/assets"/></dataSet></merger>
->>>>>>> Stashed changes
+<merger version="3"><dataSet config="main"><source path="/Users/Nikhil/AndroidStudioProjects/Ass 2/COP290_Assignment_2/ComplaintManagement/volley/src/main/assets"/></dataSet><dataSet config="debug"><source path="/Users/Nikhil/AndroidStudioProjects/Ass 2/COP290_Assignment_2/ComplaintManagement/volley/src/debug/assets"/></dataSet></merger>

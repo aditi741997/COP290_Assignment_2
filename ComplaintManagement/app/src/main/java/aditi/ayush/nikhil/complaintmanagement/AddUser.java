@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ import java.util.List;
 
 public class AddUser extends AppCompatActivity {
     MyApp_cookie cook = new MyApp_cookie();
+
+    NumberPicker myNumber = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,13 @@ public class AddUser extends AppCompatActivity {
         ArrayAdapter<String> spin_ada = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item,cook.Hostels);
         spin_ada.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spin.setAdapter(spin_ada);
+        //spin.setAdapter(spin_ada);
+
+        myNumber = (NumberPicker) findViewById(R.id.numberPicker);
+        myNumber.setMaxValue(10);
+        myNumber.setMinValue(0);
+        myNumber.setWrapSelectorWheel(false);
+
 
     }
 
