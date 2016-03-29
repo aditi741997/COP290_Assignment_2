@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:float="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -40,25 +41,43 @@
         android:layout_marginTop="8dp"
         android:layout_alignLeft="@+id/categ" />
 
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TypeSpinner"
+        android:layout_centerHorizontal="true"
+        float:fletTextAppearance="@style/floatlabelededittext"
+        android:id="@+id/Coolcontent">
     <EditText android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Complaint content"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/TypeSpinner"
         android:id="@+id/content"/>
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Coolcontent"
+        android:layout_centerHorizontal="true"
+        float:fletTextAppearance="@style/floatlabelededittext"
+        android:id="@+id/CoolDetail">
     <EditText android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Extra details"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/content"
         android:id="@+id/extradet"/>
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Post as anonymous?"
-        android:layout_below="@+id/extradet"
+        android:layout_below="@+id/CoolDetail"
         android:layout_marginTop="8dp"
         android:id="@+id/anony"/>
     <Button

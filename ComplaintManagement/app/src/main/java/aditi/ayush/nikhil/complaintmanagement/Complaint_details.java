@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TableRow;
@@ -32,6 +33,9 @@ public class Complaint_details extends AppCompatActivity {
     String c_id;
     String admin_email;
     String admin_no;
+    MyApp_cookie cook = new MyApp_cookie();
+    boolean up = false;
+    boolean down = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,66 @@ public class Complaint_details extends AppCompatActivity {
         populateData();
 
         populateComments();
+
+        updateResponse();
+//TODO: check box for satisfaction. visibility depends on resolved or not.
+    }
+
+    public void updateResponse()
+    {
+//        get response, change colors, up, down accordingly.
+        String getResp = getResources().getString(R.string.IP) + "/complaint/get_user_response.json?complain_id=" + c_id;
+        StringRequest compData = new StringRequest (Request.Method.GET, getResp,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        Log.i("yo", "why this ... working" + response);
+///                        System.out.println(response.toString());
+//                        Toast.makeText(getActivity().getApplicationContext(),
+//                                "Logout ",
+//                                Toast.LENGTH_LONG).show();
+                        try
+                        {
+//                            save admin no, email (call another api)
+                            JSONObject json_data = new JSONObject(response);
+                            System.out.println(json_data);
+
+                            int resp = json_data.getInt("response");
+
+//                                TODO: Color of vote be blue
+                            if (resp == 1)
+                            {
+                                up =true;
+                                down = false;
+                            }
+                            else if (resp == -1)
+                            {
+                                down = true;
+                                up = false;
+                            }
+
+
+
+                        } catch (Exception e)
+                        {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),
+                                    "Error: " + e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("yo", "why this not working");
+                        //  Toast.makeText(getActivity().getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+        Volley.newRequestQueue(getApplicationContext()).add(compData);
+
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,12 +126,12 @@ public class Complaint_details extends AppCompatActivity {
         });*/
     }
 
+
     public  void populateData()
     {
 //        c_id = "i_7";
         final TextView up = (TextView) findViewById(R.id.upVote);
         final TextView down = (TextView) findViewById(R.id.downVote);
-        //final TextView neut = (TextView) findViewById(R.id.neutVote);
         TableRow hostel = (TableRow) findViewById(R.id.hostelRow);
 
         if (c_id.substring(0,2).equals("i_"))
@@ -76,7 +140,8 @@ public class Complaint_details extends AppCompatActivity {
 
             down.setVisibility(View.INVISIBLE);
 
-          //  neut.setVisibility(View.INVISIBLE);
+            Button higher = (Button) findViewById(R.id.takeHigher);
+            higher.setVisibility(View.INVISIBLE);
 
             hostel.setVisibility(View.INVISIBLE);
         }
@@ -150,8 +215,7 @@ public class Complaint_details extends AppCompatActivity {
 
                                 up.setText("Upvotes : " + upV);
                                 down.setText("Downvotes : " + downV);
-            //                    neut.setText("Neutral : " + neutV);
-//                                hostel : get string from server directly.
+
                                 String hostelname = json_data.getString("hostelname");
                                 TextView h_name = (TextView) findViewById(R.id.Hostel);
                                 h_name.setText(hostelname);
@@ -290,45 +354,49 @@ public class Complaint_details extends AppCompatActivity {
 
     public  void takeHigher(View view)
     {
-        String higher_user = getResources().getString(R.string.IP);
-        JsonObjectRequest jsoncomm = new JsonObjectRequest(Request.Method.GET,
-                higher_user, null, new Response.Listener<JSONObject>() {
+        if (c_id.substring(0,2).equals("i_"))
+        {
+            String higher_user = getResources().getString(R.string.IP) + "/complaint/hig_auth.json?complaint_id=" + c_id;
+            JsonObjectRequest jsoncomm = new JsonObjectRequest(Request.Method.GET,
+                    higher_user, null, new Response.Listener<JSONObject>() {
 
-            @Override
-            public void onResponse(JSONObject response) {
-                //Log.d(TAG, response.toString());
+                @Override
+                public void onResponse(JSONObject response) {
+                    //Log.d(TAG, response.toString());
 
-                try {
-                    // Parsing json object response
-                    // response will be a json object
-                    boolean success = response.getBoolean("Success");
-                    //  String email = response.getString("email");
-                    if(success)
-                    {
-                        Toast.makeText(getApplicationContext(),"Complaint taken to higher authority successfully!",Toast.LENGTH_SHORT).show();
+                    try {
+                        // Parsing json object response
+                        // response will be a json object
+                        boolean success = response.getBoolean("Success");
+                        //  String email = response.getString("email");
+                        if(success)
+                        {
+                            Toast.makeText(getApplicationContext(),"Complaint taken to higher authority successfully!",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(),response.getString("description"),Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    else
+                    catch (JSONException e)
                     {
-                        Toast.makeText(getApplicationContext(),"Complaint couldnt be forwarded.",Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
-                catch (JSONException e)
-                {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d("Tag", "Error: " + error.getMessage());
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-            }
-        }, new Response.ErrorListener() {
+            });
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("Tag", "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            Volley.newRequestQueue(getApplicationContext()).add(jsoncomm);
 
-        Volley.newRequestQueue(getApplicationContext()).add(jsoncomm);
+        }
 
 
     }
@@ -353,7 +421,7 @@ public class Complaint_details extends AppCompatActivity {
             emailIntent.setData(Uri.parse("mailto:"));
             emailIntent.setType("text/plain");
             emailIntent.putExtra(Intent.EXTRA_EMAIL, admin_email);
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Mail regarding Complaint ID: " + c_id);
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Mail regarding Complaint ID: " + c_id);
 
             try {
                 startActivity(Intent.createChooser(emailIntent, "Send mail..."));
@@ -365,6 +433,116 @@ public class Complaint_details extends AppCompatActivity {
             }
         }
     }
+
+    public void upVote(View view)
+    {
+        if (!up)
+        {
+            up = true;
+            down = false;
+//            TODO: Make downVote bttn blue.
+//            API
+            String upVote = getResources().getString(R.string.IP) + "/complaint/put_user_status.json?complaint_id=" + c_id + "&response=" + "1";
+            JsonObjectRequest jsoncomm = new JsonObjectRequest(Request.Method.GET,
+                    upVote, null, new Response.Listener<JSONObject>() {
+
+                @Override
+                public void onResponse(JSONObject response) {
+                    //Log.d(TAG, response.toString());
+
+                    try {
+                        // Parsing json object response
+                        // response will be a json object
+                        boolean success = response.getBoolean("Success");
+                        //  String email = response.getString("email");
+                        if(success)
+                        {
+                            Toast.makeText(getApplicationContext(),"You upvoted this complaint!",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(),"Upvote unsuccessful",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d("Tag", "Error: " + error.getMessage());
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            Volley.newRequestQueue(getApplicationContext()).add(jsoncomm);
+        }
+        else
+        {
+            Toast.makeText(this, "You have already upvoted this complaint!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public  void downVote(View view)
+    {
+        if (!down)
+        {
+            down = true;
+            up = false;
+            //            TODO: Make upVote bttn blue.
+//            API
+            String downvote = getResources().getString(R.string.IP) + "/complaint/put_user_status.json?complaint_id=" + c_id + "&response=" + "-1";
+            JsonObjectRequest jsoncomm = new JsonObjectRequest(Request.Method.GET,
+                    downvote, null, new Response.Listener<JSONObject>() {
+
+                @Override
+                public void onResponse(JSONObject response) {
+                    //Log.d(TAG, response.toString());
+
+                    try {
+                        // Parsing json object response
+                        // response will be a json object
+                        boolean success = response.getBoolean("Success");
+                        //  String email = response.getString("email");
+                        if(success)
+                        {
+                            Toast.makeText(getApplicationContext(),"You downvoted this complaint!",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(),"Downvote unsuccessful",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d("Tag", "Error: " + error.getMessage());
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            Volley.newRequestQueue(getApplicationContext()).add(jsoncomm);
+        }
+        else
+        {
+            Toast.makeText(this, "You have already downvoted this complaint!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
 
 

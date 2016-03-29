@@ -83,4 +83,5 @@
     <string name="title_activity_complaint_details">Complaint_details</string>
     <string name="title_activity_change_password">ChangePassword</string>
     <string name="title_activity_admin_complaints">Admin_complaints</string>
+    <string name="title_activity_add_user">AddUser</string>
 </resources>

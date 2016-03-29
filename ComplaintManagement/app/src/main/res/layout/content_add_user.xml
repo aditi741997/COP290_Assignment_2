@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:float="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="aditi.ayush.nikhil.complaintmanagement.AddUser"
+    tools:showIn="@layout/activity_add_user"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Create another User"
+            android:background="@drawable/plainbutton"
+            android:id="@+id/call_adm"
+            android:textColor="@color/textColorPrimary"
+            android:layout_weight="1.0"
+            android:layout_marginRight="0.2dp"
+            android:layout_gravity="bottom"/>
+
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Save User Details"
+            android:background="@drawable/plainbutton"
+            android:id="@+id/mail_Adm"
+            android:textColor="@color/textColorPrimary"
+            android:layout_weight="1.0"
+            android:layout_gravity="bottom"/>
+    </LinearLayout>
+
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        float:fletTextAppearance="@style/floatlabelededittext"
+        android:id="@+id/CoolUser">
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:hint="Username"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CoolUser"
+        android:layout_centerHorizontal="true"
+        float:fletTextAppearance="@style/floatlabelededittext"
+        android:id="@+id/CoolPassword">
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:hint="Password"
+        android:layout_below="@+id/CoolUser"
+        android:layout_centerHorizontal="true" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CoolPassword"
+        android:layout_centerHorizontal="true"
+        float:fletTextAppearance="@style/floatlabelededittext"
+        android:id="@+id/CoolReEnter">
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText3"
+        android:layout_below="@+id/CoolPassword"
+        android:hint="Re-enter Password"
+        android:layout_centerHorizontal="true" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_below="@+id/CoolReEnter"
+        android:layout_centerHorizontal="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add as Special User"
+        android:id="@+id/radioButton"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/CoolDetails"
+        android:layout_centerHorizontal="true" />
+
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
+        android:layout_centerHorizontal="true"
+        float:fletTextAppearance="@style/floatlabelededittext"
+        android:id="@+id/CoolPhone">
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/Phone"
+        android:layout_below="@+id/radioButton"
+        android:hint="Phone No."
+        android:layout_centerHorizontal="true" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CoolPhone"
+        android:layout_centerHorizontal="true"
+        float:fletTextAppearance="@style/floatlabelededittext"
+        android:id="@+id/CoolDetails">
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/Details"
+        android:layout_below="@+id/Phone"
+        android:hint="Additional Details"
+        android:layout_centerHorizontal="true" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+</RelativeLayout>
