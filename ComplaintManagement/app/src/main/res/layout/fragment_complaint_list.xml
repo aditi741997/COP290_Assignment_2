@@ -28,6 +28,7 @@ android:background="@color/ListBackground"
         android:layout_height="wrap_content"
         android:text="Add a complaint"
         android:layout_below="@id/cmpExp"
+        android:background="@drawable/plainbutton"
         android:id="@+id/addnew"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true" />
