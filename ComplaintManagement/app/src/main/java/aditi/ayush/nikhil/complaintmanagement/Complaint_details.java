@@ -337,6 +337,7 @@ public class Complaint_details extends AppCompatActivity {
         Dialog dialog = new Dialog(Complaint_details.this);
         dialog.setTitle("Contact Admin");
         dialog.setContentView(R.layout.admin_dialog);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.show();
     }
 

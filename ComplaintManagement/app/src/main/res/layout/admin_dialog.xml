@@ -15,7 +15,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/imageView1"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/ic_menu_phone"
             android:layout_gravity="center"/>
 
@@ -24,7 +24,9 @@
             android:layout_height="wrap_content"
             android:text="Call Admin"
             android:background="@color/colorPrimary"
-            android:textSize="20dp"
+            android:textSize="18dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textColor="#FFFFFF"
             android:id="@+id/button1"
             style="?android:attr/borderlessButtonStyle"
@@ -42,7 +44,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/imageView3"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/ic_menu_mail"
             android:layout_gravity="center"/>
 
@@ -50,9 +52,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Mail Admin"
+            android:paddingRight="10dp"
             android:background="@color/colorPrimary"
             android:textColor="#FFFFFF"
-            android:textSize="20dp"
+            android:paddingLeft="10dp"
+            android:textSize="18dp"
             android:id="@+id/button4"
             style="?android:attr/borderlessButtonStyle"
             />

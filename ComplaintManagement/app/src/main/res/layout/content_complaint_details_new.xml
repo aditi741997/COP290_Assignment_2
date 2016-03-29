@@ -90,8 +90,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/downVote"
         android:layout_above="@+id/linearLayout"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="-10dp"
         android:paddingLeft="16dp"
         android:id="@+id/scrollView">
     <LinearLayout
@@ -351,7 +351,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/comment_add"
-            android:textColor="#000000"
+            android:textColor="@color/colorPrimary"
+            android:backgroundTintMode="add"
             android:hint="Post comment..."
             android:layout_below="@id/commentList"
             android:layout_marginLeft="12dp"
@@ -359,14 +360,15 @@
             android:layout_marginTop="12dp"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
             android:id="@+id/addcomment"
             android:layout_below="@+id/comment_add"
             android:layout_marginTop="12dp"
             android:text="Add comment"
-            android:layout_marginLeft="125dp"
-            android:layout_centerHorizontal="true"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center_horizontal"
             android:onClick="addComment"/>
 
         <CheckBox
@@ -409,6 +411,18 @@
         android:background="@drawable/greenlike"
         android:onClick="upVote"
         android:layout_marginRight="20dp"/>
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:backgroundTintMode="add"
+        android:background="#BBBBBB"
+        android:id="@+id/textView9"
+        android:layout_above="@+id/scrollView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-20dp"/>
 
 
 </RelativeLayout>

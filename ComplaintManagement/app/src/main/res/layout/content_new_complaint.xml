@@ -71,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/Coolcontent"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         float:fletTextAppearance="@style/floatlabelededittext"
         android:id="@+id/CoolDetail">
     <EditText android:layout_width="match_parent"

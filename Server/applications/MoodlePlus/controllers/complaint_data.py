@@ -121,8 +121,8 @@ def edit_complaint():
 
 def get_all():
     if (auth.is_logged_in()):
-        hostelpref = map(int,list(db(db.users.user_id == auth.user.username).select()[0]["hostel_pref"]))
-        instipref = map(int,list(db(db.users.user_id == auth.user.username).select()[0]["insti_pref"]))
+        hostelpref = map(int,list(db(db.users.username == auth.user.username).select()[0]["hostel_pref"]))
+        instipref = map(int,list(db(db.users.username == auth.user.username).select()[0]["insti_pref"]))
         # TODO: show all complaints of preferences, rather than all those mapped.
         allcomp = db(db.complaint_user_mapping.user_id==auth.user.username).select()
         IndivComp = []
@@ -139,7 +139,7 @@ def get_all():
         #     elif compid[:2]=="in":
         #         complaint = db(db.insti_complaints.complaint_id==compid).select()[0]
         #         InstiComp.append(complaint)
-        hostelid = db(db.user.user_id==auth.user.username).select()[0]["hostel"]
+        hostelid = db(db.users.username==auth.user.username).select()[0]["hostel"]
         for i in xrange(len(hostelpref)):
             if hostelpref[i]:
                 HostelComp += db((db.hostel_complaints.hostel==hostelid) & (db.hostel_complaints.complaint_type==i)).select()

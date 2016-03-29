@@ -78,4 +78,89 @@ def add_comment():
 		return dict(Success = True)
 	return dict(Success = False)
 
-# def take_to_higher():
+def take_to_higher():
+	if ("complaint_id" in request.vars and auth.is_logged_in()):
+		# For indiv complaints only
+		compid = request.vars.complaint_id
+		compdetails=[]
+		if (compid[:2]=="i_"):
+			compdetails = db(db.indiv_complaints.complaint_id==compid).select()
+		elif (compid[:2]=="h_"):
+			compdetails = db(db.hostel_complaints.complaint_id==compid).select()
+		elif (comp_id[:2]=="in"):
+			compdetails = db(db.indiv_complaints.complaint_id==compid).select()		
+		else:
+			return dict(Success=False)
+		if compdetails==[]:
+			return dict(Success=False,description="Invalid complaint id")
+		else:
+			compdetails=compdetails[0]
+			if (compid[:2]=="i_"):
+				newcompid = GetNewCompId(0)
+				comptype = compdetails["complaint_type"]
+				hostelid = auth.user.hostel
+				people = db((db.admin_info.complaint_area==comptype) & (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
+				people1= []
+				if len(people)==0:
+					people1 = db((db.admin_info.complaint_area==comptype) & (db.admin_info.hostel_id<0)).select(orderby=~db.admin_info.admin_level)
+				if len(people1)==0:
+					return dict(Success=False,description="No upper level admin found")
+				peoplenew = people+people1
+				bestsofar=-1             
+				newpeopleid = None
+				prevlevel=GetAdminLevel(compdetails["admin_id"],comptype)       
+				for elem  in peoplenew:
+					if elem["admin_level"]<prevlevel:
+						if bestsofar<=elem["admin_level"]:
+							bestsofar=elem["admin_level"]
+							newpeopleid=elem["username"]
+				if newpeopleid==None:
+					return dict(Success=False,description="No upper level admin found") 
+				db.indiv_complaints.insert(
+					complaint_id=NewCompId,
+					username=usname,
+					complaint_type=comptype,
+					complaint_content=content,		
+					admin_id=newpeopleid,
+					prev_id=compdetails["complain_id"])
+				db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=usname)
+				db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=compdetails["admin_id"])
+				db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=newpeopleid)
+
+				db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=newpeopleid,description="New complaint!")
+				db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=compdetails["admin_id"],description="Complaint Taken to higher authority by previous admin")
+				return dict(Sucess=True)
+			elif (comp_id[:2]=="h_"):
+				newcompid = GetNewCompId(1)
+				comptype = compdetails["complaint_type"]
+				hostelid = auth.user.hostel
+				people = db((db.admin_info.complaint_area==comptype) & (db.admin_info.hostel_id==hostelid)).select(orderby=~db.admin_info.admin_level)
+				people1= []
+				if len(people)==0:
+					return dict(Success=False,description="No upper level admin found")
+				peoplenew = people+people1
+				bestsofar=-1             
+				newpeopleid = None
+				prevlevel=GetAdminLevel(compdetails["admin_id"],comptype)       
+				for elem  in peoplenew:
+					if elem["admin_level"]<prevlevel:
+						if bestsofar<=elem["admin_level"]:
+							bestsofar=elem["admin_level"]
+							newpeopleid=elem["username"]
+				if newpeopleid==None:
+					return dict(Success=False,description="No upper level admin found") 
+				db.indiv_complaints.insert(
+					complaint_id=NewCompId,
+					username=usname,
+					complaint_type=comptype,
+					complaint_content=content,		
+					admin_id=newpeopleid,
+					prev_id=compdetails["complain_id"])
+				db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=usname)
+				db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=compdetails["admin_id"])
+				db.complaint_user_mapping.insert(complaint_id=NewCompId,user_id=newpeopleid)
+
+				db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=newpeopleid,description="New complaint!")
+				db.notifications.insert(complaint_id=NewCompId,src_user_id=usname,dest_user_id=compdetails["admin_id"],description="Complaint Taken to higher authority by previous admin")
+				return dict(Sucess=True)
+			return dict(Success=False,description="Complaint not resolved yet")
