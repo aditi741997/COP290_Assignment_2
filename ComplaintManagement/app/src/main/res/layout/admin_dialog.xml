@@ -27,6 +27,7 @@
             android:textSize="20dp"
             android:textColor="#FFFFFF"
             android:id="@+id/button1"
+            android:onClick="call_admin"
             style="?android:attr/borderlessButtonStyle"
             />
     </TableRow>
@@ -53,6 +54,7 @@
             android:background="@color/colorPrimary"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
+            android:onClick="mail_admin"
             android:id="@+id/button4"
             style="?android:attr/borderlessButtonStyle"
             />
