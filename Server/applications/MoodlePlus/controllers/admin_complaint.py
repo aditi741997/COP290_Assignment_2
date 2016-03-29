@@ -35,9 +35,9 @@ def get_complainant():
 					user_comp = inscom[0]["username"]
 			# now get user details.
 			user_details = db(db.users.username == user_comp).select()
-			return dict(user_detail = user_details[0])
-		return dict(user_detail = [])
-	return dict(user_detail = [])
+			return dict(Success=True,user_detail = user_details[0])
+		return dict(Success=False,user_detail = [])
+	return dict(Success=False,user_detail = [])
 
 
 def mark_resolved():

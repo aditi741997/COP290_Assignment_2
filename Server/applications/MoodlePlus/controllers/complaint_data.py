@@ -146,7 +146,7 @@ def get_all():
             if instipref[i]:
                 InstiComp += db(db.insti_complaints.complaint_type==i).select()
 
-        return dict(Individual=IndivComp, Hostel = HostelComp, Institute = InstiComp)
+        return dict(Individual=IndivComp, Hostel = HostelComp, Institute = InstiComp,hostpref=hostelpref,instipref=instipref)
     return dict(Complaints=[])
 
 def get_complaint_details():
