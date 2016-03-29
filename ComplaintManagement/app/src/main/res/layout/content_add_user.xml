@@ -27,7 +27,7 @@
             android:text="Create another User"
             android:background="@drawable/plainbutton"
             android:id="@+id/call_adm"
-            android:textColor="@color/textColorPrimary"
+            android:textColor="#FFFFFF"
             android:layout_weight="1.0"
             android:layout_marginRight="0.2dp"
             android:layout_gravity="bottom"/>
@@ -39,7 +39,7 @@
             android:text="Save User Details"
             android:background="@drawable/plainbutton"
             android:id="@+id/mail_Adm"
-            android:textColor="@color/textColorPrimary"
+            android:textColor="#FFFFFF"
             android:layout_weight="1.0"
             android:layout_gravity="bottom"/>
     </LinearLayout>
@@ -54,7 +54,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
+        android:backgroundTintMode="add"
         android:hint="Username"
+        android:textColorHint="#BBBBBB"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
@@ -71,7 +73,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/editText2"
+        android:backgroundTintMode="add"
         android:hint="Password"
+        android:textColorHint="#BBBBBB"
         android:layout_below="@+id/CoolUser"
         android:layout_centerHorizontal="true" />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
@@ -87,6 +91,8 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/editText3"
+        android:backgroundTintMode="add"
+        android:textColorHint="#BBBBBB"
         android:layout_below="@+id/CoolPassword"
         android:hint="Re-enter Password"
         android:layout_centerHorizontal="true" />
@@ -96,17 +102,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
+        android:paddingLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_below="@+id/CoolReEnter"
         android:layout_centerHorizontal="true" />
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add as Special User"
-        android:id="@+id/radioButton"
-        android:textColor="@color/colorPrimary"
-        android:layout_below="@+id/CoolDetails"
-        android:layout_centerHorizontal="true" />
 
     <com.wrapp.floatlabelededittext.FloatLabeledEditText
         android:layout_width="300dp"
@@ -118,7 +118,9 @@
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:backgroundTintMode="add"
         android:id="@+id/Phone"
+        android:textColorHint="#BBBBBB"
         android:layout_below="@+id/radioButton"
         android:hint="Phone No."
         android:layout_centerHorizontal="true" />
@@ -133,9 +135,11 @@
         android:id="@+id/CoolDetails">
     <EditText
         android:layout_width="300dp"
+        android:backgroundTintMode="add"
         android:layout_height="wrap_content"
         android:id="@+id/Details"
         android:layout_below="@+id/Phone"
+        android:textColorHint="#BBBBBB"
         android:hint="Additional Details"
         android:layout_centerHorizontal="true" />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>

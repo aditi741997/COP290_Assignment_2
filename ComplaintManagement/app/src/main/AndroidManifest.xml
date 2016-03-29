@@ -28,6 +28,7 @@
             android:name=".NewComplaint"
             android:label="@string/title_activity_new_complaint"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".Complaint_details"
             android:label="@string/title_activity_complaint_details"
@@ -41,11 +42,15 @@
         <activity
             android:name=".ChangePassword"
             android:label="@string/title_activity_change_password"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity
             android:name=".Admin_complaints"
             android:label="@string/title_activity_admin_complaints"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity
             android:name=".AddUser"
             android:label="@string/title_activity_add_user"
