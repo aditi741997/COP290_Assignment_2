@@ -370,7 +370,7 @@ def populate_db():
 	## create 4 students
 	db.users.insert(
 		name="Aditi",
-		user_type=0,
+		user_type=-1,
 		username="cs1140205",
 		contact_number="9876543210",
 		hostel=1,

@@ -48,7 +48,7 @@ def AllCategories():
 
 def isspecial():
 	# TODO: Remove comment
-	return len(db(db.admin_info.username==auth.user.username and db.admin_info.admin_level==-1).select())>0
+	return len(db((db.users.username==auth.user.username) & (db.users.user_type==-1)).select())>0
 	# return True
 
 def GetCategory(x):
