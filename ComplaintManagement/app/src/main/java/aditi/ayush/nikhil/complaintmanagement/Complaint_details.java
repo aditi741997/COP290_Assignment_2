@@ -4,14 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -28,7 +25,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -56,14 +52,14 @@ public class Complaint_details extends AppCompatActivity {
         populateData();
 
         populateComments();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
     }
 
     public  void populateData()
@@ -71,7 +67,7 @@ public class Complaint_details extends AppCompatActivity {
 //        c_id = "i_7";
         final TextView up = (TextView) findViewById(R.id.upVote);
         final TextView down = (TextView) findViewById(R.id.downVote);
-        final TextView neut = (TextView) findViewById(R.id.neutVote);
+        //final TextView neut = (TextView) findViewById(R.id.neutVote);
         TableRow hostel = (TableRow) findViewById(R.id.hostelRow);
 
         if (c_id.substring(0,2).equals("i_"))
@@ -80,7 +76,7 @@ public class Complaint_details extends AppCompatActivity {
 
             down.setVisibility(View.INVISIBLE);
 
-            neut.setVisibility(View.INVISIBLE);
+          //  neut.setVisibility(View.INVISIBLE);
 
             hostel.setVisibility(View.INVISIBLE);
         }
@@ -154,7 +150,7 @@ public class Complaint_details extends AppCompatActivity {
 
                                 up.setText("Upvotes : " + upV);
                                 down.setText("Downvotes : " + downV);
-                                neut.setText("Neutral : " + neutV);
+            //                    neut.setText("Neutral : " + neutV);
 //                                hostel : get string from server directly.
                                 String hostelname = json_data.getString("hostelname");
                                 TextView h_name = (TextView) findViewById(R.id.Hostel);
