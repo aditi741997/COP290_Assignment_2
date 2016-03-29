@@ -38,6 +38,7 @@ public class ComplaintPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     home home = new home();
+    MyApp_cookie cook = new MyApp_cookie();
     notifications notifications = new notifications();
     complaint_list complaint_list = new complaint_list();
     /**

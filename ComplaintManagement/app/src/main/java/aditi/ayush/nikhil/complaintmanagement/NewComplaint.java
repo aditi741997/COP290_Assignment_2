@@ -118,6 +118,7 @@ public class NewComplaint extends AppCompatActivity {
 
     public  void addComplaint(View view)
     {
+        Helpers h = new Helpers();
         String addc = getResources().getString(R.string.IP) + "/complaint_data/add_complaint.json?type=";
 
         Spinner s1 = (Spinner) findViewById(R.id.IHI);
@@ -138,14 +139,14 @@ public class NewComplaint extends AppCompatActivity {
 
         Spinner s2 = (Spinner) findViewById(R.id.TypeSpinner);
         String ctype = s2.getSelectedItem().toString();
-        addc += ctype + "&content=";
+        addc += h.SpaceToScore(ctype) + "&content=";
 
 //        content = , extra_info = , anonymous (1/0)
         final EditText content = (EditText) findViewById(R.id.content);
-        addc += content.getText().toString() + "&extra_info=";
+        addc += h.SpaceToScore(content.getText().toString()) + "&extra_info=";
 
         final EditText extra = (EditText) findViewById(R.id.extradet);
-        addc += extra.getText().toString() + "&anonymous=";
+        addc += h.SpaceToScore(extra.getText().toString()) + "&anonymous=";
 
         CheckBox anony = (CheckBox) findViewById(R.id.anony);
         if (anony.isChecked())

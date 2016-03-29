@@ -51,6 +51,7 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
     FillableLoader fillableLoader;
     private View rootView;
     private int pageNum;
+    MyApp_cookie cookie = new MyApp_cookie();
 
     public static FillableLoaderPage newInstance(int pageNum) {
         FillableLoaderPage page = new FillableLoaderPage();
@@ -158,32 +159,38 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
                                         boolean success = response.getBoolean("success");
 //                                        boolean user = response.getBoolean("UserType");
                                         String s1 = response.getString("userid");
-                                        String s2 = response.getString("passwd");
 
                                         if (success)
                                         {
 // String name=response.getString("Name")
                                             String id= response.getString("Unique_Id");
+                                            cookie.Username = s1;
+                                            cookie.Pswd = response.getString("passwd");
+                                            cookie.isSpecial = response.getBoolean("special");
+                                            cookie.isAdmin = response.getBoolean("admin");
                                             // Sending only id as we can get all the information via database
                                             //TODO: Add an intent to start the main page activity
                                             //TODO: Also set the **** here
                                             Toast.makeText(getActivity().getApplicationContext(),
-                                                    "Login Success" + "\t" + s1 + "\t" + s2,
+                                                    "Login Success" + "\t" + s1 + "\t",
                                                     Toast.LENGTH_LONG).show();
                                             Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
                                             Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
-                                            i.putExtra("UserType", Username);
+                                            if (cookie.isSpecial)
+                                                i.putExtra("UserType","Special");
+                                            else
+                                                i.putExtra("UserType", Username);
                                             startActivity(i);
                                         }
                                         else
                                         {
                                             Toast.makeText(getActivity().getApplicationContext(),
-                                                    "Login not success" + success + "\t" +s1 + "\t" +s2,
+                                                    "Login not success" + success + "\t" +s1 + "\t",
                                                     Toast.LENGTH_LONG).show();
-                                            Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
-                                            Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
-                                            i.putExtra("UserType", Username);
-                                            startActivity(i);
+//                                            Intent i=new Intent(getActivity().getApplicationContext(),ComplaintPage.class);
+//                                            Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_SHORT).show();
+//                                            i.putExtra("UserType", Username);
+//                                            startActivity(i);
                                         }
 
                                     } catch (JSONException e) {
